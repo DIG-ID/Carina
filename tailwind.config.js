@@ -12,7 +12,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      //montserrat: ['Montserrat', 'sans-serif'],
+      funnelsans: ['Funnel Sans', 'sans-serif'],
     },
 
     extend: {
@@ -21,7 +21,9 @@ module.exports = {
         //wider: '.06em',
       },
       colors: {
-        
+        dark: '#0F1A1E',
+        coral: '#EC685B',
+        lightGrey: '#F0F2F5'
       },
       transitionTimingFunction: {
         //'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',

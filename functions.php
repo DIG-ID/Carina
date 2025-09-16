@@ -2,7 +2,7 @@
 /**
  * Setup theme
  */
-function rochat_theme_setup() {
+function carina_theme_setup() {
 
 	register_nav_menus(
 		array(
@@ -31,12 +31,12 @@ function rochat_theme_setup() {
 
 }
 
-add_action( 'after_setup_theme', 'rochat_theme_setup' );
+add_action( 'after_setup_theme', 'carina_theme_setup' );
 
 /**
  * Register our sidebars and widgetized areas.
  */
-function rochat_theme_footer_widgets_init() {
+function carina_theme_footer_widgets_init() {
 
 	register_sidebar(
 		array(
@@ -62,25 +62,25 @@ function rochat_theme_footer_widgets_init() {
 
 }
 
-add_action( 'widgets_init', 'rochat_theme_footer_widgets_init' );
+add_action( 'widgets_init', 'carina_theme_footer_widgets_init' );
 
-if ( ! function_exists( 'rochat_get_font_face_styles' ) ) :
+if ( ! function_exists( 'carina_get_font_face_styles' ) ) :
 	/**
 	 * Get font face styles.
 	 * This is used by the theme or editor to inject @import for Google Fonts.
 	 */
-	function rochat_get_font_face_styles() {
+	function carina_get_font_face_styles() {
 		return "
-			@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Prata&display=swap');
+			@import url('https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 		";
 	}
 endif;
 
-if ( ! function_exists( 'rochat_preload_webfonts' ) ) :
+if ( ! function_exists( 'carina_preload_webfonts' ) ) :
 	/**
 	 * Preloads Google Fonts to improve performance.
 	 */
-	function rochat_preload_webfonts() {
+	function carina_preload_webfonts() {
 		?>
 		<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,13 +88,13 @@ if ( ! function_exists( 'rochat_preload_webfonts' ) ) :
 	}
 endif;
 
-add_action( 'wp_head', 'rochat_preload_webfonts' );
+add_action( 'wp_head', 'carina_preload_webfonts' );
 
 
 /**
  * Enqueue styles and scripts
  */
-function rochat_theme_enqueue_styles() {
+function carina_theme_enqueue_styles() {
 
 	//Get the theme data
 	$the_theme     = wp_get_theme();
@@ -103,17 +103,15 @@ function rochat_theme_enqueue_styles() {
 	// Register Theme main style.
 	wp_register_style( 'theme-styles', get_template_directory_uri() . '/dist/css/main.css', array(), $theme_version );
 	// Add styles inline.
-	wp_add_inline_style( 'theme-styles', rochat_get_font_face_styles() );
+	wp_add_inline_style( 'theme-styles', carina_get_font_face_styles() );
 	// Enqueue theme stylesheet.
 	wp_enqueue_style( 'theme-styles' );
-	//https://use.typekit.net/evg0ous.css first loaded fonts library backup
-	//wp_enqueue_style( 'theme-fonts', 'https://use.typekit.net/buy6qwo.css', array(), $theme_version );
 
 	wp_enqueue_script( 'jquery', false, array(), $theme_version, true );
 	wp_enqueue_script( 'theme-scripts', get_stylesheet_directory_uri() . '/dist/js/main.js', array( 'jquery' ), $theme_version, true );
 }
 
-add_action( 'wp_enqueue_scripts', 'rochat_theme_enqueue_styles' );
+add_action( 'wp_enqueue_scripts', 'carina_theme_enqueue_styles' );
 
 
 /**
@@ -128,11 +126,11 @@ add_filter( 'wpcf7_autop_or_not', '__return_false' );
  *
  * @return string $priority The potentially altered priority.
  */
-function rochat_theme_lower_yoast_metabox_priority( $priority ) {
+function carina_theme_lower_yoast_metabox_priority( $priority ) {
 	return 'core';
 }
 
-add_filter( 'wpseo_metabox_prio', 'rochat_theme_lower_yoast_metabox_priority' );
+add_filter( 'wpseo_metabox_prio', 'carina_theme_lower_yoast_metabox_priority' );
 
 
 // Theme custom template tags.
