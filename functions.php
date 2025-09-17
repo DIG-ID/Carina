@@ -90,6 +90,17 @@ endif;
 
 add_action( 'wp_head', 'carina_preload_webfonts' );
 
+/**
+	 * Preloads Local Fonts to improve performance.
+	 */
+function carina_preload_local_fonts() {
+    $base = get_template_directory_uri() . '/assets/fonts/magnat-font-family/';
+    ?>
+    <link rel="preload" as="font" type="font/woff" href="<?php echo $base; ?>NeueMagnatTextTest-Regular-BF63e9a00ba26a8.woff" crossorigin>
+    <?php
+}
+add_action( 'wp_head', 'carina_preload_local_fonts', 1 );
+
 
 /**
  * Enqueue styles and scripts

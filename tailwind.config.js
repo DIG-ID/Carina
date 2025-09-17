@@ -12,16 +12,19 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      funnelsans: ['Funnel Sans', 'sans-serif'],
+      funnelsans: ['"Funnel Sans"', 'system-ui', 'sans-serif'],
     },
-
     extend: {
+      fontFamily: {
+        magnatText: ['"NeueMagnatText"', 'system-ui', 'sans-serif'],
+      },
       letterSpacing: {
         //wide: '.038em',
         //wider: '.06em',
       },
       colors: {
-        dark: '#0F1A1E',
+        darkBlue: '#0F1A1E',
+        lightBlue: '#356274',
         coral: '#EC685B',
         lightGrey: '#F0F2F5'
       },
