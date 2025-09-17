@@ -1,0 +1,11 @@
+.header-main
+    @apply transition-all duration-300 ease-in-out
+    .menu-toggle
+        @apply flex items-center
+        &__bars
+            @apply flex flex-col items-center justify-center overflow-hidden relative w-11
+            .bar
+                @apply w-[42px] h-[6px] bg-lightGrey transition-all duration-300 ease-in-out
+                &:not(:last-child)
+                    @apply mb-2
+                    
