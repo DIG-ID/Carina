@@ -21,7 +21,7 @@
         </h1>
       </div>
     </div>
-    <div class="scroll-down absolute bottom-10 bottom-28 flex w-full justify-center min-h-16">
+    <div class="scroll-down absolute bottom-28 flex w-full justify-center min-h-16">
       <p class="block-text text-lightGrey"><?php esc_html_e( 'Scroll for more', 'carina' ); ?></p>
       <div class="w-[2px] h-[202px] bg-lightGrey absolute top-16" aria-hidden="true"></div>
     </div>

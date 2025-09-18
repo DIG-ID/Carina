@@ -10,7 +10,7 @@
                 <?php
                 if( have_rows('four_icons_left_list') ):
                     while( have_rows('four_icons_left_list') ) : the_row(); ?>
-                    <div class="icon-block-wrapper flex flex-row mb-12 md:mb-16 xl:mb-24">
+                    <div class="icon-block-wrapper flex flex-row mb-12 md:mb-16 xl:mb-24 items-center">
                         <div class="w-1/5">
                             <?php
                                 $icon = get_sub_field('icon');
@@ -38,7 +38,7 @@
                 <?php
                 if( have_rows('four_icons_right_list') ):
                     while( have_rows('four_icons_right_list') ) : the_row(); ?>
-                    <div class="icon-block-wrapper flex flex-row mb-12 md:mb-16 xl:mb-24">
+                    <div class="icon-block-wrapper flex flex-row mb-12 md:mb-16 xl:mb-24 items-center">
                         <div class="w-1/5">
                             <?php
                                 $icon = get_sub_field('icon');
