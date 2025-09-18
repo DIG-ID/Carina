@@ -1,20 +1,15 @@
-<section id="section-hero" class="section-hero relative h-screen w-full">
+<section id="section-hero" class="section-hero relative h-screen w-full z-20">
   <?php
     $imgHero = get_field('hero_background_image');
     $size  = 'full';
-
-    if ( $imgHero ) {
-      echo wp_get_attachment_image(
-        $imgHero,
-        $size,
-        false,
+    if ( $imgHero ) {echo wp_get_attachment_image(
+        $imgHero, $size, false,
         [
           'class'    => 'absolute inset-0 w-full h-full object-cover -z-10',
           'loading'  => 'eager',
           'decoding' => 'async',
         ]
-      );
-    }
+    );}
   ?>
   <div class="home-hero-overlay" aria-hidden="true"></div>
 
