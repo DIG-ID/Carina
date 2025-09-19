@@ -9,9 +9,11 @@ if ( have_posts() ) :
 		the_post();
 		do_action( 'before_main_content' );
 			get_template_part( 'template-parts/modules/section','hero' );
-            get_template_part( 'template-parts/modules/relaxation' );
+			get_template_part( 'template-parts/modules/intro' );
+            get_template_part( 'template-parts/pages/stay/individual' );
             get_template_part( 'template-parts/modules/text-center' );
 			get_template_part( 'template-parts/pages/stay/connection-space' );
+			get_template_part( 'template-parts/pages/stay/outro' );
 		do_action( 'after_main_content' );
 	endwhile;
 endif;
