@@ -8,5 +8,21 @@ body
 .theme-container
     @apply px-8 md:px-6 xl:px-0 mx-auto w-full xl:max-w-[1312px]
 
+.theme-container-fluid
+    @apply w-full px-0
+
 .theme-grid
-    @apply grid grid-cols-2 md:grid-cols-6 xl:grid-cols-12 gap-x-8
+    @apply grid grid-cols-2 md:grid-cols-6 xl:grid-cols-12 gap-x-5 md:gap-x-4 xl:gap-x-8
+
+@media (min-width: 768px)
+    .bleed-right-md
+        width: calc(100% + (50vw - 50%))
+        margin-right: calc(50% - 50vw)
+        max-width: none
+
+@media (max-width: 767px)
+    .bleed-sm
+        width: 100dvw
+        margin-left: calc(50% - 50vw)
+        margin-right: calc(50% - 50vw)
+        max-width: none

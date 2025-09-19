@@ -26,17 +26,21 @@
 
   <div class="home-hero-overlay" aria-hidden="true"></div>
 
-  <div class="theme-container h-full flex items-end pb-16 relative z-10">
+  <div class="theme-container justify-center h-full flex items-end pb-36 xl:pb-20 relative z-10">
     <div class="theme-grid">
+      <?php if( 'hero_title' ) : ?>
       <div class="col-span-2 md:col-span-<?php echo get_field( 'hero_cols_md' ); ?> xl:col-span-<?php echo get_field( 'hero_cols_xl' ); ?> text-lightGrey">
-        <h1 class="title-xl mb-6">
+        <h1 class="title-xl">
           <?php the_field( 'hero_title' ); ?>
         </h1>
       </div>
+      <?php endif; ?>
     </div>
-    <div class="scroll-down absolute bottom-28 flex w-full justify-center min-h-16">
-      <p class="block-text text-lightGrey"><?php esc_html_e( 'Scroll for more', 'carina' ); ?></p>
-      <div class="w-[2px] h-[202px] bg-lightGrey absolute top-16" aria-hidden="true"></div>
+    <div class="theme-grid absolute bottom-8 md:bottom-16 xl:bottom-28">
+      <div class="col-span-2 md:col-span-6 xl:col-span-12 scroll-down flex justify-center min-h-16">
+        <p class="block-text text-lightGrey"><?php esc_html_e( 'Scroll for more', 'carina' ); ?></p>
+        <div class="w-[1px] md:w-[2px] h-[125px] xl:h-[202px] bg-lightGrey absolute top-9 md:top-14 xl:top-16" aria-hidden="true"></div>
+      </div>
     </div>
   </div>
 </section>
