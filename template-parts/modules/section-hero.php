@@ -40,8 +40,8 @@
     <div class="theme-grid absolute bottom-8 md:bottom-16 xl:bottom-28">
       <div class="col-span-2 md:col-span-6 xl:col-span-12 scroll-down flex justify-center min-h-16">
         <?php if ( is_front_page() ) : ?>
-          <p class="block-text text-lightGrey"><?php esc_html_e( 'Scroll for more', 'carina' ); ?></p>
-          <div class="w-[1px] md:w-[2px] h-[125px] xl:h-[202px] bg-lightGrey absolute top-9 md:top-14 xl:top-16" aria-hidden="true"></div>
+          <a href="#" class="btn-scroll block-text text-lightGrey"><?php esc_html_e( 'Scroll for more', 'carina' ); ?></a>
+          <div class="w-[1px] md:w-[1px] h-[125px] xl:h-[202px] bg-lightGrey absolute top-9 md:top-14 xl:top-16" aria-hidden="true"></div>
         <?php endif; ?>
       </div>
     </div>

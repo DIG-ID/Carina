@@ -38,3 +38,35 @@
                 @apply text-coral
                 &::after
                     background-color: #EC685B
+    &-block
+        &-darkBlue
+            @apply inline-flex flex-col justify-center items-center text-[1rem] leading-none font-bold tracking-[-0.02rem] gap-y-2 text-darkBlue
+            &::before
+                content: ''
+                display: inline-block
+                width: 54px
+                height: 24px
+                background-color: #0F1A1E
+                -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='77' height='36' viewBox='0 0 77 36' fill='none'%3E%3Cpath d='M1 22.7159C1 22.7159 9.88134 37.2734 34.3389 24.0807C36.8318 22.7358 39.454 21.6415 42.1817 20.8775C48.972 18.9775 61.4862 16.7114 76 19.9783' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M53.7363 1L75.9994 19.9783L53.7363 34.2115' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain
+                mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='77' height='36' viewBox='0 0 77 36' fill='none'%3E%3Cpath d='M1 22.7159C1 22.7159 9.88134 37.2734 34.3389 24.0807C36.8318 22.7358 39.454 21.6415 42.1817 20.8775C48.972 18.9775 61.4862 16.7114 76 19.9783' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M53.7363 1L75.9994 19.9783L53.7363 34.2115' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain
+                @apply transition-colors duration-300 ease-in-out
+            &:hover
+                @apply text-coral
+                &::before
+                    background-color: #EC685B
+        &-lightGrey
+            @apply inline-flex flex-col justify-center items-center text-[1rem] leading-none font-bold tracking-[-0.02rem] gap-y-2 text-lightGrey
+            &::before
+                content: ''
+                display: inline-block
+                width: 54px
+                height: 24px
+                background-color: #F0F2F5
+                -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='77' height='36' viewBox='0 0 77 36' fill='none'%3E%3Cpath d='M1 22.7159C1 22.7159 9.88134 37.2734 34.3389 24.0807C36.8318 22.7358 39.454 21.6415 42.1817 20.8775C48.972 18.9775 61.4862 16.7114 76 19.9783' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M53.7363 1L75.9994 19.9783L53.7363 34.2115' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain
+                mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='77' height='36' viewBox='0 0 77 36' fill='none'%3E%3Cpath d='M1 22.7159C1 22.7159 9.88134 37.2734 34.3389 24.0807C36.8318 22.7358 39.454 21.6415 42.1817 20.8775C48.972 18.9775 61.4862 16.7114 76 19.9783' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M53.7363 1L75.9994 19.9783L53.7363 34.2115' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain
+
+                @apply transition-colors duration-300 ease-in-out
+            &:hover
+                @apply text-coral
+                &::before
+                    background-color: #EC685B

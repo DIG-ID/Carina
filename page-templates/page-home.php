@@ -13,7 +13,9 @@ if ( have_posts() ) :
 			get_template_part( 'template-parts/pages/home/four-icons' );
 			get_template_part( 'template-parts/pages/home/rooms' );
 			get_template_part( 'template-parts/pages/home/food-banner' );
-			get_template_part( 'template-parts/pages/home/relaxation' );		
+			get_template_part( 'template-parts/pages/home/relaxation' );
+			get_template_part( 'template-parts/pages/home/slider-banner' );
+			get_template_part( 'template-parts/pages/home/discover' );
 		do_action( 'after_main_content' );
 	endwhile;
 endif;

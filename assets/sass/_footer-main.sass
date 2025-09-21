@@ -4,7 +4,16 @@
     a
       @apply font-funnelsans text-xl tracking-[0.0313rem] leading-[150%] font-normal text-lightGrey transition-all duration-300 ease-in-out
       &:hover
-        @apply font-semibold
+        @apply font-bold
     &:not(:last-child)
       @apply mb-5 md:mb-6
-      
+
+.copyright-menu-nav
+  @apply text-center flex flex-row justify-center flex-wrap max-w-80 md:max-w-none mx-auto
+  .menu-item
+    a
+      @apply block-text text-lightGrey transition-all duration-300 ease-in-out
+      &:hover
+        @apply font-bold
+    &:not(:last-child)
+      @apply md:mr-24

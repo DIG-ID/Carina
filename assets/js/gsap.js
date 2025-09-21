@@ -26,3 +26,16 @@ gsap.ticker.add((time) => {
 });
 
 gsap.ticker.lagSmoothing(0);
+
+// Smooth scroll for scroll down button on home page
+document.addEventListener('DOMContentLoaded', function () {
+	if (document.querySelector(".page-template-page-home")) {
+		document.querySelector('.btn-scroll')?.addEventListener('click', function (e) {
+			e.preventDefault();
+			lenis.scrollTo(window.scrollY + window.innerHeight, {
+				duration: 0.5, 
+				easing: (t) => t, 
+			})
+		});
+	}
+});

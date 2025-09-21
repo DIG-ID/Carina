@@ -1,4 +1,4 @@
-<footer id="footer-main" class="footer-main relative w-full bg-darkBlue pt-3 md:pt-6 pb-6 md:pb-11 xl:pb-6">
+<footer id="footer-main" class="footer-main relative w-full bg-darkBlue pt-3 md:pt-6 pb-6 md:pb-11 xl:pb-6 -mt-1">
 	<div class="theme-container border-t border-b border-lightGrey">
     <div class="theme-grid pt-16 md:pt-16 xl:pt-11 pb-12">
       <div class="col-span-2 md:col-span-2 xl:col-span-3 flex flex-col items-start justify-between">
@@ -82,6 +82,26 @@
             }
           ?>
         </a>
+      </div>
+    </div>
+  </div>
+  <div class="theme-container">
+    <div class="theme-grid">
+      <div class="col-span-2 md:col-span-6 xl:col-span-12 text-center pt-6 md:pt-9 pb-3 md:pb-6 xl:py-6">
+        <?php
+          wp_nav_menu(
+            array(
+              'theme_location' => 'copyright-menu',
+              'container'      => false,
+              'menu_class'     => 'copyright-menu-nav',
+              'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+              'fallback_cb'    => '__return_false',
+            )
+          );
+        ?>
+      </div>
+      <div class="col-span-2 md:col-span-6 xl:col-span-12 text-center">
+        <p class="block-text text-lightGrey">&copy; <?php echo date("Y"); ?> <?php bloginfo('name'); ?>. <?php esc_html_e( 'Alle Rechte vorbehalten.','carina' ); ?></p>
       </div>
     </div>
   </div>
