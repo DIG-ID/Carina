@@ -1,4 +1,4 @@
-<section id="section-relaxation" class="section-relaxation bg-white pt-24 md:pt-24 xl:pt-24 pb-[55px] xl:pb-[150px]">
+<section id="section-relaxation" class="section-relaxation pt-20 md:pt-24 xl:pt-36 pb-[55px] xl:pb-[150px]">
 
   <div class="theme-container h-full flex items-end relative z-10">
     <div class="theme-grid">

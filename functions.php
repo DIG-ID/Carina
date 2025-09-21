@@ -8,7 +8,7 @@ function carina_theme_setup() {
 		array(
 			'main-menu'      => __( 'Main Menu', 'carina' ),
 			'main-mega-menu' => __( 'Main Mega Menu', 'carina' ),
-			'secondary-menu' => __( 'Secondary Menu', 'carina' ),
+			'footer-menu'    => __( 'Footer Menu', 'carina' ),
 			'copyright-menu' => __( 'Copyright Menu', 'carina' ),
 		)
 	);

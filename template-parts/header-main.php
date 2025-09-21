@@ -14,23 +14,25 @@
                     </div>
                 </div>
                 <div class="col-span-1 flex items-center justify-center">
-                    <?php
-                        $imgLogo = get_field('general_theme-logo','option');
-                        $size  = 'full';
+                    <a href="<?php echo esc_url( home_url('/') ); ?>" rel="home">
+                        <?php
+                            $imgLogo = get_field('general_theme-logo','option');
+                            $size  = 'full';
 
-                        if ( $imgLogo ) {
-                        echo wp_get_attachment_image(
-                            $imgLogo,
-                            $size,
-                            false,
-                            [
-                            'class'    => 'w-40',
-                            'loading'  => 'eager',
-                            'decoding' => 'async',
-                            ]
-                        );
-                        }
-                    ?>
+                            if ( $imgLogo ) {
+                            echo wp_get_attachment_image(
+                                $imgLogo,
+                                $size,
+                                false,
+                                [
+                                'class'    => 'w-40',
+                                'loading'  => 'eager',
+                                'decoding' => 'async',
+                                ]
+                            );
+                            }
+                        ?>
+                    </a>
                 </div>
                 <div class="col-span-1 flex items-center justify-end">
                     <a href="<?php the_field( 'general_booking_url','option' ); ?>" class="btn btn-primary"><?php esc_html_e( 'Jetzt buchen','carina' ); ?></a>
