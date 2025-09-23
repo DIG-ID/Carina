@@ -1,1 +1,2 @@
 import './gsap';
+import './swiper';

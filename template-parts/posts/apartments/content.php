@@ -87,7 +87,23 @@
           );
         endif; ?>
       </div>
-
+    </div>
+    <div class="theme-grid">
+      <div class="col-span-2 md:col-span-6 xl:col-span-12">
+        <p class="title-30 text-darkBlue"><?php echo get_field('content_slider_title') ?></p>
+        <div class="swiper aps-slider">
+          <div class="swiper-wrapper">
+            <?php if ($rooms_slider = get_field('content_rooms_slider')) :
+              foreach ($rooms_slider as $id) : ?>
+                <div class="swiper-slide slider-image">
+                  <?php echo wp_get_attachment_image($id, 'full', false, ['class'=>'block w-full h-auto']); ?>
+                </div>
+            <?php endforeach; endif; ?>
+          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

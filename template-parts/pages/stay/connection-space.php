@@ -20,7 +20,7 @@
                     $link_target = $link['target'] ? $link['target'] : '_self';
                     ?>
                     <a class="btn btn-arrow-darkBlue mb-[32px] md:mb-0 " href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
-                <?php endif; ?></a>
+                <?php endif; ?>
             </div>
         </div>
     </div>
