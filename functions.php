@@ -23,11 +23,7 @@ function carina_theme_setup() {
 
 	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'style', 'script' ) );
 
-	add_image_size( 'zimmer-image', 1400, 770, array( 'center', 'center' ) );
-
-	add_image_size( 'long-term-image', 975, 650, array( 'center', 'center' ) );
-
-	add_image_size( 'offer-image', 625, 345, array( 'center', 'center' ) );
+	add_image_size( 'slider-bleed-right-size', 830, 596, array( 'center', 'center' ) );
 
 }
 

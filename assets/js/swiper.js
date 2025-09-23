@@ -1,22 +1,27 @@
 import Swiper from 'swiper/bundle';
-import 'swiper/css/bundle';
 
-document.addEventListener('DOMContentLoaded', () => {
-  new Swiper('.aps-slider.swiper', {
-    slidesPerView: 1,
-    centeredSlides: true,
-    loop: true,
-    breakpoints: {
-      480:  { slidesPerView: 2, spaceBetween: 15 },
-      768:  { slidesPerView: 2, spaceBetween: 25 },
-      1366: { slidesPerView: 1.75, spaceBetween: 40 },
-    },
-    autoplay: { delay: 1, disableOnInteraction: false },
-    speed: 5000,
-    grabCursor: true,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  });
+window.addEventListener("load", () => {
+  // Homepage Hero Swiper
+  if (document.querySelector(".page-template-page-taste")) {
+    new Swiper('.bleed-right-swiper', {
+      speed: 900,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      breakpoints: { 
+        0:{slidesPerView:1.3,spaceBetween: 9}, 
+        768:{slidesPerView:1.5,spaceBetween: 16},
+        1280:{slidesPerView:2,spaceBetween: 24}
+      },
+      slidesPerView: 2,
+      slidesPerGroup: 1,
+      spaceBetween: 24,
+      effect: 'slide',
+      navigation: {
+        nextEl: '.bleed-right-swiper .swiper-button-next',
+      },
+    });
+  }
 });

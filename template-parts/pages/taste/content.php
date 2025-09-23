@@ -50,19 +50,24 @@
           ]
         ); ?>
         <div class="flex flex-col items-start justify-start gap-y-6">
-          <?php
-          if( have_rows('content_download_list') ):
-            while( have_rows('content_download_list') ) : the_row(); ?>
-              <?php 
+          <?php if ( have_rows('content_download_list') ) :
+            $i = 0; // start at 0 so first is darkBlue
+            while ( have_rows('content_download_list') ) : the_row();
               $link = get_sub_field('button');
-              if( $link ): 
-                $link_url = $link['url'];
+              if ( $link ) :
+                $link_url   = $link['url'];
                 $link_title = $link['title'];
-                $link_target = $link['target'] ? $link['target'] : '_self';
+                $link_target= $link['target'] ? $link['target'] : '_self';
+
+                $variant = ( get_row_index() % 2 === 1 ) ? 'btn-download-darkBlue' : 'btn-download-coral';
                 ?>
-                <a class="btn btn-arrow-darkBlue" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
-              <?php endif; ?>
-          <?php 
+                <a class="btn <?php echo esc_attr($variant); ?>"
+                  href="<?php echo esc_url($link_url); ?>"
+                  target="<?php echo esc_attr($link_target); ?>">
+                  <?php echo esc_html($link_title); ?>
+                </a>
+              <?php endif;
+              $i++; // increment each loop
             endwhile;
           endif; ?>
         </div>
