@@ -22,6 +22,38 @@
                 @apply text-coral
                 &::after
                     background-color: #EC685B
+
+        &-previous
+            @apply inline-flex justify-center items-center text-[1rem] leading-none font-bold tracking-[-0.02rem] gap-x-7 text-darkBlue
+            &::before
+                content: ''
+                display: inline-block
+                width: 59px
+                height: 28px
+                background-color: #0F1A1E
+                -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='59' height='28' viewBox='0 0 59 28' fill='none'%3E%3Cpath d='M56.972 13.1575C57.3358 15.6045 55.2259 20.3936 43.876 19.9741C29.6886 19.4498 36.4139 11.818 20.2829 13.1575C10.4993 13.9698 4.07993 14.7564 4.07993 14.7564' stroke='black' stroke-width='3'/%3E%3Cpath d='M21.3633 2L2.99987 15.2414L21.3633 26' stroke='black' stroke-width='3'/%3E%3C/svg%3E") no-repeat center / contain
+                mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='59' height='28' viewBox='0 0 59 28' fill='none'%3E%3Cpath d='M56.972 13.1575C57.3358 15.6045 55.2259 20.3936 43.876 19.9741C29.6886 19.4498 36.4139 11.818 20.2829 13.1575C10.4993 13.9698 4.07993 14.7564 4.07993 14.7564' stroke='black' stroke-width='3'/%3E%3Cpath d='M21.3633 2L2.99987 15.2414L21.3633 26' stroke='black' stroke-width='3'/%3E%3C/svg%3E") no-repeat center / contain
+                @apply transition-colors duration-300 ease-in-out
+            &:hover
+                @apply text-coral
+                &::before 
+                    background-color: #EC685B
+        &-next
+            @apply inline-flex justify-center items-center text-[1rem] leading-none font-bold tracking-[-0.02rem] gap-x-7 text-darkBlue
+            &::after
+                content: ''
+                display: inline-block
+                width: 59px  
+                height: 28px
+                background-color: #0F1A1E
+                -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='59' height='28' viewBox='0 0 59 28' fill='none'%3E%3Cpath d='M2.03777 14.8425C1.67399 12.3955 3.78391 7.60637 15.1338 8.02585C29.3212 8.55021 22.5959 16.182 38.7268 14.8425C48.5105 14.0301 54.9298 13.2436 54.9298 13.2436' stroke='black' stroke-width='3'/%3E%3Cpath d='M37.6465 26L56.0099 12.7586L37.6465 2' stroke='black' stroke-width='3'/%3E%3C/svg%3E") no-repeat center / contain
+                mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='59' height='28' viewBox='0 0 59 28' fill='none'%3E%3Cpath d='M2.03777 14.8425C1.67399 12.3955 3.78391 7.60637 15.1338 8.02585C29.3212 8.55021 22.5959 16.182 38.7268 14.8425C48.5105 14.0301 54.9298 13.2436 54.9298 13.2436' stroke='black' stroke-width='3'/%3E%3Cpath d='M37.6465 26L56.0099 12.7586L37.6465 2' stroke='black' stroke-width='3'/%3E%3C/svg%3E") no-repeat center / contain
+                @apply transition-colors duration-300 ease-in-out
+            &:hover
+                @apply text-coral
+                &::after
+                    background-color: #EC685B
+            
         &-lightGrey
             @apply inline-flex justify-center items-end text-[1rem] leading-none font-bold tracking-[-0.02rem] gap-x-7 text-lightGrey
             &::after

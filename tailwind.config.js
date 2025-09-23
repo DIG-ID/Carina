@@ -26,7 +26,8 @@ module.exports = {
         darkBlue: '#0F1A1E',
         lightBlue: '#356274',
         coral: '#EC685B',
-        lightGrey: '#F0F2F5'
+        lightGrey: '#F0F2F5',
+        veryDarkBlue: '1A202C'
       },
       transitionTimingFunction: {
         //'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
