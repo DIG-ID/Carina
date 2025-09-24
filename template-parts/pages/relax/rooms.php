@@ -35,6 +35,17 @@
       <div class="col-span-2 md:col-span-5 xl:col-span-5">
         <p class="block-text text-darkBlue"><?php the_field( 'rooms_text' ); ?></p>
       </div>
+      <div class="col-span-2 md:col-span-2 xl:col-span-7 flex flex-col items-center md:items-end justify-center md:justify-end">
+        <?php 
+        $link = get_field('rooms_button');
+        if( $link ): 
+            $link_url = $link['url'];
+            $link_title = $link['title'];
+            $link_target = $link['target'] ? $link['target'] : '_self';
+            ?>
+            <a class="btn btn-arrow-darkBlue" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+        <?php endif; ?>
+      </div>
     </div>
   </div>
 </section>

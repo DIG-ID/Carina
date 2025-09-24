@@ -6,7 +6,7 @@
         'full',
         false,
         [
-        'class'    => 'inset-0 w-full h-full object-cover -z-10',
+        'class'    => 'inset-0 w-full h-full max-h-[85dvh] object-cover -z-10',
         'loading'  => 'eager',
         'decoding' => 'async',
         ]
