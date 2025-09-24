@@ -1,4 +1,4 @@
-<section id="section-hero" class="section-hero relative h-screen w-full z-20">
+<section id="section-hero" class="section-hero relative h-screen w-full z-20 bg-darkBlue">
 
   <?php if ( get_field('hero_video_header') && get_field('hero_video') ) : ?>
     <video 

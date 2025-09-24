@@ -12,6 +12,8 @@ if ( have_posts() ) :
       get_template_part( 'template-parts/modules/section','intro' );
       get_template_part( 'template-parts/pages/taste/content' );
       get_template_part( 'template-parts/modules/section','slider-bleed-right' );
+      get_template_part( 'template-parts/pages/taste/banner' );
+      get_template_part( 'template-parts/pages/taste/cooking' );
 		do_action( 'after_main_content' );
 	endwhile;
 endif;
