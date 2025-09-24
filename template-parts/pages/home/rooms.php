@@ -1,10 +1,10 @@
 <section id="section-rooms" class="section-rooms relative w-full bg-darkBlue">
     <div class="theme-container">
-        <div class="theme-grid">
+        <div class="theme-grid bleed-right-md-container">
             <div class="col-span-2 md:col-span-3 xl:col-span-5 pt-7 md:pt-12 xl:pt-14 pb-10 md:pb-8 xl:pb-16 flex flex-col justify-between items-start">
                 <div class="block-wrapper">
                     <h2 class="title-md text-lightGrey pb-6 md:pb-12 xl:pb-16"><?php the_field( 'rooms_title' ); ?></h2>
-                    <p class="block-text text-lightGrey mb-9 md:mb-0"><?php the_field( 'rooms_description' ); ?></p>
+                    <p class="block-text text-lightGrey mb-9 md:mb-0 xl:max-w-[90%] 2xl:max-w-[73%]"><?php the_field( 'rooms_description' ); ?></p>
                 </div>
                 <?php 
                 $link = get_field('rooms_button');
@@ -32,7 +32,7 @@
                     'large',
                     false,
                     [
-                        'class'    => 'block w-full object-cover xl:max-h-screen bleed-sm bleed-right-md h-full',
+                        'class'    => 'block w-full object-cover xl:max-h-[80dvh] bleed-sm h-full',
                         'loading'  => 'eager',
                         'decoding' => 'async',
                         'sizes'    => '100vw',

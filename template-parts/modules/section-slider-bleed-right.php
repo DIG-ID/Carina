@@ -30,9 +30,6 @@
                         ]
                       );
                       ?>
-                      <?php if (!empty($caption)) : ?>
-                        <p class="mt-2 text-sm text-lightGrey"><?php echo esc_html($caption); ?></p>
-                      <?php endif; ?>
                     </div>
                   <?php endforeach; ?>
                 </div>
