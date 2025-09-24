@@ -1,45 +1,78 @@
-<header id="header-main" class="header-main w-full z-50 overflow-hidden" itemscope itemtype="http://schema.org/WebSite">
-    <nav class="navbar fixed z-50 w-full py-[38px]" role="navigation" aria-label="<?php esc_attr_e( 'Main Menu','carina' );  ?>">
-        <div class="theme-container">
-            <div class="grid grid-cols-3">
-                <div class="col-span-1 flex items-center justify-start text-lightGrey">
-                    <div class="menu-toggle-wrapper">
-                        <button id="menuToggle" class="menu-toggle" aria-label="Menu">
-                            <span class="menu-toggle__bars">
-                                <span class="bar bar--top"></span>
-                                <span class="bar bar--middle"></span>
-                                <span class="bar bar--bottom"></span>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-                <div class="col-span-1 flex items-center justify-center">
-                    <a href="<?php echo esc_url( home_url('/') ); ?>" rel="home">
-                        <?php
-                            $imgLogo = get_field('general_theme-logo','option');
-                            $size  = 'full';
-
-                            if ( $imgLogo ) {
-                            echo wp_get_attachment_image(
-                                $imgLogo,
-                                $size,
-                                false,
-                                [
-                                'class'    => 'w-40',
-                                'loading'  => 'eager',
-                                'decoding' => 'async',
-                                ]
-                            );
-                            }
-                        ?>
-                    </a>
-                </div>
-                <div class="col-span-1 flex items-center justify-end">
-                    <a href="<?php the_field( 'general_booking_url','option' ); ?>" class="btn btn-primary"><?php esc_html_e( 'Jetzt buchen','carina' ); ?></a>
-                </div>
-            </div>
-        </div>
-    </nav>
-	
-
+<header id="header-main" class="header-main w-full overflow-hidden" itemscope itemtype="http://schema.org/WebSite">
+	<div class="fixed z-50 w-full py-[38px]">
+		<div class="theme-container">
+			<div class="grid grid-cols-3">
+				<div class="col-span-1 flex items-center justify-start text-lightGrey">
+					<div class="menu-toggle">
+						<button class="menu-toggle__button" aria-label="Menu Toggle" aria-controls="primary-nav">
+							<span class="menu-toggle__bars">
+								<span class="menu-toggle__bar menu-toggle__bar--top"></span>
+								<span class="menu-toggle__bar menu-toggle__bar--middle"></span>
+								<span class="menu-toggle__bar menu-toggle__bar--bottom"></span>
+							</span>
+						</button>
+					</div>
+				</div>
+				<div class="col-span-1 flex items-center justify-center">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+						<?php
+						$logo = get_field( 'general_theme-logo', 'option' );
+						if ( $logo ) :
+							echo wp_get_attachment_image( $logo, 'full', false, array( 'class' => 'w-40', 'loading' => 'eager', 'decoding' => 'async' ) );
+						endif;
+						?>
+					</a>
+				</div>
+				<div class="col-span-1 flex items-center justify-end">
+					<a href="<?php the_field( 'general_booking_url', 'option' ); ?>" class="btn btn-primary"><?php esc_html_e( 'Jetzt buchen', 'carina' ); ?></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="menu-offcanvas">
+		<nav id="primary-nav" class="theme-container theme-grid pt-32" aria-label="<?php esc_attr_e( 'Main Menu', 'carina' ); ?>" role="navigation">
+			<div class="col-span-2 lg:col-span-4">
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'stay-menu',
+						'menu_id'        => 'stay-menu',
+						'menu_class'     => 'menu-offcanvas__stay',
+						'container'      => false,
+						'fallback_cb'    => false,
+						'walker'         => '',
+					)
+				);
+				?>
+			</div>
+			<div class="col-span-2 lg:col-span-4">
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'main-menu',
+						'menu_id'        => 'main-menu',
+						'menu_class'     => 'menu-offcanvas__main',
+						'container'      => false,
+						'fallback_cb'    => false,
+						'walker'         => '',
+					)
+				);
+				?>
+			</div>
+			<div class="col-span-2 lg:col-span-4">
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'copyright-menu',
+						'menu_id'        => 'copyright-menu',
+						'menu_class'     => 'menu-offcanvas__copyright',
+						'container'      => false,
+						'fallback_cb'    => false,
+						'walker'         => '',
+					)
+				);
+				?>
+			</div>
+		</nav>
+	</div>
 </header>

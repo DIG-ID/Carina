@@ -20,7 +20,7 @@ mix
 
   .browserSync({
     proxy: {
-      target: "https://domain.digid/",
+      target: "https://carinazermatt.digid/",
       ws: true,
     },
     https: true,

@@ -1,11 +1,21 @@
 .header-main
-    @apply transition-all duration-300 ease-in-out
-    .menu-toggle
-        @apply flex items-center
-        &__bars
-            @apply flex flex-col items-center justify-center overflow-hidden relative w-11
-            .bar
-                @apply w-[42px] h-[6px] bg-lightGrey transition-all duration-300 ease-in-out
-                &:not(:last-child)
-                    @apply mb-2
-                    
+  @apply transition-all duration-300 ease-in-out
+
+// Hamburger Menu
+.menu-toggle
+  &__button
+    @apply flex items-center
+  &__bars
+    @apply flex flex-col items-center justify-center overflow-hidden relative w-11
+  &__bar
+    @apply w-[42px] h-[6px] bg-lightGrey transition-all duration-300 ease-in-out
+    &:not(:last-child)
+      @apply mb-2
+
+// Menu offcanvas
+.menu-offcanvas
+  @apply fixed top-0 left-0 w-full h-dvh bg-veryDarkBlue text-lightGrey z-30 -translate-y-full transition-transform duration-500 ease-in-out
+
+body.menu-open
+  .menu-offcanvas
+    @apply translate-y-0

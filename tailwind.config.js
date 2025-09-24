@@ -12,11 +12,11 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      funnelsans: ['"Funnel Sans"', 'system-ui', 'sans-serif'],
+      funnelsans: ['Funnel Sans', 'system-ui', 'sans-serif'],
     },
     extend: {
       fontFamily: {
-        magnatText: ['"NeueMagnatText"', 'system-ui', 'sans-serif'],
+        magnatText: ['NeueMagnatText', 'system-ui', 'sans-serif'],
       },
       letterSpacing: {
         //wide: '.038em',
@@ -27,7 +27,7 @@ module.exports = {
         lightBlue: '#356274',
         coral: '#EC685B',
         lightGrey: '#F0F2F5',
-        veryDarkBlue: '1A202C'
+        veryDarkBlue: '#1A202C'
       },
       transitionTimingFunction: {
         //'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',

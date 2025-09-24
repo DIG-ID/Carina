@@ -6,8 +6,8 @@ function carina_theme_setup() {
 
 	register_nav_menus(
 		array(
+			'stay-menu'      => __( 'Stay Menu', 'carina' ),
 			'main-menu'      => __( 'Main Menu', 'carina' ),
-			'main-mega-menu' => __( 'Main Mega Menu', 'carina' ),
 			'footer-menu'    => __( 'Footer Menu', 'carina' ),
 			'copyright-menu' => __( 'Copyright Menu', 'carina' ),
 		)
