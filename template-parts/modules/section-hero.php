@@ -27,8 +27,12 @@
     <div class="home-hero-overlay" aria-hidden="true"></div>
   <?php endif; ?>
 
+  <?php if ( is_front_page() ) : ?>
   <div class="theme-container justify-center h-full flex items-end pb-36 xl:pb-20 relative z-10">
-    <div class="theme-grid">
+  <?php else : ?>
+  <div class="theme-container justify-center h-full flex items-end pb-8 xl:pb-14 relative z-10">
+  <?php endif; ?>
+    <div class="theme-grid w-full">
       <?php if( 'hero_title' ) : ?>
       <div class="col-span-2 md:col-span-<?php echo get_field( 'hero_cols_md' ); ?> xl:col-span-<?php echo get_field( 'hero_cols_xl' ); ?> text-lightGrey">
         <h1 class="title-xl">
@@ -37,13 +41,13 @@
       </div>
       <?php endif; ?>
     </div>
+    <?php if ( is_front_page() ) : ?>
     <div class="theme-grid absolute bottom-8 md:bottom-16 xl:bottom-28">
       <div class="col-span-2 md:col-span-6 xl:col-span-12 scroll-down flex justify-center min-h-16">
-        <?php if ( is_front_page() ) : ?>
-          <a href="#" class="btn-scroll block-text text-lightGrey"><?php esc_html_e( 'Los geht\'s', 'carina' ); ?></a>
-          <div class="w-[1px] md:w-[1px] h-[125px] xl:h-[202px] bg-lightGrey absolute top-9 md:top-14 xl:top-16" aria-hidden="true"></div>
-        <?php endif; ?>
+        <a href="#" class="btn-scroll block-text text-lightGrey"><?php esc_html_e( 'Los geht\'s', 'carina' ); ?></a>
+        <div class="w-[1px] md:w-[1px] h-[125px] xl:h-[202px] bg-lightGrey absolute top-9 md:top-14 xl:top-16" aria-hidden="true"></div>
       </div>
     </div>
+    <?php endif; ?>
   </div>
 </section>
