@@ -4,17 +4,17 @@
       
       <!-- Breadcrumbs -->
       <div class="title-30 xl:mb-4 col-span-12">
-        <?php do_action('breadcrumbs'); ?>
+        <?php echo get_field('apartment_content_over_title','options'); ?>
       </div>
 
       <!-- Section heading -->
       <div class="xl:mb-7 col-span-7">
-        <h2 class="title-md"><?php the_field('content_title'); ?></h2>
+        <h2 class="title-md"><?php the_field('apartment_content_title', 'options'); ?></h2>
       </div>
 
       <!-- Repeater -->
       <div class="repeater-container col-span-12">
-        <?php if ( have_rows('content_apt') ) : ?>
+        <?php if ( have_rows('apartment_content_apt') ) : ?>
           
           <?php while ( have_rows('content_apt') ) : the_row();
             // Pull subfields once per row

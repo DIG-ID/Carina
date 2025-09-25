@@ -1,4 +1,4 @@
-<?php $background_id = get_field('text_center_image'); ?>
+<?php $background_id = get_field('apartment_text_center_image', 'options'); ?>
 
 <section id="section-text-center" class="section-text-center text-center relative z-10 bg-center bg-cover bg-no-repeat"
   <?php if ( $background_id ): ?>
@@ -10,12 +10,12 @@
   <div class="theme-container relative">
     <div class="flex flex-col items-center py-36">
       <h2 class="title-md text-lightGrey mb-7 md:mb-9 xl:mb-6 max-w-[661px]">
-        <?php echo esc_html( get_field('text_center_title') ); ?>
+        <?php echo esc_html( get_field('apartment_text_center_title', 'options') ); ?>
       </h2>
       <p class="block-text text-lightGrey max-w-[532px] xl:mb-20">
-        <?php echo esc_html( get_field('text_center_description') ); ?>
+        <?php echo esc_html( get_field('apartment_text_center_description', 'options') ); ?>
       </p>
-      <?php if ( $link = get_field('text_center_button') ):
+      <?php if ( $link = get_field('apartment_text_center_button', 'options') ):
         $link_url    = $link['url'] ?? '';
         $link_title  = $link['title'] ?? '';
         $link_target = !empty($link['target']) ? $link['target'] : '_self';
