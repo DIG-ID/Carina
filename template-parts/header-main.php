@@ -31,7 +31,7 @@
 		</div>
 	</div>
 	<div class="menu-offcanvas">
-		<nav id="primary-nav" class="theme-container theme-grid pt-32" aria-label="<?php esc_attr_e( 'Main Menu', 'carina' ); ?>" role="navigation">
+		<nav id="primary-nav" class="theme-container theme-grid pt-48" aria-label="<?php esc_attr_e( 'Main Menu', 'carina' ); ?>" role="navigation">
 			<div class="col-span-2 lg:col-span-4" data-menu-col>
 				<?php
 				wp_nav_menu(
