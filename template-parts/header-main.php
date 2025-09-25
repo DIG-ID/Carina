@@ -1,5 +1,5 @@
 <header id="header-main" class="header-main w-full overflow-hidden" itemscope itemtype="http://schema.org/WebSite">
-	<div class="navbar-container">
+	<div class="header-content">
 		<div class="theme-container">
 			<div class="grid grid-cols-3">
 				<div class="col-span-1 flex items-center justify-start text-lightGrey">

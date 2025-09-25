@@ -1,16 +1,15 @@
 .header-main
   @apply transition-all duration-300 ease-in-out opacity-100
-  .navbar-container
-    @apply  fixed z-50 w-full py-9 transition-all duration-300 ease-in-out opacity-100 border-b-[1px] border-transparent
+  .header-content
+    @apply fixed z-50 w-full py-9 transition-all duration-300 ease-in-out opacity-100 border-b-[1px] border-transparent
 
   body.at-top &
     @apply bg-transparent shadow-none
 
-
   body.is-scrolled &
     @apply bg-darkBlue
-    .navbar-container
-      @apply bg-darkBlue/95 py-5 border-lightGrey/95 shadow-md
+    .header-content
+      @apply bg-darkBlue py-5 border-lightGrey shadow-md
 
 
 
