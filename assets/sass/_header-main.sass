@@ -1,16 +1,16 @@
 .header-main
   @apply transition-all duration-300 ease-in-out opacity-100
   .navbar-container
-    @apply  fixed z-50 w-full py-9 transition-all duration-300 ease-in-out opacity-100
+    @apply  fixed z-50 w-full py-9 transition-all duration-300 ease-in-out opacity-100 border-b-[1px] border-transparent
 
   body.at-top &
     @apply bg-transparent shadow-none
 
 
   body.is-scrolled &
-    @apply bg-veryDarkBlue
+    @apply bg-darkBlue
     .navbar-container
-      @apply bg-veryDarkBlue py-5
+      @apply bg-darkBlue/95 py-5 border-lightGrey/95 shadow-md
 
 
 
@@ -36,7 +36,7 @@
 
 // Menu offcanvas
 .menu-offcanvas
-  @apply fixed inset-0 bg-veryDarkBlue text-lightGrey z-30
+  @apply fixed inset-0 bg-darkBlue text-lightGrey z-30
   clip-path: polygon(40% 0, 60% 0, 100% 0, 0 0)
   transform: translate3d(0, -100%, 0)
   will-change: transform, clip-path
