@@ -14,14 +14,14 @@
 					</div>
 				</div>
 				<div class="col-span-1 flex items-center justify-center">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="mix-blend-difference block">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 						<?php
 						$logo = get_field( 'general_theme-logo', 'option' );
 						if ( $logo ) :
-							//echo wp_get_attachment_image( $logo, 'full', false, array( 'class' => 'w-40 mix-blend-difference block', 'loading' => 'eager', 'decoding' => 'async' ) );
+							echo wp_get_attachment_image( $logo, 'full', false, array( 'class' => 'w-28 md:w-56', 'loading' => 'eager', 'decoding' => 'async' ) );
 						endif;
 						?>
-						<?php do_action( 'theme_logo' ); ?>
+						<?php //do_action( 'theme_logo' ); ?>
 					</a>
 				</div>
 				<div class="col-span-1 flex items-center justify-end">
