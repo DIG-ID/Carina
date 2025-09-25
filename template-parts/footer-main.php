@@ -3,11 +3,11 @@
     <div class="theme-grid pt-16 md:pt-16 xl:pt-11 pb-12">
       <div class="col-span-2 md:col-span-2 xl:col-span-3 flex flex-col items-start justify-between">
         <div class="address-wrapper">
-          <p class="font-funnelsans text-xl tracking-[0.0313rem] text-lightGrey"><?php esc_html_e( 'Adresse','carina' ); ?></p>
+          <p class="block-text text-lightGrey"><?php esc_html_e( 'Adresse','carina' ); ?></p>
           <p class="block-text text-lightGrey"><?php the_field( 'general_address','option' ); ?></p>
         </div>
         <div class="contacts-wrapper">
-          <p class="font-funnelsans text-xl tracking-[0.0313rem] text-lightGrey"><?php esc_html_e( 'Kontaktdaten','carina' ); ?></p>
+          <p class="block-text text-lightGrey"><?php esc_html_e( 'Kontaktdaten','carina' ); ?></p>
           <p class="block-text text-lightGrey"><?php esc_html_e( 'Telefon: ','carina' ); ?><a href="tel:<?php the_field( 'general_phone','option' ); ?>"><?php the_field( 'general_phone','option' ); ?></a></p>
           <p class="block-text text-lightGrey"><?php esc_html_e( 'E-Mail: ','carina' ); ?><a href="mailto:<?php the_field( 'general_e-mail','option' ); ?>"><?php the_field( 'general_e-mail','option' ); ?></a></p>
         </div>
@@ -26,7 +26,7 @@
         ?>
       </div>
       <div class="col-span-2 md:col-span-2 xl:col-span-3 flex flex-col items-start justify-between">
-        <p class="font-funnelsans text-xl tracking-[0.0313rem] font-semibold text-lightGrey leading-8 mb-7"><?php the_field( 'newsletter_title','option' ); ?></p>
+        <p class="block-text text-lightGrey mb-7"><?php the_field( 'newsletter_title','option' ); ?></p>
         <?php 
           $form_shortcode = get_field('newsletter_shortcode', 'option');
           echo do_shortcode($form_shortcode);
