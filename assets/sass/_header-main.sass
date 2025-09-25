@@ -4,18 +4,55 @@
 // Hamburger Menu
 .menu-toggle
   &__button
-    @apply flex items-center
+    @apply flex items-center p-2
   &__bars
-    @apply flex flex-col items-center justify-center overflow-hidden relative w-11
+    @apply flex flex-col items-center justify-center overflow-hidden relative w-14
   &__bar
-    @apply w-[42px] h-[6px] bg-lightGrey transition-all duration-300 ease-in-out
+    @apply w-full h-[6px] rounded-md bg-lightGrey transition-all duration-300 ease-in-out translate-x-0 rotate-0 opacity-100
     &:not(:last-child)
-      @apply mb-2
+      @apply mb-3
+.menu-toggle__button.menu-open
+    .menu-toggle__bars
+      .menu-toggle__bar
+        &:first-child
+          @apply rotate-45 translate-y-[18px]
+        &:nth-child(2)
+          @apply opacity-0 -translate-x-full
+        &:last-child
+          @apply -rotate-45 -translate-y-[18px]
 
 // Menu offcanvas
 .menu-offcanvas
-  @apply fixed top-0 left-0 w-full h-dvh bg-veryDarkBlue text-lightGrey z-30 -translate-y-full transition-transform duration-500 ease-in-out
+  @apply fixed inset-0 bg-veryDarkBlue text-lightGrey z-30
+  clip-path: polygon(40% 0, 60% 0, 100% 0, 0 0)
+  transform: translate3d(0, -100%, 0)
+  will-change: transform, clip-path
 
-body.menu-open
+nav#primary-nav
+  ul
+    @apply mb-16 md:mb-0
+    li.menu-item
+      @apply mb-10
+      a
+        @apply font-magnatText text-sm md:text-base tracking-[0.0003rem] transition-all duration-300 ease-in-out pl-0 hover:text-coral hover:pl-1
+  ul.menu-offcanvas__stay
+    li.menu-item
+      @apply mb-6
+      &:first-child
+        @apply mb-10
+        a
+          @apply text-lg md:text-2xl uppercase
+  ul.menu-offcanvas__main
+    li.menu-item
+      a
+        @apply text-lg md:text-2xl uppercase
+  ul.menu-offcanvas__copyright
+    li.menu-item
+      a
+        @apply uppercase
+
+/* acessibilidade: reduz movimento quando pedido pelo utilizador */
+@media (prefers-reduced-motion: reduce)
   .menu-offcanvas
-    @apply translate-y-0
+    transform: none
+    clip-path: none
