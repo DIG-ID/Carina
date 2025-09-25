@@ -23,7 +23,16 @@
 .bleed-both-swiper
   overflow: visible
 
-//bleed right for images
+@media (min-width: 1280px)
+  .bleed-both-container
+    width: 100vw
+    margin-left: calc(50% - 50vw)
+    margin-right: calc(50% - 50vw)
+    max-width: none
+    overflow: visible
+    -webkit-clip-path: inset(0 -50vw 0 -50vw)
+            clip-path: inset(0 -50vw 0 -50vw)
+
 @media (min-width: 768px)
   .bleed-right-md
     width: calc(100% + (50vw - 50%))
