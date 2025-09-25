@@ -1,5 +1,18 @@
 .header-main
-  @apply transition-all duration-300 ease-in-out
+  @apply transition-all duration-300 ease-in-out opacity-100
+  .navbar-container
+    @apply  fixed z-50 w-full py-9 transition-all duration-300 ease-in-out opacity-100
+
+  body.at-top &
+    @apply bg-transparent shadow-none
+
+
+  body.is-scrolled &
+    @apply bg-veryDarkBlue
+    .navbar-container
+      @apply bg-veryDarkBlue py-5
+
+
 
 // Hamburger Menu
 .menu-toggle

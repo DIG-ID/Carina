@@ -1,5 +1,5 @@
 <header id="header-main" class="header-main w-full overflow-hidden" itemscope itemtype="http://schema.org/WebSite">
-	<div class="fixed z-50 w-full py-[38px]">
+	<div class="navbar-container">
 		<div class="theme-container">
 			<div class="grid grid-cols-3">
 				<div class="col-span-1 flex items-center justify-start text-lightGrey">
@@ -14,13 +14,14 @@
 					</div>
 				</div>
 				<div class="col-span-1 flex items-center justify-center">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="mix-blend-difference block">
 						<?php
 						$logo = get_field( 'general_theme-logo', 'option' );
 						if ( $logo ) :
-							echo wp_get_attachment_image( $logo, 'full', false, array( 'class' => 'w-40', 'loading' => 'eager', 'decoding' => 'async' ) );
+							//echo wp_get_attachment_image( $logo, 'full', false, array( 'class' => 'w-40 mix-blend-difference block', 'loading' => 'eager', 'decoding' => 'async' ) );
 						endif;
 						?>
+						<?php do_action( 'theme_logo' ); ?>
 					</a>
 				</div>
 				<div class="col-span-1 flex items-center justify-end">
