@@ -19,7 +19,7 @@
         );
         $the_query = new WP_Query($args);
         while ($the_query->have_posts()) : $the_query->the_post();
-          $description = get_field('content_description');
+          $description = get_field('content_short_description');
           $title = get_the_title();
           $image   = get_post_thumbnail_id( get_the_ID() );
           $link = get_field('content_button');
@@ -48,14 +48,20 @@
             <div class="col-start-1 col-span-2 md:col-start-4 md:col-span-3 xl:col-start-7 xl:col-span-6 flex flex-col">
               <?php if ( $title ) : ?>
               <a href="<?php the_permalink(); ?>">
-                <h3 class="title-30 text-darkBlue mb-8 xl:mb-7">
+                <h3 class="title-30 text-darkBlue mb-2 md:mb-0">
                   <?php echo esc_html( $title ); ?>
                 </h3>
               </a>
               <?php endif; ?>
 
+              <?php if ( $size ) : ?>
+                <p class="block-17 mb-8  xl:mb-16">
+                  <?php echo esc_html( $size ); ?>
+                </p>
+              <?php endif; ?>
+
               <?php if ( $description ) : ?>
-                <p class="block-text mb-[105px] md:mb-0 md:max-w-[376px]">
+                <p class="block-17 mb-24 md:mb-0">
                   <?php echo esc_html( $description ); ?>
                 </p>
               <?php endif; ?>

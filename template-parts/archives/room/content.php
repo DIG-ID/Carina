@@ -14,12 +14,13 @@
 
         <?php
         $args = array(
-          'post_type' => 'room',
-          'posts_per_page' => 0
+          'post_type' => 'zimmer',
+          'posts_per_page' => -1
         );
         $the_query = new WP_Query($args);
         while ($the_query->have_posts()) : $the_query->the_post();
-          $description = get_field('content_description');
+          $size = get_field('content_size')
+          $description = get_field('content_short_description');
           $title = get_the_title();
           $image   = get_post_thumbnail_id( get_the_ID() );
         ?>
@@ -46,11 +47,17 @@
             <!-- Content column -->
             <div class="col-span-2 md:col-start-4 md:col-span-3 xl:col-start-7 xl:col-span-6 flex flex-col">
               <?php if ( $title ) : ?>
-                <h3 class="title-30 text-darkBlue mb-7">
+                <h3 class="title-30 text-darkBlue mb-3 md:mb-1">
                    <a href="<?php the_permalink(); ?>">
                     <?php echo esc_html( $title ); ?>
                    </a>
                 </h3>
+              <?php endif; ?>
+
+              <?php if ( $size ) : ?>
+                <p class="block-17 mb-8 md:mb-10 xl:mb-7">
+                  <?php echo esc_html( $size ); ?>
+                </p>
               <?php endif; ?>
 
               <?php if ( $description ) : ?>

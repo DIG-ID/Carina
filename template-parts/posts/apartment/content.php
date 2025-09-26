@@ -34,17 +34,10 @@
         </p>
 
         <!-- Button -->
-        <?php if ( $link = get_field('content_button') ) :
-          $link_url    = $link['url'] ?? '';
-          $link_title  = $link['title'] ?? '';
-          $link_target = ! empty($link['target']) ? $link['target'] : '_self';
-          if ( $link_url && $link_title ) : ?>
-            <a class="btn btn-primary mb-7 md:mb-12  xl:mb-32 max-w-[150px]"
-               href="<?php echo esc_url( $link_url ); ?>"
-               target="<?php echo esc_attr( $link_target ); ?>">
-              <?php echo esc_html( $link_title ); ?>
-            </a>
-        <?php endif; endif; ?>
+        <a href="<?php the_field( 'general_booking_url', 'option' ); ?>" class="btn btn-primary mb-7 md:mb-12  xl:mb-32 max-w-[150px]">
+          <?php esc_html_e( 'Jetzt buchen', 'carina' ); ?>
+        </a>
+
         </div>
         <div class="block md:hidden">
         <?php if ( $content_image = get_field('content_image') ) :
