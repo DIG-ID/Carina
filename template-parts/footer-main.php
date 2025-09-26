@@ -1,4 +1,4 @@
-<footer id="footer-main" class="footer-main relative w-full bg-darkBlue pt-3 md:pt-6 pb-6 md:pb-11 xl:pb-6 -mt-1">
+<footer id="footer-main" class="footer-main relative w-full bg-darkBlue pb-6 md:pb-11 xl:pb-6 -mt-1">
 	<div class="theme-container border-t border-b border-lightGrey">
     <div class="theme-grid pt-16 md:pt-16 xl:pt-11 pb-12">
       <div class="col-span-2 md:col-span-2 xl:col-span-3 flex flex-col items-start justify-between">
