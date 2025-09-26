@@ -14,24 +14,24 @@
 					</div>
 				</div>
 				<div class="col-span-1 flex items-center justify-center">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="header-logo transition-all duration-500 ease-in-out" itemprop="url">
 						<?php
-						$logo = get_field( 'general_theme-logo', 'option' );
+						$logo = get_field( 'general_theme-logo_light', 'option' );
 						if ( $logo ) :
-							echo wp_get_attachment_image( $logo, 'full', false, array( 'class' => 'w-28 md:w-56', 'loading' => 'eager', 'decoding' => 'async' ) );
+							echo wp_get_attachment_image( $logo, 'full', false, array( 'class' => 'w-28 md:w-56 transition-all duration-500 ease-in-out', 'loading' => 'eager', 'decoding' => 'async' ) );
 						endif;
 						?>
 						<?php //do_action( 'theme_logo' ); ?>
 					</a>
 				</div>
 				<div class="col-span-1 flex items-center justify-end">
-					<a href="<?php the_field( 'general_booking_url', 'option' ); ?>" class="btn btn-primary"><?php esc_html_e( 'Jetzt buchen', 'carina' ); ?></a>
+					<a href="<?php the_field( 'general_booking_url', 'option' ); ?>" class="btn btn-primary hidden invisible md:block md:visible"><?php esc_html_e( 'Jetzt buchen', 'carina' ); ?></a>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="menu-offcanvas">
-		<nav id="primary-nav" class="theme-container theme-grid pt-48" aria-label="<?php esc_attr_e( 'Main Menu', 'carina' ); ?>" role="navigation">
+		<nav id="primary-nav" class="theme-container theme-grid pt-40 md:pt-48" aria-label="<?php esc_attr_e( 'Main Menu', 'carina' ); ?>" role="navigation">
 			<div class="col-span-2 lg:col-span-4" data-menu-col>
 				<?php
 				wp_nav_menu(
@@ -75,5 +75,13 @@
 				?>
 			</div>
 		</nav>
+		<div class="theme-container theme-grid mb-16 md:mt-32 border-t border-lightGrey">
+			<div class="col-span-12 flex flex-col md:flex-row md:justify-between py-8 md:pt-10 md:items-center text-lightGrey">
+				<div class="flex items-center"><span class="font-funnelsans uppercase"><?php esc_html_e( 'Language:', 'carina' ); ?></span> <?php if ( function_exists( 'dynamic_sidebar' ) ) { dynamic_sidebar( 'header_ls' ); } ?></div>
+
+				<?php do_action( 'socials' ); ?>
+			</div>
+		</div>
+		
 	</div>
 </header>

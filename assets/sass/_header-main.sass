@@ -1,41 +1,44 @@
 .header-main
-  @apply transition-all duration-300 ease-in-out opacity-100
+  @apply transition-all duration-700 ease-in-out opacity-100
   .header-content
-    @apply fixed z-50 w-full py-9 transition-all duration-300 ease-in-out opacity-100 border-b-[1px] border-transparent
-
+    @apply fixed z-50 w-full py-9 opacity-100 border-b-[1px] border-transparent shadow-none transition-all duration-500 ease-in-out
   body.at-top &
     @apply bg-transparent shadow-none
-
   body.is-scrolled &
     @apply bg-darkBlue
     .header-content
-      @apply bg-darkBlue py-5 border-lightGrey shadow-md
-
+      @apply bg-darkBlue py-6 border-lightGrey shadow-md
+      .header-logo
+        @apply w-28 md:w-48
+  body.at-footer.scroll-dir-down &
+    @apply -translate-y-full
+  body.at-footer.scroll-dir-up &
+    @apply translate-y-0
 
 
 // Hamburger Menu
 .menu-toggle
   &__button
-    @apply flex items-center p-2
+    @apply flex items-center px-1 py-[3.5px]
   &__bars
-    @apply flex flex-col items-center justify-center overflow-hidden relative w-14
+    @apply flex flex-col items-center justify-center overflow-hidden relative w-[42px]
   &__bar
-    @apply w-full h-[6px] rounded-md bg-lightGrey transition-all duration-300 ease-in-out translate-x-0 rotate-0 opacity-100
+    @apply w-full h-[5px] rounded-md bg-lightGrey transition-all duration-500 ease-in-out translate-x-0 rotate-0 opacity-100
     &:not(:last-child)
-      @apply mb-3
+      @apply mb-[8px]
 .menu-toggle__button.menu-open
     .menu-toggle__bars
       .menu-toggle__bar
         &:first-child
-          @apply rotate-45 translate-y-[18px]
+          @apply rotate-45 translate-y-[13px]
         &:nth-child(2)
           @apply opacity-0 -translate-x-full
         &:last-child
-          @apply -rotate-45 -translate-y-[18px]
+          @apply -rotate-45 -translate-y-[13px]
 
 // Menu offcanvas
 .menu-offcanvas
-  @apply fixed left-0 top-0 w-full h-dvh bg-darkBlue text-lightGrey z-30
+  @apply fixed left-0 top-0 w-full h-dvh bg-darkBlue text-lightGrey z-30 overflow-auto
   clip-path: polygon(40% 0, 60% 0, 100% 0, 0 0)
   transform: translate3d(0, -100%, 0)
   will-change: transform, clip-path
