@@ -1,0 +1,14 @@
+.widget_icl_lang_sel_widget
+  .wpml-ls-legacy-list-horizontal
+    @apply border-none m-0 p-0
+    ul
+      @apply flex flex-row list-none gap-x-2 px-4
+      li.wpml-ls-item
+        a.wpml-ls-link
+          @apply p-2
+          span.wpml-ls-native
+            @apply font-funnelsans font-normal text-base transition-all duration-500 ease-in-out hover:text-coral
+      li.wpml-ls-current-language
+        a.wpml-ls-link
+          span.wpml-ls-native
+            @apply text-coral font-bold

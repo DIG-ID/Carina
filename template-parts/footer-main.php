@@ -106,6 +106,6 @@
     </div>
   </div>
 </footer>
-  <div class="fixed bottom-6 left-0 w-full h-auto z-50 flex justify-center items-center">
+  <div class="fixed-booking-button fixed bottom-6 left-0 w-full h-auto z-20 flex justify-center items-center">
     <a href="<?php the_field( 'general_booking_url', 'option' ); ?>" class="btn btn-primary px-8 block visible md:hidden md:invisible shadow-md"><?php esc_html_e( 'Jetzt buchen', 'carina' ); ?></a>
   </div>

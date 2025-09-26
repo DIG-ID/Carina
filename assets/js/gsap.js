@@ -39,15 +39,43 @@ export function carinaInitLenisCinematic() {
 const carinaLenis = carinaInitLenisCinematic();
 
 // Smooth scroll for "scroll down" button on home page
-document.addEventListener("DOMContentLoaded", function () {
-  if (document.querySelector(".page-template-page-home")) {
-    document.querySelector(".btn-scroll")?.addEventListener("click", function (e) {
+document.addEventListener("DOMContentLoaded", () => {
+
+  const isHome = !!document.querySelector(".page-template-page-home");
+
+  if (isHome) {
+    document.querySelector(".btn-scroll")?.addEventListener("click", (e) => {
       e.preventDefault();
       carinaLenis.scrollTo(window.scrollY + window.innerHeight, {
         duration: 0.6,
-        // carina: linear is fine here; the global feel comes from Lenis' easing
+        // carina: linear here; global feel comes from Lenis easing
         easing: (t) => t,
       });
     });
   }
+   // Fixed Booking Button
+  const fixedButton = document.querySelector(".fixed-booking-button");
+  if (fixedButton) {
+    const triggerPosition = 40; // px from top
+    let isVisible = false;
+
+    // Prepare initial hidden state
+    gsap.set(fixedButton, { autoAlpha: 0, y: 50 });
+
+    // Listen to Lenis scroll on the instance
+    carinaLenis.on("scroll", ({ scroll }) => {
+      const shouldShow = scroll > triggerPosition;
+      if (shouldShow === isVisible) return; // no-op if unchanged
+      isVisible = shouldShow;
+
+      gsap.to(fixedButton, {
+        autoAlpha: shouldShow ? 1 : 0,
+        y: shouldShow ? 0 : 50,
+        duration: 0.6,
+        overwrite: "auto",
+      });
+    });
+  }
 });
+
+

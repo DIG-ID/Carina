@@ -45,9 +45,9 @@
 
 nav#primary-nav
   ul
-    @apply mb-16 md:mb-0
+    @apply mb-12 md:mb-0
     li.menu-item
-      @apply mb-10
+      @apply mb-4 md:mb-10
       a
         @apply font-magnatText text-sm md:text-base tracking-[0.0003rem] transition-all duration-300 ease-in-out pl-0 hover:text-coral hover:pl-1
     li.current-menu-item
@@ -55,9 +55,9 @@ nav#primary-nav
         @apply text-coral pl-1
   ul.menu-offcanvas__stay
     li.menu-item
-      @apply mb-6
+      @apply mb-4 md:mb-6
       &:first-child
-        @apply mb-10
+        @apply md:mb-10
         a
           @apply text-lg md:text-2xl uppercase
   ul.menu-offcanvas__main
@@ -65,6 +65,7 @@ nav#primary-nav
       a
         @apply text-lg md:text-2xl uppercase
   ul.menu-offcanvas__copyright
+    @apply mb-14
     li.menu-item
       a
         @apply uppercase
