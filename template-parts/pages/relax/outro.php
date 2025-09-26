@@ -4,13 +4,8 @@
       <div class="col-span-2 md:col-span-6 xl:col-span-12">
         <?php echo wp_get_attachment_image(
           get_field('outro_image'),
-          'full',
-          false,
-          [
-          'class'    => 'w-full h-full',
-          'loading'  => 'eager',
-          'decoding' => 'async',
-          ]
+          'full', false,
+          ['class' => 'w-full object-cover']
         ); ?>
       </div>
     </div>

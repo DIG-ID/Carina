@@ -5,7 +5,7 @@
       'full',
       false,
       [
-      'class'    => 'w-full object-cover mt-6 md:mt-0 md:mb-8',
+      'class'    => 'w-full object-cover mt-6 md:mt-0 md:mb-8 max-h-[85dvh]',
       'loading'  => 'eager',
       'decoding' => 'async',
       ]

@@ -1,6 +1,6 @@
 <section id="section-rooms" class="section-rooms relative w-full bg-darkBlue">
     <div class="theme-container">
-        <div class="theme-grid bleed-right-md-container">
+        <div class="theme-grid">
             <div class="col-span-2 md:col-span-3 xl:col-span-5 pt-7 md:pt-12 xl:pt-14 pb-10 md:pb-8 xl:pb-16 flex flex-col justify-between items-start">
                 <div class="block-wrapper">
                     <h2 class="title-md text-lightGrey pb-6 md:pb-12 xl:pb-16"><?php the_field( 'rooms_title' ); ?></h2>
@@ -17,10 +17,17 @@
                 <?php endif; ?>
             </div>
             <div class="col-span-2 md:col-span-3 xl:col-span-7">
+                <div class="bleed-right-child-7">
+                    <?php echo wp_get_attachment_image(
+                        get_field('rooms_image'),
+                        'full', false,
+                        ['class' => 'w-full object-cover xl:max-h-[75dvh]']
+                    ); ?>
+                </div>
                 <?php
                 $img = get_field('rooms_image');
                 if ( $img ) : ?>
-                <picture>
+                <picture class="hidden">
                     <source
                     media="(min-width: 768px)"
                     srcset="<?php echo esc_attr( wp_get_attachment_image_srcset( $img, 'full' ) ); ?>"
@@ -28,14 +35,10 @@
                     />
                     <?php
                     echo wp_get_attachment_image(
-                    $img,
-                    'large',
-                    false,
+                    $img, 'large', false,
                     [
-                        'class'    => 'block w-full object-cover xl:max-h-[80dvh] bleed-sm h-full',
-                        'loading'  => 'eager',
-                        'decoding' => 'async',
-                        'sizes'    => '100vw',
+                    'class'    => 'block w-full object-cover xl:max-h-[80dvh] bleed-sm h-full',
+                    'sizes'    => '100vw',
                     ]
                     );
                     ?>

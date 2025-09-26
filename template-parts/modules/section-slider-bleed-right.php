@@ -19,13 +19,9 @@
                     <div class="swiper-slide">
                       <?php
                       echo wp_get_attachment_image(
-                        $id,
-                        'slider-bleed-right-size',
-                        false,
+                        $id, 'slider-bleed-right-size', false,
                         [
                           'class'    => 'block w-full h-auto object-cover',
-                          'loading'  => 'lazy',
-                          'decoding' => 'async',
                           'sizes'    => '(min-width:768px) 50vw, 100vw',
                         ]
                       );

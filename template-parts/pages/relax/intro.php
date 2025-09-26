@@ -5,13 +5,8 @@
           <div class="background-wrapper relative mb-8 md:mb-12">
             <?php echo wp_get_attachment_image(
               get_field('intro_image'),
-              'full',
-              false,
-              [
-              'class'    => 'inset-0 w-full h-full object-cover -z-10',
-              'loading'  => 'eager',
-              'decoding' => 'async',
-              ]
+              'full', false,
+              ['class'    => 'inset-0 w-full h-full object-cover -z-10',]
             ); ?>
           </div>
         </div>

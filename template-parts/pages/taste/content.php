@@ -8,13 +8,8 @@
         <div class="col-span-2 md:col-span-3 xl:col-span-7">
           <?php echo wp_get_attachment_image(
             get_field('content_image'),
-            'full',
-            false,
-            [
-            'class'    => 'w-full object-cover',
-            'loading'  => 'eager',
-            'decoding' => 'async',
-            ]
+            'full', false,
+            ['class' => 'w-full object-cover',]
           ); ?>
         </div>
     </div>
@@ -23,13 +18,8 @@
         <div class="col-span-2 md:col-span-3 xl:col-span-7">
           <?php echo wp_get_attachment_image(
             get_field('content_image_2'),
-            'full',
-            false,
-            [
-            'class'    => 'w-full object-cover xl:mb-14',
-            'loading'  => 'eager',
-            'decoding' => 'async',
-            ]
+            'full', false,
+            ['class' => 'w-full object-cover xl:mb-14',]
           ); ?>
         </div>
         <div class="col-span-2 md:col-span-3 xl:col-span-5">
@@ -41,13 +31,8 @@
         <p class="block-30 text-darkBlue mb-8"><?php the_field( 'content_opening_hours' ); ?></p>
         <?php echo wp_get_attachment_image(
           get_field('content_image_3'),
-          'full',
-          false,
-          [
-          'class'    => 'w-full object-cover mb-8',
-          'loading'  => 'eager',
-          'decoding' => 'async',
-          ]
+          'full', false,
+          ['class'    => 'w-full object-cover mb-8',]
         ); ?>
         <div class="flex flex-col items-start justify-start gap-y-6">
           <?php if ( have_rows('content_download_list') ) :

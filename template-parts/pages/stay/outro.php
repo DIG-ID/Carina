@@ -6,11 +6,7 @@
                 <?php if ( $outro_image = get_field('outro_image') ) :
                 echo wp_get_attachment_image(
                     $outro_image, 'full', false,
-                    [
-                    'class'    => 'relative inset-0 w-full h-auto object-cover',
-                    'loading'  => 'eager',
-                    'decoding' => 'async',
-                    ]
+                    ['class'    => 'relative inset-0 w-full h-auto object-cover',]
                 );
                 endif; ?>
             </div>
@@ -18,11 +14,7 @@
                 <?php if ( $outro_image_2 = get_field('outro_image_2') ) :
                 echo wp_get_attachment_image(
                     $outro_image_2, 'full', false,
-                    [
-                    'class'    => 'relative inset-0 w-full h-auto object-cover',
-                    'loading'  => 'eager',
-                    'decoding' => 'async',
-                    ]
+                    ['class'    => 'relative inset-0 w-full h-auto object-cover',]
                 );
                 endif; ?>
             </div>

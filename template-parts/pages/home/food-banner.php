@@ -3,13 +3,8 @@
     <div class="background-wrapper relative">
       <?php echo wp_get_attachment_image(
         get_field('food_banner_background_image'),
-        'full',
-        false,
-        [
-        'class'    => 'inset-0 w-full h-full max-h-[85dvh] object-cover -z-10',
-        'loading'  => 'eager',
-        'decoding' => 'async',
-        ]
+        'full', false,
+        ['class'    => 'inset-0 w-full h-full max-h-[85dvh] object-cover -z-10',]
       ); ?>
       <?php if( get_field( 'food_banner_title' ) ) : ?>
         <h2 class="title-md text-lightGrey pl-5 md:pl-4 xl:pl-5 z-10 absolute bottom-2 left-0 max-w-[36%] md:max-w-80 xl:max-w-lg"><?php the_field( 'food_banner_title' ); ?></h2>

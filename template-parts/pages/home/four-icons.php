@@ -17,11 +17,7 @@
                             $size  = 'full';
                             if ( $icon ) {echo wp_get_attachment_image(
                                 $icon, $size, false,
-                                [
-                                'class'    => 'w-full max-w-[75px] object-cover mx-auto',
-                                'loading'  => 'eager',
-                                'decoding' => 'async',
-                                ]
+                                ['class'    => 'w-full max-w-[75px] object-cover mx-auto',]
                             );}
                             ?>
                         </div>
@@ -45,11 +41,7 @@
                             $size  = 'full';
                             if ( $icon ) {echo wp_get_attachment_image(
                                 $icon, $size, false,
-                                [
-                                'class'    => 'w-full max-w-[75px] object-cover mx-auto',
-                                'loading'  => 'eager',
-                                'decoding' => 'async',
-                                ]
+                                ['class'    => 'w-full max-w-[75px] object-cover mx-auto',]
                             );}
                             ?>
                         </div>

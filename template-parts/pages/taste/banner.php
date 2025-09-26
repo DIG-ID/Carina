@@ -3,13 +3,8 @@
     <div class="background-wrapper relative">
       <?php echo wp_get_attachment_image(
         get_field('banner_background_image'),
-        'full',
-        false,
-        [
-        'class'    => 'inset-0 w-full h-full max-h-[80dvh] object-cover -z-10',
-        'loading'  => 'eager',
-        'decoding' => 'async',
-        ]
+        'full', false,
+        ['class'    => 'inset-0 w-full h-full max-h-[80dvh] object-cover -z-10',]
       ); ?>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-6 xl:grid-cols-12 gap-x-5 md:gap-x-4 xl:gap-x-0 px-1 md:px-7 xl:px-6 absolute left-0 bottom-0">

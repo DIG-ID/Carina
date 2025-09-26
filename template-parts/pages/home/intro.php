@@ -19,11 +19,7 @@
                     $size  = 'full';
                     if ( $imgSlogan ) {echo wp_get_attachment_image(
                         $imgSlogan, $size, false,
-                        [
-                        'class'    => 'w-full object-cover relative xl:absolute',
-                        'loading'  => 'eager',
-                        'decoding' => 'async',
-                        ]
+                        ['class'    => 'w-full object-cover relative xl:absolute',]
                     );}
                 ?>
             </div>
