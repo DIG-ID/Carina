@@ -19,7 +19,7 @@
         );
         $the_query = new WP_Query($args);
         while ($the_query->have_posts()) : $the_query->the_post();
-          $size = get_field('content_size')
+          $size = get_field('content_size');
           $description = get_field('content_short_description');
           $title = get_the_title();
           $image   = get_post_thumbnail_id( get_the_ID() );
@@ -103,8 +103,6 @@
                       <?php
                     endwhile;
                   else:
-                    // Optional: quick debug helper (remove in production)
-                    // echo '<!-- No rows for content_amenities -->';
                   endif;
                   ?>
                 </div>
