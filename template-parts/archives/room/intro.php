@@ -3,7 +3,7 @@
         <div class="theme-grid">
             <div class="col-span-2 md:col-span-6 xl:col-span-8 col-start-1 md:col-start-1 xl:col-start-3">
                 <p class="block-text-intro text-lightGrey text-center">
-                    <?php the_field( 'apartment_intro_text', 'options'); ?>
+                    <?php the_field( 'room_intro_text', 'options'); ?>
                 </p>
             </div>
         </div>

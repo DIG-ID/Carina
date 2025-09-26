@@ -1,31 +1,33 @@
-<section id="section-apartments" class="section-apartments bg-lightGrey xl:pt-10">
-  <div class="theme-container pb-6">
+<section id="section-apartments" class="section-apartments bg-lightGrey pt-8 md:pt-12 xl:pt-10 pb-[70px] md:pb-24">
+  <div class="theme-container">
     <div class="theme-grid">
       
       <!-- Breadcrumbs -->
-      <div class="title-30 xl:mb-4 col-span-12">
-        <?php echo get_field('apartment_content_over_title','options'); ?>
+      <div class="mb-4 xl:mb-4 col-span-2 md:col-span-6 xl:col-span-12">
+        <h3 class="title-30"><?php echo get_field('apartment_content_over_title','options'); ?></h3>
       </div>
 
       <!-- Section heading -->
-      <div class="xl:mb-7 col-span-7">
+      <div class="mb-[70px] xl:mb-7 col-span-2 md:col-span-6 xl:col-span-7">
         <h2 class="title-md"><?php the_field('apartment_content_title', 'options'); ?></h2>
       </div>
 
         <?php
         $args = array(
           'post_type' => 'apartment',
-          'posts_per_page' => 0
+          'posts_per_page' => -1
         );
         $the_query = new WP_Query($args);
         while ($the_query->have_posts()) : $the_query->the_post();
           $description = get_field('content_description');
-          $title = get_field('content_title');
+          $title = get_the_title();
           $image   = get_post_thumbnail_id( get_the_ID() );
           $link = get_field('content_button');
         ?>
+          <article class="content-wrapper col-span-2 md:col-span-6 xl:col-span-12 theme-grid gap-y-3 md:gap-y-[70px] xl:gap-y-20">
             <!-- Image column -->
-            <div class="xl:col-start-1 xl:col-span-6 relative">
+            <div class="col-start-1 col-span-2 md:col-span-3 xl:col-span-6 relative">
+              <a href="<?php the_permalink(); ?>">
               <?php
               if ( $image ) {
                 echo wp_get_attachment_image(
@@ -40,36 +42,30 @@
                 );
               }
               ?>
+              </a>
             </div>
             <!-- Content column -->
-            <div class="xl:col-start-7 xl:col-span-6 flex flex-col">
+            <div class="col-start-1 col-span-2 md:col-start-4 md:col-span-3 xl:col-start-7 xl:col-span-6 flex flex-col">
               <?php if ( $title ) : ?>
-                <h3 class="title-30 text-darkBlue xl:mb-7">
+              <a href="<?php the_permalink(); ?>">
+                <h3 class="title-30 text-darkBlue mb-8 xl:mb-7">
                   <?php echo esc_html( $title ); ?>
                 </h3>
+              </a>
               <?php endif; ?>
 
               <?php if ( $description ) : ?>
-                <p class="block-17 xl:mb-32">
+                <p class="block-text mb-[105px] md:mb-0 md:max-w-[376px]">
                   <?php echo esc_html( $description ); ?>
                 </p>
               <?php endif; ?>
 
-              <?php if ( $link ) :
-                $link_url    = $link['url'];
-                $link_title  = $link['title'];
-                $link_target = !empty($link['target']) ? $link['target'] : '_self';
-                if ( $link_url && $link_title ) : ?>
-                  <a class="btn btn-arrow-darkBlue"
-                     href="<?php echo esc_url( $link_url ); ?>"
-                     target="<?php echo esc_attr( $link_target ); ?>">
-                    <?php echo esc_html( $link_title ); ?>
-                  </a>
-                <?php endif; ?>
-              <?php endif; ?>
+              <a href="<?php the_permalink(); ?>" class="btn btn-arrow-darkBlue mb-16 md:mb-0 md:mt-auto justify-end">
+                  <?php esc_html_e('Mehr erfahren', 'carina'); ?>
+              </a>
             </div>
-          </article>
           <?php endwhile; ?>
+          </article>
       </div>
     </div>
   </div>

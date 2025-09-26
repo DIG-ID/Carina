@@ -1,4 +1,4 @@
-<?php $background_id = get_field('apartment_text_center_image', 'options'); ?>
+<?php $background_id = get_field('room_text_center_image', 'options'); ?>
 
 <section id="section-text-center" class="section-text-center text-center relative z-10 bg-center bg-cover bg-no-repeat"
   <?php if ( $background_id ): ?>
@@ -8,14 +8,14 @@
   <!-- CONTENT -->
 
   <div class="theme-container relative">
-    <div class="flex flex-col items-center py-20 md:py-[105px] xl:py-36">
-      <h2 class="title-md text-lightGrey md:mb-12 xl:mb-6 max-w-[661px]">
-        <?php echo esc_html( get_field('apartment_text_center_title', 'options') ); ?>
+    <div class="flex flex-col items-center py-28 md:py-[105px] xl:py-36">
+      <h2 class="title-md text-lightGrey !uppercase md:!normal-case md: mb-8 md:mb-12 xl:mb-6 max-w-[661px]">
+        <?php echo esc_html( get_field('room_text_center_title', 'options') ); ?>
       </h2>
-      <p class="block-text text-lightGrey max-w-[532px] mb-7 md:mb-12 xl:mb-20">
-        <?php echo esc_html( get_field('apartment_text_center_description', 'options') ); ?>
+      <p class="block-text text-lightGrey max-w-[322px] md:max-w-[532px] mb-7 md:mb-12 xl:mb-20">
+        <?php echo esc_html( get_field('room_text_center_description', 'options') ); ?>
       </p>
-      <?php if ( $link = get_field('apartment_text_center_button', 'options') ):
+      <?php if ( $link = get_field('room_text_center_button', 'options') ):
         $link_url    = $link['url'] ?? '';
         $link_title  = $link['title'] ?? '';
         $link_target = !empty($link['target']) ? $link['target'] : '_self';

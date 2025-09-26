@@ -1,0 +1,115 @@
+<section id="section-rooms" class="section-rooms bg-lightGrey pb-[70px] md:pb-24 pt-8 md:pt-12 xl:pt-10">
+  <div class="theme-container">
+    <div class="theme-grid">
+      
+      <!-- Breadcrumbs -->
+      <div class="title-30 mb-2 md:mb-4 xl:mb-4 col-span-2 md:col-span-6 xl:col-span-12">
+        <?php echo get_field('room_content_over_title','options'); ?>
+      </div>
+
+      <!-- Section heading -->
+      <div class="mb-8 md:mb-16 xl:mb-7 col-span-2 md:col-span-5 xl:col-span-7">
+        <h2 class="title-md md:max-w-[530px] xl:max-w-full "><?php the_field('room_content_title', 'options'); ?></h2>
+      </div>
+
+        <?php
+        $args = array(
+          'post_type' => 'room',
+          'posts_per_page' => 0
+        );
+        $the_query = new WP_Query($args);
+        while ($the_query->have_posts()) : $the_query->the_post();
+          $description = get_field('content_description');
+          $title = get_the_title();
+          $image   = get_post_thumbnail_id( get_the_ID() );
+        ?>
+          <article class="content-wrapper col-span-2 md:col-span-6 xl:col-span-12 theme-grid gap-y-8 flex">
+            <!-- Image column -->
+            <div class="col-span-2 md:col-span-3 xl:col-start-1 xl:col-span-6 relative ">
+               <a href="<?php the_permalink(); ?>" class="overflow-hidden pb-[33px]">
+              <?php
+              if ( $image ) {
+                echo wp_get_attachment_image(
+                  $image,
+                  'full',
+                  false,
+                  [
+                    'class'    => 'block w-full h-auto',
+                    'loading'  => 'eager',
+                    'decoding' => 'async',
+                  ]
+                );
+              }
+              ?>
+              </a>
+            </div>
+            <!-- Content column -->
+            <div class="col-span-2 md:col-start-4 md:col-span-3 xl:col-start-7 xl:col-span-6 flex flex-col">
+              <?php if ( $title ) : ?>
+                <h3 class="title-30 text-darkBlue mb-7">
+                   <a href="<?php the_permalink(); ?>">
+                    <?php echo esc_html( $title ); ?>
+                   </a>
+                </h3>
+              <?php endif; ?>
+
+              <?php if ( $description ) : ?>
+                <p class="block-17 mb-7 xl:mb-14">
+                  <?php echo esc_html( $description ); ?>
+                </p>
+              <?php endif; ?>
+              <!-- Amenities -->
+              <!-- Icons -->
+              <div class="flex gap-10 xl:gap-20">
+                <div class="flex flex-col xl:flex-row items-start xl:items-end gap-5 md:gap-8 xl:gap-28flex-wrap mb-8 md:mb-0">
+                  <?php
+                  if ( have_rows('content_amenities') ) :
+                    while ( have_rows('content_amenities') ) : the_row();
+                      $icon_field = get_sub_field('icon');
+                      $text       = get_sub_field('text');
+                      $icon_id = 0;
+                      if (is_numeric($icon_field)) {
+                        $icon_id = (int) $icon_field;
+                      } elseif (is_array($icon_field) && !empty($icon_field['ID'])) {
+                        $icon_id = (int) $icon_field['ID'];
+                      }
+
+                      ?>
+                      <div class="flex flex-row items-center text-center">  
+                        <?php if ($icon_id): ?>
+                          <?php echo wp_get_attachment_image(
+                            $icon_id,
+                            'full',
+                            false,
+                            [
+                              'class'    => ' max-auto max-h-[30px] object-contain',
+                              'loading'  => 'lazy',
+                              'decoding' => 'async',
+                            ]
+                          ); ?>
+                        <?php endif; ?>
+
+                        <?php if (!empty($text)): ?>
+                          <h3 class="block-text text-darkBlue"><?php echo esc_html($text); ?></h3>
+                        <?php endif; ?>
+                      </div>
+                      <?php
+                    endwhile;
+                  else:
+                    // Optional: quick debug helper (remove in production)
+                    // echo '<!-- No rows for content_amenities -->';
+                  endif;
+                  ?>
+                </div>
+              </div>
+
+              <a href="<?php the_permalink(); ?>" class="btn btn-arrow-darkBlue mt-auto self-start md:self-end">
+                  <?php esc_html_e('Mehr erfahren', 'carina'); ?>
+              </a>
+            </div>
+          <?php endwhile; ?>
+          </article>
+      </div>
+    </div>
+  </div>
+</section>

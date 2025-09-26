@@ -61,31 +61,52 @@
         endif; ?>
         </div>
         <!-- Icons row -->
-        <div class="flex gap-10 xl:gap-20 mt-12 md:mt-0 order-3 md:order-none">
-          <!-- Room size -->
-          <div class="flex flex-row items-end ml-5 md:ml-0 gap-28 md:gap-12">
-             <?php
-                if( have_rows('content_amenities') ):
-                    while( have_rows('content_amenities') ) : the_row(); ?>
-                    <div class="items-center flex flex-col ">
-                            <?php
-                            $icon = get_sub_field('icon');
-                            $size  = 'full';
-                            if ( $icon ) {echo wp_get_attachment_image(
-                                $icon, $size, false,
-                                [
-                                'class'    => 'mb-3 max-w-full max-h-full object-cover',
-                                'loading'  => 'eager',
-                                'decoding' => 'async',
-                                ]
-                            );}
-                            ?>
-                            <h3 class="title-sm text-darkBlue"><?php the_sub_field( 'text' ); ?></h3>
-                    </div>
-                    <?php 
-                    endwhile;
-                endif; ?>
+          <div class="flex flex-row items-end ml-5 md:ml-0 gap-28 md:gap-12 flex-wrap">
+            <?php
+            // If these fields live on an Options page, add 'option' as second arg
+            // if ( have_rows('content_amenities', 'option') ) :
+            if ( have_rows('content_amenities') ) :
+              while ( have_rows('content_amenities') ) : the_row();
+                $icon_field = get_sub_field('icon');   // could be ID or Array
+                $text       = get_sub_field('text');
+
+                // Normalize to an attachment ID
+                $icon_id = 0;
+                if (is_numeric($icon_field)) {
+                  $icon_id = (int) $icon_field;                 // Image ID
+                } elseif (is_array($icon_field) && !empty($icon_field['ID'])) {
+                  $icon_id = (int) $icon_field['ID'];          // Image Array
+                }
+
+                // Render
+                ?>
+                <div class="flex flex-col items-center text-center">
+                  <?php if ($icon_id): ?>
+                    <?php echo wp_get_attachment_image(
+                      $icon_id,
+                      'full',
+                      false,
+                      [
+                        'class'    => 'mb-3 max-w-full h-auto object-contain',
+                        'loading'  => 'lazy',
+                        'decoding' => 'async',
+                      ]
+                    ); ?>
+                  <?php endif; ?>
+
+                  <?php if (!empty($text)): ?>
+                    <h3 class="title-sm text-darkBlue"><?php echo esc_html($text); ?></h3>
+                  <?php endif; ?>
+                </div>
+                <?php
+              endwhile;
+            else:
+              // Optional: quick debug helper (remove in production)
+              // echo '<!-- No rows for content_amenities -->';
+            endif;
+            ?>
           </div>
+        </div>
         </div>
       </div>
 

@@ -1,9 +1,9 @@
-<section id="apartments" class="apartments relative overflow-hidden bg-lightGrey pt-7 md:pt-12 xl:pt-16 pb-16 md:pb-24">
+<section id="single-room" class="single-room relative overflow-hidden bg-lightGrey pt-7 md:pt-12 xl:pt-16 pb-16 md:pb-24">
   <div class="theme-container">
     <div class="theme-grid">
 
       <!-- Previous/next buttons -->
-      <div class="col-span-2 md:col-span-6 xl:col-span-12 flex w-full pb-16 md:pb-24">
+      <div class="col-span-2 md:col-span-6 xl:col-span-12 flex w-full pb-16 md:pb-24 ">
         <div>
           <?php if ( $prev = get_previous_post() ) : ?>
             <a class="btn btn-arrow-previous" href="<?php echo esc_url( get_permalink( $prev->ID ) ); ?>">
