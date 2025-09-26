@@ -41,7 +41,7 @@
           ); ?>
         </div>
       </div>
-      <div class="col-span-2 md:col-span-3 xl:col-span-5">
+      <div class="col-span-2 md:col-span-3 xl:col-span-6">
         <h2 class="title-md text-lightGrey pb-7 md:pb-12"><?php the_field( 'spirit_block_title' ); ?></h2>
         <p class="block-text text-lightGrey"><?php the_field( 'spirit_block_text' ); ?></p>
       </div>
