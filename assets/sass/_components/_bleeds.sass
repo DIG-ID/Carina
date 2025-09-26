@@ -1,8 +1,87 @@
+$container-max: 1312px
 
+.bleed-left-child,
+.bleed-right-child,
+.bleed-both-child,
+.bleed-right-child-7
+  max-width: none
+  overflow: visible
+
+//image bleed right - xl
+@media (min-width: 1280px)
+  .bleed-right-child
+    --edge-gap: max(0px, calc((100vw - #{$container-max}) / 2))
+    --container-pad: 24px       // md:px-6
+    --grid-gap: 16px            // md:gap-x-4
+    --shift: calc(var(--edge-gap) + var(--container-pad) + (var(--grid-gap) / 2))
+    width: calc(100% + var(--shift))  // extend to the right only
+
+@media (min-width: 1280px)
+  .bleed-right-child
+    --container-pad: 0px        // xl:px-0
+    --grid-gap: 32px            // xl:gap-x-8
+
+// image bleed left - xl
+@media (min-width: 1280px)
+  .bleed-left-child
+    // distance from container edge to viewport edge
+    --edge-gap: max(0px, calc((100vw - #{$container-max}) / 2))
+    // md:px-6 = 24px
+    --container-pad: 24px
+    // md:gap-x-4 = 16px
+    --grid-gap: 16px
+    // include half the gap so the image reaches the visual center
+    --shift: calc(var(--edge-gap) + var(--container-pad) + (var(--grid-gap) / 2))
+
+    margin-left: calc(-1 * var(--shift))
+    width: calc(100% + var(--shift))
+    // no right-side clip here
+
+
+// image bleed both - xl
+@media (min-width: 768px)
+  .bleed-both-child
+    --edge-gap: max(0px, calc((100vw - #{$container-max}) / 2))
+    --container-pad: 24px       // md:px-6
+    --spread: calc(var(--edge-gap) + var(--container-pad))
+    margin-left: calc(-1 * var(--spread))
+    width: calc(100% + (2 * var(--spread)))  // extend left and right equally
+
+@media (min-width: 1280px)
+  .bleed-both-child
+    --container-pad: 0px        // xl:px-0
+
+// image bleed right - xl (for col-span-7)
+@media (min-width: 768px)
+  .bleed-right-child-7
+    // distance from container edge to viewport edge
+    --edge-gap: max(0px, calc((100vw - #{$container-max}) / 2))
+    // your container paddings: md:px-6 = 24px, xl:px-0 later
+    --container-pad: 24px
+    // shift needed to reach the viewport edge on the right
+    --shift: calc(var(--edge-gap) + var(--container-pad))
+    margin-right: calc(-1 * var(--shift))
+    width: calc(100% + var(--shift))
+    // no clip-path: we want the media to extend past the container on the right
+
+@media (min-width: 1280px)
+  .bleed-right-child-7
+    --container-pad: 0px
+
+
+  
 //bleed right for Swiper
 .bleed-right-md-container
   width: calc(100% + (50vw - 50%))
   margin-right: calc(50% - 50vw)
+  max-width: none
+  overflow: visible
+  -webkit-clip-path: inset(0 -50vw 0 0)
+          clip-path: inset(0 -50vw 0 0)
+
+.bleed-left-md-container
+  width: calc(100% + (50vw - 50%))
+  margin-left: calc(50% - 50vw)
   max-width: none
   overflow: visible
   -webkit-clip-path: inset(0 -50vw 0 0)

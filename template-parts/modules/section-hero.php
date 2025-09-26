@@ -14,13 +14,8 @@
   <?php elseif ( get_field('hero_background_image') ) : ?>
     <?php echo wp_get_attachment_image(
       get_field('hero_background_image'),
-      'full',
-      false,
-      [
-        'class'    => 'absolute inset-0 w-full h-full object-cover -z-10',
-        'loading'  => 'eager',
-        'decoding' => 'async',
-      ]
+      'full', false,
+      ['class'    => 'absolute inset-0 w-full h-full object-cover -z-10',]
     ); ?>
   <?php endif; ?>
   <?php if ( is_front_page() ) : ?>

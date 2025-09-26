@@ -19,21 +19,13 @@
                     />
                     <?php
                     echo wp_get_attachment_image(
-                    $img,
-                    'full',
-                    false,
-                    [
-                        'class'    => 'block w-full object-cover mb-5 md:mb-0',
-                        'loading'  => 'eager',
-                        'decoding' => 'async',
-                    ]
+                    $img, 'full', false,
+                    ['class'    => 'block w-full object-cover mb-5 md:mb-0',]
                     );
                     ?>
                 </picture>
                 <?php endif; ?>
-
             </div>
-
         </div>
     </div>
 </section>

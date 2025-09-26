@@ -1,32 +1,28 @@
 <section id="section-rooms" class="section-rooms relative w-full pt-8 md:pt-14 xl:pt-20 pb-16 md:pb-24">
   <?php
   $images = get_field('rooms_images');
-  if ($images) : ?>
+  if (is_array($images) && !empty($images)) : ?>
     <div class="swiper bleed-both-swiper">
       <div class="swiper-wrapper">
-        <?php foreach ($images as $image) :
-          $id      = is_array($image) ? ($image['ID'] ?? $image['id'] ?? 0) : (int)$image;
-          $alt     = is_array($image) ? trim($image['alt'] ?? '') : trim(get_post_meta($id, '_wp_attachment_image_alt', true));
-          $caption = is_array($image) ? ($image['caption'] ?? '') : wp_get_attachment_caption($id);
-          if (!$alt) $alt = get_the_title($id);
-        ?>
+        <?php foreach ($images as $index => $id) : ?>
           <div class="swiper-slide">
-            <?php echo wp_get_attachment_image(
-              $id,
-              'slider-bleed-both',
-              false,
+            <?php
+            echo wp_get_attachment_image(
+              $id, 'slider-bleed-both', false,
               [
-              'class'    => 'w-full h-full',
-              'loading'  => 'eager',
-              'decoding' => 'async',
+                'class'    => 'block w-full h-auto object-cover',
+                'sizes'    => '(min-width:768px) 50vw, 100vw',
               ]
-            ); ?>
+            );
+            ?>
           </div>
         <?php endforeach; ?>
       </div>
+
       <div class="swiper-button-next right-4 xl:right-16"></div>
     </div>
   <?php endif; ?>
+
   <div class="theme-container pt-8 md:pt-12 xl:pt-12">
     <div class="theme-grid">
       <div class="col-span-2 md:col-span-5 xl:col-span-12">

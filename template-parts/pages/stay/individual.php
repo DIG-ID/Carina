@@ -22,11 +22,7 @@
               $size  = 'full';
               if ( $individual_image) {echo wp_get_attachment_image(
                   $individual_image, $size, false,
-                  [
-                  'class'    => 'h-full w-full object-cover',
-                  'loading'  => 'eager',
-                  'decoding' => 'async',
-                  ]
+                  ['class'    => 'h-full w-full object-cover',]
               );}
               ?>
         </div>
@@ -43,11 +39,7 @@
               $size  = 'full';
               if ( $individual_image_2 ) {echo wp_get_attachment_image(
                   $individual_image_2, $size, false,
-                  [
-                  'class'    => 'h-full w-full object-cover',
-                  'loading'  => 'eager',
-                  'decoding' => 'async',
-                  ]
+                  ['class'    => 'h-full w-full object-cover',]
               );}
               ?>
         </div>

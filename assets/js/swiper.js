@@ -47,4 +47,26 @@ window.addEventListener("load", () => {
       },
     });
   }
+  if (document.querySelector(".page-template-page-carina-spirit")) {
+    new Swiper('.history-slider', {
+      speed: 900,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      breakpoints: { 
+        0:{slidesPerView:1,spaceBetween: 9}, 
+        768:{slidesPerView:2.5,spaceBetween: 16},
+        1280:{slidesPerView:2.5,spaceBetween: 24}
+      },
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: 24,
+      effect: 'slide',
+      navigation: {
+        nextEl: '.history-slider .swiper-button-next',
+      },
+    });
+  }
 });
