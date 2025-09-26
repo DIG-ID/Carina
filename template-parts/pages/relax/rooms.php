@@ -1,27 +1,33 @@
 <section id="section-rooms" class="section-rooms relative w-full pt-8 md:pt-14 xl:pt-20 pb-16 md:pb-24">
   <?php
-  $images = get_field('rooms_images');
-  if (is_array($images) && !empty($images)) : ?>
-    <div class="swiper bleed-both-swiper">
-      <div class="swiper-wrapper">
-        <?php foreach ($images as $index => $id) : ?>
-          <div class="swiper-slide">
-            <?php
-            echo wp_get_attachment_image(
-              $id, 'slider-bleed-both', false,
-              [
-                'class'    => 'block w-full h-auto object-cover',
-                'sizes'    => '(min-width:768px) 50vw, 100vw',
-              ]
-            );
-            ?>
-          </div>
-        <?php endforeach; ?>
-      </div>
+$images = get_field('rooms_images');
 
-      <div class="swiper-button-next right-4 xl:right-16"></div>
+if (is_array($images) && !empty($images)) : ?>
+  <div class="swiper bleed-both-swiper">
+    <div class="swiper-wrapper">
+      <?php foreach ($images as $index => $id) :
+        $size = ($index % 2 === 0) ? 'slider-bleed-both' : 'slider-bleed-both-portrait';
+      ?>
+        <div class="swiper-slide">
+          <?php
+          echo wp_get_attachment_image(
+            (int) $id,
+            $size,
+            false,
+            [
+              'class' => 'block h-auto object-cover',
+              'sizes' => '(min-width:768px) 50vw, 100vw',
+            ]
+          );
+          ?>
+        </div>
+      <?php endforeach; ?>
     </div>
-  <?php endif; ?>
+
+    <div class="swiper-button-next right-4 xl:right-16"></div>
+  </div>
+<?php endif; ?>
+
 
   <div class="theme-container pt-8 md:pt-12 xl:pt-12">
     <div class="theme-grid">
