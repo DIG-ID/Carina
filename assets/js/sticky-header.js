@@ -18,7 +18,7 @@
     dirDelta: 4,
     topEpsilon: 1,
     footerSelector: ".footer-main",
-    footerTriggerMargin: 48, // px before footer enters view to start hiding
+    footerTriggerMargin: 700, // px before footer enters view to start hiding
   };
 
   const body = document.body;
