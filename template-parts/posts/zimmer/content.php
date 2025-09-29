@@ -7,14 +7,14 @@
         <div>
           <?php if ( $prev = get_previous_post() ) : ?>
             <a class="btn btn-arrow-previous" href="<?php echo esc_url( get_permalink( $prev->ID ) ); ?>">
-              <?php echo esc_html__( 'Zurück zur Zimmerübersicht', 'carina' ); ?>
+              <?php echo esc_html__e( 'Zurück zur Zimmerübersicht', 'carina' ); ?>
             </a>
           <?php endif; ?>
         </div>
         <div class="ml-auto">
           <?php if ( $next = get_next_post() ) : ?>
             <a class="btn btn-arrow-next" href="<?php echo esc_url( get_permalink( $next->ID ) ); ?>">
-              <?php echo esc_html__( 'Nächstes Zimmer', 'carina' ); ?>
+              <?php echo esc_html__e( 'Nächstes Zimmer', 'carina' ); ?>
             </a>
           <?php endif; ?>
         </div>
@@ -24,13 +24,13 @@
       <div class="col-span-2 md:col-span-3 xl:col-start-1 xl:col-span-6">
         <!-- Title -->
         <div class="content-wrapper order-1 md:order-none">
-        <h2 class="title-md text-DarkBlue mb-7 md:mb-12 xl:mb-16 md:max-w-[351px] xl:max-w-full">
-          <?php echo esc_html( get_field('content_title') ); ?>
+        <h2 class="title-md text-DarkBlue mb-7 md:mb-12 xl:mb-16 md:max-w-[351px] xl:max-w-[540px]">
+          <?php echo get_field('content_title'); ?>
         </h2>
 
         <!-- Description -->
         <p class="block-17 text-darkBlue mb-7 md:mb-12 xl:mb-16 xl:max-w-[530px]">
-          <?php echo esc_html( get_field('content_description') ); ?>
+          <?php echo get_field('content_description'); ?>
         </p>
 
         <!-- Button -->
@@ -55,11 +55,11 @@
         <!-- Icons row -->
         <div class="flex gap-10 xl:gap-20 mt-12 md:mt-0 order-3 md:order-none">
           <!-- Room size -->
-          <div class="flex flex-row items-end ml-5 md:ml-0 gap-28 md:gap-12">
+          <div class="flex flex-row ml-5 md:ml-0 gap-28 md:gap-12 items-baseline">
              <?php
                 if( have_rows('content_amenities') ):
                     while( have_rows('content_amenities') ) : the_row(); ?>
-                    <div class="items-center flex flex-col ">
+                    <div class="items-center flex flex-col w-1/4">
                             <?php
                             $icon = get_sub_field('icon');
                             $size  = 'full';
@@ -72,7 +72,7 @@
                                 ]
                             );}
                             ?>
-                            <h3 class="title-sm text-darkBlue"><?php the_sub_field( 'text' ); ?></h3>
+                            <h3 class="title-sm text-darkBlue text-center"><?php the_sub_field( 'text' ); ?></h3>
                     </div>
                     <?php 
                     endwhile;

@@ -68,43 +68,26 @@
               <!-- Amenities -->
               <!-- Icons -->
               <div class="flex gap-10 xl:gap-20">
-                <div class="flex flex-col xl:flex-row items-start xl:items-end gap-5 md:gap-8 xl:gap-28flex-wrap mb-8 md:mb-0">
-                  <?php
-                  if ( have_rows('content_amenities') ) :
+                <div class="w-full grid grid-cols-2 gap-x-12 gap-y-6 mb-8 md:mb-0">
+                  <?php if ( have_rows('content_amenities') ) :
                     while ( have_rows('content_amenities') ) : the_row();
                       $icon_field = get_sub_field('icon');
                       $text       = get_sub_field('text');
-                      $icon_id = 0;
-                      if (is_numeric($icon_field)) {
-                        $icon_id = (int) $icon_field;
-                      } elseif (is_array($icon_field) && !empty($icon_field['ID'])) {
-                        $icon_id = (int) $icon_field['ID'];
-                      }
-
-                      ?>
-                      <div class="flex flex-row items-center text-center">  
-                        <?php if ($icon_id): ?>
-                          <?php echo wp_get_attachment_image(
-                            $icon_id,
-                            'full',
-                            false,
-                            [
-                              'class'    => ' max-auto max-h-[30px] object-contain',
-                              'loading'  => 'lazy',
-                              'decoding' => 'async',
-                            ]
-                          ); ?>
-                        <?php endif; ?>
-
-                        <?php if (!empty($text)): ?>
-                          <h3 class="block-text text-darkBlue"><?php echo esc_html($text); ?></h3>
-                        <?php endif; ?>
-                      </div>
-                      <?php
-                    endwhile;
-                  else:
-                  endif;
+                      $icon_id = is_numeric($icon_field) ? (int)$icon_field : ((is_array($icon_field) && !empty($icon_field['ID'])) ? (int)$icon_field['ID'] : 0);
                   ?>
+                    <div class="flex items-center gap-3">
+                      <?php if ($icon_id): ?>
+                        <?php echo wp_get_attachment_image($icon_id, 'full', false, [
+                          'class' => 'w-6 h-6',
+                          'loading' => 'lazy',
+                          'decoding' => 'async',
+                        ]); ?>
+                      <?php endif; ?>
+                      <?php if (!empty($text)): ?>
+                        <h3 class="block-text text-darkBlue text-left"><?php echo esc_html($text); ?></h3>
+                      <?php endif; ?>
+                    </div>
+                  <?php endwhile; endif; ?>
                 </div>
               </div>
 
