@@ -8,6 +8,14 @@
 		<?php wp_head(); ?>
 	</head>
 
-	<body <?php body_class( 'relative' ); ?>>
+	<?php
+	$header_style = '';
+	if ( 'dark' === get_field( 'hero_header_style' ) ) :
+		$header_style = 'header-style-dark';
+	else :
+		$header_style = 'header-style-light';
+	endif;
+	?>
+	<body <?php body_class( 'relative ' . esc_attr( $header_style ) ); ?>>
 		<?php do_action( 'wp_body_open' ); ?>
 		<?php get_template_part( 'template-parts/header', 'main' ); ?>

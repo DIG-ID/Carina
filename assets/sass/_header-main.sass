@@ -2,6 +2,10 @@
   @apply transition-all duration-700 ease-in-out opacity-100
   .header-content
     @apply fixed z-50 w-full py-9 opacity-100 border-b-[1px] border-transparent shadow-none transition-all duration-500 ease-in-out
+    .header-logo
+      svg
+        path
+          @apply fill-lightGrey transition-all duration-500 ease-in-out
   body.at-top &
     @apply bg-transparent shadow-none
   body.is-scrolled &
@@ -75,3 +79,40 @@ nav#primary-nav
   .menu-offcanvas
     transform: none
     clip-path: none
+
+
+// header light styles
+
+body.header-style-light
+  .header-main
+    .header-content
+      .header-logo
+        svg
+          path
+            @apply fill-darkBlue
+      // Hamburger Menu
+      .menu-toggle
+        &__bar
+          @apply bg-darkBlue
+      .menu-toggle__button.menu-open
+          .menu-toggle__bars
+            .menu-toggle__bar
+              @apply bg-lightGrey
+
+body.header-style-light.menu-open
+  .header-main
+    .header-logo
+      svg
+        path
+          @apply fill-lightGrey
+
+body.header-style-light.is-scrolled
+  .header-main
+    .header-logo
+      svg
+        path
+          @apply fill-lightGrey
+    .menu-toggle__button
+      .menu-toggle__bars
+        .menu-toggle__bar
+          @apply bg-lightGrey

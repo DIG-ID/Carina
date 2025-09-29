@@ -15,13 +15,13 @@
 				</div>
 				<div class="col-span-1 flex items-center justify-center">
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="header-logo transition-all duration-500 ease-in-out" itemprop="url">
-						<?php
+						<?php /*
 						$logo = get_field( 'general_theme-logo_light', 'option' );
 						if ( $logo ) :
 							echo wp_get_attachment_image( $logo, 'full', false, array( 'class' => 'w-28 md:w-56 transition-all duration-500 ease-in-out', 'loading' => 'eager', 'decoding' => 'async' ) );
 						endif;
-						?>
-						<?php //do_action( 'theme_logo' ); ?>
+						*/  ?>
+						<?php do_action( 'theme_logo' ); ?>
 					</a>
 				</div>
 				<div class="col-span-1 flex items-center justify-end">
