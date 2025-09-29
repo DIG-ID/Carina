@@ -9,7 +9,7 @@
 
       <!-- Section heading -->
       <div class="mb-8 md:mb-16 xl:mb-7 col-span-2 md:col-span-5 xl:col-span-7">
-        <h2 class="title-md md:max-w-[530px] xl:max-w-full "><?php the_field('room_content_title', 'options'); ?></h2>
+        <h2 class="title-md md:max-w-[530px] xl:max-w-[560px] "><?php the_field('room_content_title', 'options'); ?></h2>
       </div>
 
         <?php
@@ -62,7 +62,7 @@
 
               <?php if ( $description ) : ?>
                 <p class="block-17 mb-7 xl:mb-14">
-                  <?php echo esc_html( $description ); ?>
+                  <?php echo ( $description ); ?>
                 </p>
               <?php endif; ?>
               <!-- Amenities -->
