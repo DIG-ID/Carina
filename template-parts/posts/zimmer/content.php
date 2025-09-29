@@ -7,14 +7,14 @@
         <div>
           <?php if ( $prev = get_previous_post() ) : ?>
             <a class="btn btn-arrow-previous" href="<?php echo esc_url( get_permalink( $prev->ID ) ); ?>">
-              <?php echo esc_html__e( 'Zurück zur Zimmerübersicht', 'carina' ); ?>
+              <?php echo esc_html_e( 'Zurück zur Zimmerübersicht', 'carina' ); ?>
             </a>
           <?php endif; ?>
         </div>
         <div class="ml-auto">
           <?php if ( $next = get_next_post() ) : ?>
             <a class="btn btn-arrow-next" href="<?php echo esc_url( get_permalink( $next->ID ) ); ?>">
-              <?php echo esc_html__e( 'Nächstes Zimmer', 'carina' ); ?>
+              <?php echo esc_html_e( 'Nächstes Zimmer', 'carina' ); ?>
             </a>
           <?php endif; ?>
         </div>
@@ -64,7 +64,6 @@
         </div>
         <!-- Icons row -->
         <div class="flex gap-10 xl:gap-20 mt-12 md:mt-0 order-3 md:order-none">
-          <!-- Room size -->
           <div class="flex flex-row ml-5 md:ml-0 gap-28 md:gap-12 items-baseline">
              <?php
                 if( have_rows('content_amenities') ):
