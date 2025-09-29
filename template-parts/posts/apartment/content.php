@@ -57,6 +57,37 @@
 
         <!-- Icons row -->
         <div class="flex flex-row items-end ml-5 md:ml-0 gap-28 md:gap-12 flex-wrap">
+          <?php 
+          $room_space_icon = get_field('content_room_space_icon');         
+          $room_space_text       = get_field('content_size');
+          $first_icon_id = 0;
+          if (is_numeric($room_space_icon)) {
+            $first_icon_id = (int) $room_space_icon;
+          } elseif (is_array($room_space_icon) && !empty($room_space_icon['ID'])) {
+            $first_icon_id = (int) $room_space_icon['ID'];
+          }
+
+          if ($first_icon_id || !empty($room_space_text)) : ?>
+            <div class="items-center flex flex-col w-1/4">
+              <?php
+              if ($first_icon_id) {
+                echo wp_get_attachment_image(
+                  $first_icon_id,
+                  'full',
+                  false,
+                  [
+                    'class'    => 'mb-3 max-w-full max-h-full object-contain',
+                    'loading'  => 'eager',
+                    'decoding' => 'async',
+                  ]
+                );
+              }
+              ?>
+              <?php if (!empty($room_space_text)) : ?>
+                <h3 class="title-sm text-darkBlue text-center"><?php echo esc_html($room_space_text); ?></h3>
+              <?php endif; ?>
+            </div>
+          <?php endif; ?>
           <?php
           if ( have_rows('content_amenities') ) :
             while ( have_rows('content_amenities') ) : the_row();
