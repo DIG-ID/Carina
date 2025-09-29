@@ -67,7 +67,7 @@
           <div class="flex flex-row ml-5 md:ml-0 gap-28 md:gap-12 items-baseline">
             <?php
               /* ---- Room Space Icon ---- */
-              $room_space_icon = get_field('room_space_icon');         
+              $room_space_icon = get_field('content_room_space_icon');         
               $room_space_text       = get_field('content_size');
               $first_icon_id = 0;
               if (is_numeric($room_space_icon)) {
