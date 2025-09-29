@@ -33,6 +33,16 @@
           <?php echo get_field('content_description'); ?>
         </p>
 
+        <h3 class="title-sm text-DarkBlue mb-7 md:mb-12 xl:mb-10 md:max-w-[351px] xl:max-w-[540px]">
+          <?php echo get_field('content_equipments_title'); ?>
+        </h3>
+
+        <!-- Description -->
+        <p class="block-17 text-darkBlue mb-7 md:mb-12 xl:mb-16 xl:max-w-[530px]">
+          <?php echo get_field('content_equipments_text'); ?>
+        </p>
+
+
         <!-- Button -->
           <a href="<?php the_field( 'general_booking_url', 'option' ); ?>" class="btn btn-primary mb-7 md:mb-12  xl:mb-32 max-w-[150px]">
             <?php esc_html_e( 'Jetzt buchen', 'carina' ); ?>

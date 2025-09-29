@@ -30,7 +30,7 @@
 
           <!-- Description -->
           <p class="block-17 text-darkBlue mb-7 md:mb-12 xl:mb-16 xl:max-w-[530px]">
-            <?php echo esc_html( get_field('content_description') ); ?>
+            <?php echo get_field('content_description'); ?>
           </p>
 
           <!-- Button -->
