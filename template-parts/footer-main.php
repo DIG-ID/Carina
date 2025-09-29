@@ -12,7 +12,7 @@
           <p class="block-text text-lightGrey"><?php esc_html_e( 'E-Mail: ','carina' ); ?><a href="mailto:<?php the_field( 'general_e-mail','option' ); ?>"><?php the_field( 'general_e-mail','option' ); ?></a></p>
         </div>
       </div>
-      <div class="col-span-2 md:col-span-2 xl:col-span-6 flex flex-col items-center justify-start">
+      <div class="col-span-2 md:col-span-2 xl:col-span-6 flex flex-col md:items-center justify-start py-16 md:py-0">
         <?php
           wp_nav_menu(
             array(

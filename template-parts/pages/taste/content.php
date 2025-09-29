@@ -3,7 +3,7 @@
     <div class="theme-grid mb-16 xl:mb-20">
         <div class="col-span-2 md:col-span-3 xl:col-span-5">
           <h2 class="title-md text-darkBlue pb-8 md:pb-12 xl:pb-20"><?php the_field( 'content_title' ); ?></h2>
-          <p class="block-text text-darkBlue"><?php the_field( 'content_text' ); ?></p>
+          <p class="block-text text-darkBlue pb-6 md:pb-0"><?php the_field( 'content_text' ); ?></p>
         </div>
         <div class="col-span-2 md:col-span-3 xl:col-span-7">
           <?php echo wp_get_attachment_image(
@@ -19,12 +19,12 @@
           <?php echo wp_get_attachment_image(
             get_field('content_image_2'),
             'full', false,
-            ['class' => 'w-full object-cover xl:mb-14',]
+            ['class' => 'w-full object-cover mb-6 md:mb-0 xl:mb-14',]
           ); ?>
         </div>
         <div class="col-span-2 md:col-span-3 xl:col-span-5">
           <h2 class="title-md text-darkBlue pb-8 md:pb-12 xl:pb-16"><?php the_field( 'content_title_2' ); ?></h2>
-          <p class="block-text text-darkBlue"><?php the_field( 'content_text_2' ); ?></p>
+          <p class="block-text text-darkBlue pb-6 md:pb-0"><?php the_field( 'content_text_2' ); ?></p>
         </div>
       </div>
       <div class="col-span-2 md:col-span-3 xl:col-span-5 md:pt-20 xl:pt-56">
