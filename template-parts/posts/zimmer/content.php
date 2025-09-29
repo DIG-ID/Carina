@@ -64,7 +64,6 @@
         </div>
         <!-- Icons row -->
         <div class="flex gap-10 xl:gap-20 mt-12 md:mt-0 order-3 md:order-none">
-          <!-- Room size -->
           <div class="flex flex-row ml-5 md:ml-0 gap-28 md:gap-12 items-baseline">
              <?php
                 if( have_rows('content_amenities') ):
