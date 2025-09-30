@@ -15,7 +15,9 @@
         <?php
         $args = array(
           'post_type' => 'zimmer',
-          'posts_per_page' => -1
+          'posts_per_page' => -1,
+          'order' => 'ASC',
+          'orderby' => 'date'
         );
         $the_query = new WP_Query($args);
         while ($the_query->have_posts()) : $the_query->the_post();
