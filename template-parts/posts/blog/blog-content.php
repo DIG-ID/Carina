@@ -1,4 +1,4 @@
-<section id="section-post-content" class="section-post-content bg-lightGrey lg:pt-28 lg:pb-28 pt-10">
+<section id="section-post-content" class="section-post-content bg-lightGrey pt-12 pb-12 xl:pt-28 xl:pb-28">
 	<div class="theme-container">
     <div class="theme-grid">
       <div class="col-span-2 md:col-span-6 xl:col-span-12 mb-8 xl:mb-16">
