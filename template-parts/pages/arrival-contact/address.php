@@ -17,7 +17,7 @@
 			$location = get_field( 'address_contact_map' );
 			if ( $location ) :
 				?>
-				<div class="acf-map" data-zoom="16" class="w-full h-[250px] md:h-[320px] xl:h-[500px]">
+				<div class="acf-map" data-zoom="16">
 					<div class="marker" data-lat="<?php echo esc_attr( $location['lat'] ); ?>" data-lng="<?php echo esc_attr( $location['lng'] ); ?>"></div>
 				</div>
 				<?php
