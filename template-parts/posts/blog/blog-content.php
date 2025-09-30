@@ -17,7 +17,7 @@
 					<?php the_content(); ?>
 				</div>
 			</div>
-			<div class="col-span-2 xl:col-span-4 xl:col-start-8">
+			<div class="col-span-2 md:col-span-6 xl:col-span-4 col-start-1 md:col-start-1 xl:col-start-9">
 				<?php get_template_part( 'template-parts/posts/blog/blog-related' ); ?>
 			</div>
 		</div>

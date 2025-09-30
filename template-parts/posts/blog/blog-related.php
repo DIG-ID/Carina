@@ -21,7 +21,7 @@
 					<article id="post-<?php the_ID(); ?>" <?php post_class( 'card-blog card-blog--related flex' ); ?>>
 						<?php
 						if ( has_post_thumbnail() ) :
-							the_post_thumbnail( 'full', array( 'class' => 'w-[130px] h-[116px] object-cover' ) );
+							the_post_thumbnail( 'full', array( 'class' => 'w-auto h-auto max-w-[130px] max-h-[120px] object-cover' ) );
 						else :
 							?><span class="min-w-[108px] lg:min-w-[135px] h-[108px] lg:h-[135px] flex flex-col justify-center items-center">no featured image</span> <?php
 						endif;

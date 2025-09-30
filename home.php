@@ -60,7 +60,7 @@ $cols_xl    = (int) get_field('hero_cols_xl', $blog_page_id) ?: 6;
     <?php if (have_posts()) : ?>
       <div class="theme-grid">
         <?php while (have_posts()) : the_post(); ?>
-          <article <?php post_class('group col-span-2 md:col-span-3 xl:col-span-4 overflow-hidden transition-all'); ?>>
+          <article <?php post_class('group col-span-2 md:col-span-3 xl:col-span-4 overflow-hidden transition-all mb-7 md:mb-20 xl:mb-24'); ?>>
             <a href="<?php the_permalink(); ?>" class="block relative">
               <?php if (has_post_thumbnail()) :
                 the_post_thumbnail('image-thumbnails', [
