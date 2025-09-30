@@ -1,7 +1,22 @@
 import Swiper from 'swiper/bundle';
 
 window.addEventListener("load", () => {
-  // Homepage Hero Swiper
+  if (document.querySelector(".page-template-page-home")) {
+    new Swiper('.slider-banner-swiper', {
+      slidesPerView: 1,
+      loop: true,
+      speed: 900,
+      autoplay: {
+        delay: 10000,
+        disableOnInteraction: false,
+      },
+      effect: 'slide',
+      navigation: {
+        nextEl: '.slider-banner-swiper .swiper-button-next',
+        prevEl: '.slider-banner-swiper .swiper-button-prev',
+      },
+    });
+  }
   if (document.querySelector(".page-template-page-taste")) {
     new Swiper('.bleed-right-swiper', {
       speed: 900,

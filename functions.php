@@ -29,6 +29,8 @@ function carina_theme_setup() {
 
 	add_image_size( 'slider-bleed-both-portrait', 481, 536, array( 'center', 'center' ) );
 
+	add_image_size( 'image-thumbnails', 415, 335, array( 'center', 'center' ) );
+
 }
 
 add_action( 'after_setup_theme', 'carina_theme_setup' );

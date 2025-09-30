@@ -4,12 +4,11 @@
  */
 get_header();
 
-// ID of the assigned "Posts page" (works with WPML when this page is translated)
+
 $blog_page_id = get_queried_object_id() ?: (int) get_option('page_for_posts');
 
 $blog_title = $blog_page_id ? get_the_title($blog_page_id) : __('Blog', 'carina');
 
-// ACF fields FROM the Posts page
 $hero_bg_id = get_field('hero_background_image', $blog_page_id);
 $hero_title = get_field('hero_title', $blog_page_id);
 $blog_intro = get_field('blog_intro', $blog_page_id);
@@ -33,10 +32,10 @@ $cols_xl    = (int) get_field('hero_cols_xl', $blog_page_id) ?: 6;
 
   <div class="theme-container justify-center h-full flex items-end pb-8 xl:pb-14 relative z-10">
     <div class="theme-grid w-full">
-      <?php if ($hero_title) : // ← don't use 'hero_title' as a string; check the field value ?>
+      <?php if ($hero_title) : ?>
         <div class="col-span-2 md:col-span-<?php echo esc_attr($cols_md); ?> xl:col-span-<?php echo esc_attr($cols_xl); ?> text-lightGrey">
           <h1 class="title-xl">
-            <?php echo esc_html($hero_title ?: $blog_title); ?>
+            <?php echo $hero_title; ?>
           </h1>
         </div>
       <?php endif; ?>
@@ -44,51 +43,61 @@ $cols_xl    = (int) get_field('hero_cols_xl', $blog_page_id) ?: 6;
   </div>
 </section>
 
+<section id="section-intro" class="section-intro relative w-full pt-8 md:pt-36 xl:pt-28 pb-8 md:pb-12">
+    <div class="theme-container">
+        <div class="theme-grid">
+            <div class="col-span-2 md:col-span-6 xl:col-span-8 col-start-1 md:col-start-1 xl:col-start-3">
+                <p class="block-text-intro text-darkBlue text-center">
+                    <?php echo $blog_intro; ?>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 
-<section id="section-blog" class="section-blog">
-  <div class="theme-container py-12 xl:py-20">
+<section id="section-blog" class="section-blog pt-8 pb-20 md:pb-20 md:pt-12">
+  <div class="theme-container">
     <?php if (have_posts()) : ?>
       <div class="theme-grid">
         <?php while (have_posts()) : the_post(); ?>
           <article <?php post_class('group col-span-2 md:col-span-3 xl:col-span-4 overflow-hidden transition-all'); ?>>
             <a href="<?php the_permalink(); ?>" class="block relative">
               <?php if (has_post_thumbnail()) :
-                the_post_thumbnail('large', [
-                  'class' => 'absolute inset-0 w-full h-full object-cover object-center',
+                the_post_thumbnail('image-thumbnails', [
+                  'class' => 'w-full h-full object-cover object-center',
                 ]);
               else : ?>
-                <div class="absolute inset-0 flex items-center justify-center text-sm opacity-60">
+                <div class="w-full">
                   <?php esc_html_e('No image', 'carina'); ?>
                 </div>
               <?php endif; ?>
             </a>
 
-            <div class="p-5">
-              <time datetime="<?php echo esc_attr(get_the_date('c')); ?>" class="block text-sm text-lightGrey">
-                <?php
-                echo esc_html( date_i18n( 'j. M. Y', get_post_time( 'U', true ) ) );
-                ?>
+            <a href="<?php the_permalink(); ?>" class="block py-6 px-4 content-link">
+              <h2 class="mb-4 block-text text-darkBlue"><?php the_title(); ?></h2>
+
+              <time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>" class="block-text text-darkBlue">
+                <?php echo esc_html( wp_date( 'j. F Y', get_post_timestamp() ) ); ?>
               </time>
 
-              <h2 class="mt-2 text-xl font-semibold leading-tight">
-                <a href="<?php the_permalink(); ?>" class="hover:underline"><?php the_title(); ?></a>
-              </h2>
+              <div class="mt-3 block-text text-darkBlue">
+                <?php
+                $raw = has_excerpt()
+                  ? get_post_field('post_excerpt', get_the_ID())
+                  : get_post_field('post_content', get_the_ID());
 
-              <div class="mt-3 text-darkGrey line-clamp-3">
-                <?php the_excerpt(); ?>
+                echo wp_kses_post(
+                  wp_trim_words( wp_strip_all_tags( strip_shortcodes( $raw ) ), 26, '…' )
+                );
+                ?>
               </div>
-
-              <a href="<?php the_permalink(); ?>" class="mt-4 inline-flex items-center gap-2 text-primary hover:underline">
-                <?php esc_html_e('Read more', 'carina'); ?>
-                <span aria-hidden="true">→</span>
-              </a>
-            </div>
+            </a>
           </article>
         <?php endwhile; ?>
       </div>
 
     <?php else : ?>
-      <p class="mt-10 text-lightGrey"><?php esc_html_e('No posts yet.', 'carina'); ?></p>
+      <p class="mt-10 text-darkBlue"><?php esc_html_e('No posts yet.', 'carina'); ?></p>
     <?php endif; ?>
   </div>
 </section>
