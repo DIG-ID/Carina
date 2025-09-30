@@ -1,0 +1,45 @@
+.acf-map
+  img
+    max-width: inherit !important
+
+.wpcf7
+  form.wpcf7-form
+    .carina-form-wrapper
+      @apply grid grid-cols-2 gap-8
+    .carina-form-field
+      @apply col-span-2 lg:col-span-1
+      label
+        @apply flex flex-col gap-2
+        @extend .block-text
+    .carina-form-field__message,
+    .carina-form-field__submit
+      @apply col-span-2 lg:col-span-2
+    .carina-form-field__submit
+      @apply flex justify-center md:justify-end items-center
+      .wpcf7-submit
+        @apply flex items-center
+    .wpcf7-form-control-wrap
+      input,
+      textarea
+        @extend .block-text
+        @apply w-full bg-white px-6 py-4 text-base
+        &:is(:focus, :focus-visible)
+          @apply rounded-none outline outline-1 outline-coral
+        &:placeholder-shown
+          @extend .block-text
+      .wpcf7-not-valid-tip
+        @extend .block-text
+        @apply text-red-800 text-sm mt-1
+
+    .wpcf7-response-output
+      @extend .block-text
+      @apply text-sm border-none py-3 px-4 text-darkBlue
+
+.wpcf7:has(.wpcf7-form.invalid) .wpcf7-response-output
+  @apply bg-amber-300
+
+.wpcf7:has(.wpcf7-form.failed) .wpcf7-response-output
+  @apply bg-red-400
+
+.wpcf7:has(.wpcf7-form.sent) .wpcf7-response-output
+  @apply bg-emerald-300
