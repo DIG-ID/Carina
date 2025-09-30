@@ -13,18 +13,16 @@
 			</div>
 		</div>
 		<div class="col-span-2 md:col-span-3 xl:col-span-6 bg-darkBlue text-lightGrey">
-			<div class="map h-[500px]">
-				<?php
-				$location = get_field( 'address_contact_map' );
-				if ( $location ) :
-					?>
-					<div class="acf-map" data-zoom="16" class="w-full">
-						<div class="marker" data-lat="<?php echo esc_attr( $location['lat'] ); ?>" data-lng="<?php echo esc_attr( $location['lng'] ); ?>"></div>
-					</div>
-					<?php
-				endif;
+			<?php
+			$location = get_field( 'address_contact_map' );
+			if ( $location ) :
 				?>
-			</div>
+				<div class="acf-map" data-zoom="16" class="w-full h-[250px] md:h-[320px] xl:h-[500px]">
+					<div class="marker" data-lat="<?php echo esc_attr( $location['lat'] ); ?>" data-lng="<?php echo esc_attr( $location['lng'] ); ?>"></div>
+				</div>
+				<?php
+			endif;
+			?>
 		</div>
 	</div>
 </section>
