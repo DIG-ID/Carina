@@ -105,7 +105,7 @@ export function carinaInitOffcanvasMenuGsap() {
     btn.classList.add("menu-open");
     btn.setAttribute("aria-expanded", "true");
     targets.forEach((el) => el.classList.add("menu-open"));
-    document.documentElement.classList.add("lenis", "lenis-stopped"); // keep lenis class present and stop scroll while open
+    //document.documentElement.classList.add("lenis", "lenis-stopped"); // keep lenis class present and stop scroll while open
     // no animation for reduced motion
     if (prefersReduced) {
       gsap.set(wrap, { yPercent: 0, clipPath: polygonEnd, webkitClipPath: polygonEnd });
@@ -123,7 +123,7 @@ export function carinaInitOffcanvasMenuGsap() {
 
     if (prefersReduced) {
       // snap back instantly when reduced motion is on
-      document.documentElement.classList.remove("lenis-stopped");
+      //document.documentElement.classList.remove("lenis-stopped");
       gsap.set(wrap, { yPercent: -100, clipPath: polygonStart, webkitClipPath: polygonStart });
       return;
     }

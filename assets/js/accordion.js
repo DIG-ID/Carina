@@ -62,7 +62,7 @@ export function carinaInitAccordionsSingleGsapSeq() {
         gsap.to(panel, {
           height: 0,
           opacity: 0,
-          duration: 0.6,
+          duration: 0.3,
           ease: "power3.inOut",
           onComplete: () => {
             detailsEl.open = false; // remove open only after animation finishes
@@ -97,7 +97,7 @@ export function carinaInitAccordionsSingleGsapSeq() {
           {
             height: "auto",
             opacity: 1,
-            duration: 0.7,
+            duration: 0.4,
             ease: "power3.inOut",
             onComplete: resolve,
           }
