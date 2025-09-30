@@ -6,12 +6,12 @@
             </div>
         </div>
         <div class="theme-grid">
-            <div class="col-span-2 md:col-span-3 xl:col-span-5 col-start-1 xl:col-start-2">
+            <div class="left-col col-span-2 md:col-span-3 xl:col-span-5 col-start-1 xl:col-start-2">
                 <?php
                 if( have_rows('four_icons_left_list') ):
                     while( have_rows('four_icons_left_list') ) : the_row(); ?>
                     <div class="icon-block-wrapper flex flex-row mb-12 md:mb-16 xl:mb-24 items-center">
-                        <div class="w-1/5">
+                        <div class="icon-el w-1/5">
                             <?php
                             $icon = get_sub_field('icon');
                             $size  = 'full';
@@ -30,12 +30,12 @@
                     endwhile;
                 endif; ?>
             </div>
-            <div class="col-span-2 md:col-span-3 xl:col-span-6">
+            <div class="right-col col-span-2 md:col-span-3 xl:col-span-6">
                 <?php
                 if( have_rows('four_icons_right_list') ):
                     while( have_rows('four_icons_right_list') ) : the_row(); ?>
                     <div class="icon-block-wrapper flex flex-row mb-12 md:mb-16 xl:mb-24 items-center">
-                        <div class="w-1/5">
+                        <div class="icon-el w-1/5">
                             <?php
                             $icon = get_sub_field('icon');
                             $size  = 'full';
