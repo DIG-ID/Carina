@@ -44,7 +44,7 @@
                 $link_title = $link['title'];
                 $link_target= $link['target'] ? $link['target'] : '_self';
 
-                $variant = ( get_row_index() % 2 === 1 ) ? 'btn-download-darkBlue' : 'btn-download-coral';
+                $variant = ( get_row_index() % 2 === 1 ) ? 'btn-download-darkBlue' : 'btn-download-darkBlue';
                 ?>
                 <a class="btn <?php echo esc_attr($variant); ?>"
                   href="<?php echo esc_url($link_url); ?>"

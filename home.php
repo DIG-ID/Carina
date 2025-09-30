@@ -80,7 +80,7 @@ $cols_xl    = (int) get_field('hero_cols_xl', $blog_page_id) ?: 6;
                 <?php echo esc_html( wp_date( 'j. F Y', get_post_timestamp() ) ); ?>
               </time>
 
-              <div class="mt-3 block-text text-darkBlue">
+              <p class="mt-3 block-text text-darkBlue">
                 <?php
                 $raw = has_excerpt()
                   ? get_post_field('post_excerpt', get_the_ID())
@@ -90,7 +90,7 @@ $cols_xl    = (int) get_field('hero_cols_xl', $blog_page_id) ?: 6;
                   wp_trim_words( wp_strip_all_tags( strip_shortcodes( $raw ) ), 26, '…' )
                 );
                 ?>
-              </div>
+              </p>
             </a>
           </article>
         <?php endwhile; ?>
