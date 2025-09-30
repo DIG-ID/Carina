@@ -108,4 +108,27 @@ window.addEventListener("load", () => {
       },
     });
   }
+  if (document.querySelector(".single-zimmer") || document.querySelector(".single-apartment")) {
+    new Swiper('.rooms-slider', {
+      speed: 900,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      breakpoints: { 
+        0:{slidesPerView:1,spaceBetween: 9}, 
+        768:{slidesPerView:1.5,spaceBetween: 16},
+        1280:{slidesPerView:1.5,spaceBetween: 24},
+        1560:{slidesPerView:2.5,spaceBetween: 24}
+      },
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: 24,
+      effect: 'slide',
+      navigation: {
+        nextEl: '.rooms-slider .swiper-button-next',
+      },
+    });
+  }
 });

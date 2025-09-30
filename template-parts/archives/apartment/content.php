@@ -23,7 +23,7 @@
           $title = get_the_title();
           $image   = get_post_thumbnail_id( get_the_ID() );
           $link = get_field('content_button');
-          $size = get_field('content_size_max_persons')
+          $size = get_field('content_size_max_persons');
         ?>
           <article class="content-wrapper col-span-2 md:col-span-6 xl:col-span-12 theme-grid gap-y-3 md:gap-y-[70px] xl:gap-y-20">
             <!-- Image column -->
@@ -32,14 +32,8 @@
               <?php
               if ( $image ) {
                 echo wp_get_attachment_image(
-                  $image,
-                  'full',
-                  false,
-                  [
-                    'class'    => 'block w-full h-auto',
-                    'loading'  => 'eager',
-                    'decoding' => 'async',
-                  ]
+                  $image, 'rooms-thumbnails', false,
+                  ['class'    => 'block w-full h-auto',]
                 );
               }
               ?>

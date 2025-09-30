@@ -31,6 +31,8 @@ function carina_theme_setup() {
 
 	add_image_size( 'image-thumbnails', 415, 335, array( 'center', 'center' ) );
 
+	add_image_size( 'rooms-thumbnails', 640, 400, array( 'center', 'center' ) );
+
 }
 
 add_action( 'after_setup_theme', 'carina_theme_setup' );

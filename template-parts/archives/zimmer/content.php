@@ -31,14 +31,8 @@
               <?php
               if ( $image ) {
                 echo wp_get_attachment_image(
-                  $image,
-                  'full',
-                  false,
-                  [
-                    'class'    => 'block w-full h-auto',
-                    'loading'  => 'eager',
-                    'decoding' => 'async',
-                  ]
+                  $image, 'rooms-thumbnails', false,
+                  ['class'    => 'block w-full h-auto',]
                 );
               }
               ?>
