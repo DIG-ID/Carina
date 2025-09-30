@@ -44,7 +44,7 @@
           </p>
 
           <!-- Button -->
-          <a href="<?php the_field( 'general_booking_url', 'option' ); ?>" class="btn btn-primary mb-7 md:mb-12 xl:mb-0 max-w-[150px]">
+          <a href="<?php the_field( 'general_booking_url', 'option' ); ?>" class="btn btn-primary mb-7 md:mb-12  xl:mb-0 max-w-[150px]">
             <?php esc_html_e( 'Jetzt buchen', 'carina' ); ?>
           </a>
         </div>
@@ -69,7 +69,7 @@
         endif; ?>
       </div>
     </div>
-    <div class="theme-grid">
+    <div class="theme-grid pt-14 md:pt-0">
       <div class="col-span-2 md:col-span-3 xl:col-span-6">
         <!-- Icons row -->
         <div class="mt-12 md:mt-0 order-3 md:order-none">
