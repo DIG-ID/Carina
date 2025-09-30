@@ -1,9 +1,16 @@
-<?php $background_id = get_field('room_text_center_image', 'options'); ?>
+<?php $background_id = get_field('room_text_center_image', 'option'); ?>
+<?php
+  $style = '';
+  if ($background_id) {
+    $bg_url  = esc_url( wp_get_attachment_image_url( $background_id, 'full' ) );
+    $overlay = 'linear-gradient(#0F1A1E99, #0F1A1E99)'; // #0F1A1E at 60%
+    $style   = "background-image: {$overlay}, url('{$bg_url}');";
+  }
+?>
 
-<section id="section-text-center" class="section-text-center text-center relative z-10 bg-center bg-cover bg-no-repeat"
-  <?php if ( $background_id ): ?>
-    style="background-image: url('<?php echo esc_url( wp_get_attachment_image_url( $background_id, 'full' ) ); ?>');"
-  <?php endif; ?>>
+<section id="section-text-center"
+  class="section-text-center text-center relative z-10 bg-center bg-cover bg-no-repeat"
+  <?php if ($style): ?>style="<?php echo $style; ?>"<?php endif; ?>>
 
   <!-- CONTENT -->
 
