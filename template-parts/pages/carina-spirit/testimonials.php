@@ -15,8 +15,8 @@
               foreach ( $testimonials_posts as $post ) :
                 setup_postdata( $post );
                 ?>
-                <div class="swiper-slide testimonial-card h-auto">
-                  <div class="testimonial-card-content bg-lightGrey px-4 py-6 md:py-6 md:px-6 xl:py-7 xl:px-8 flex flex-col justify-between rounded-lg min-h-72 md:min-h-80 xl:min-h-72">
+                <div class="h-auto swiper-slide testimonial-card">
+                  <div class="testimonial-card-content bg-lightGrey px-4 py-6 md:py-6 md:px-6 xl:py-7 xl:px-8 flex flex-col justify-between rounded-lg min-h-72 md:min-h-80 xl:min-h-full">
                     <div class="testimonial-card--header">
                       <p class="block-text text-darkBlue pb-2 md:pb-0"><b><?php the_field( 'name' ); ?></b></p>
                       <p class="block-text text-darkBlue"><?php the_field( 'location' ); ?></p>

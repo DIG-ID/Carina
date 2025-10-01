@@ -1,4 +1,4 @@
-<section id="section-intro" class="section-intro relative w-full pt-32 md:pt-36 xl:pt-52 pb-6 md:pb-6 xl:pb-48 -mt-1 bg-darkBlue z-10">
+<section id="section-intro" class="section-intro relative w-full pt-32 md:pt-36 xl:pt-52 pb-6 md:pb-6 xl:pb-0 -mt-1 bg-darkBlue z-10">
     <div class="theme-container">
         <div class="theme-grid pb-8 md:pb-32 xl:pb-40">
             <div class="col-span-2 md:col-span-6 xl:col-span-8 col-start-1 md:col-start-1 xl:col-start-3">

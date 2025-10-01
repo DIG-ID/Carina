@@ -4,18 +4,18 @@ $images = get_field('rooms_images');
 
 if (is_array($images) && !empty($images)) : ?>
   <div class="swiper bleed-both-swiper">
-    <div class="swiper-wrapper">
+    <div class="swiper-wrapper items-stretch">
       <?php foreach ($images as $index => $id) :
         $size = ($index % 2 === 0) ? 'slider-bleed-both' : 'slider-bleed-both-portrait';
       ?>
-        <div class="swiper-slide">
+        <div class="swiper-slide h-auto">
           <?php
           echo wp_get_attachment_image(
             (int) $id,
             $size,
             false,
             [
-              'class' => 'block h-auto xl:max-h-none object-cover',
+              'class' => 'block h-full xl:h-auto xl:max-h-none object-cover md:max-h-[50dvh] xl:max-h-none',
               'sizes' => '(min-width:768px) 50vw, 100vw',
             ]
           );

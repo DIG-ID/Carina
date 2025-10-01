@@ -3,10 +3,10 @@
   <div class="theme-container h-full flex items-end relative z-10">
     <div class="theme-grid">
     
-      <div class="col-span-2 md:col-span-3 xl:col-span-5 text-darkBlue flex flex-col justify-between items-start">
+      <div class="col-span-2 md:col-span-3 xl:col-span-5 text-darkBlue flex flex-col justify-start items-start">
         <div class="block-wrapper">
           <h2 class="title-md mb-[21px] md:mb-[50px] xl:mb-[70px] max-w-[320px] md:max-w-none xl:max-w-[478px]"><?php echo esc_html( get_field('relaxation_title') ); ?></h2>
-          <p class="block-text mb-[21px] md:mb-10 xl:max-w-[416px]"><?php echo esc_html( get_field('relaxation_description') ); ?></p>
+          <p class="block-text mb-[21px] md:mb-[50px] xl:mb-[70px] xl:max-w-[416px]"><?php echo esc_html( get_field('relaxation_description') ); ?></p>
         </div>
             <?php 
             $link = get_field('relaxation_button');
@@ -46,10 +46,10 @@
               ?>
         </div>
 
-        <div class="col-start-1 col-span-2 md:col-start-4 md:col-span-3 xl:col-start-8 xl:col-span-5 text-darkBlue flex flex-col justify-between items-start">
+        <div class="col-start-1 col-span-2 md:col-start-4 md:col-span-3 xl:col-start-8 xl:col-span-5 text-darkBlue flex flex-col justify-start items-start">
             <div class="block-wrapper">
               <h2 class="title-md mb-[26px] md:mb-[50px] xl:mb-[70px]"><?php echo esc_html( get_field('relaxation_title_2') ); ?></h2>
-              <p class="block-text mb-[36px] md:mb-[27px] xl:max-w-[416px]"><?php echo esc_html( get_field('relaxation_description_2') ); ?></p>
+              <p class="block-text mb-[26px] md:mb-[50px] xl:mb-[70px] xl:max-w-[416px]"><?php echo esc_html( get_field('relaxation_description_2') ); ?></p>
             </div>
             <?php 
             $link = get_field('relaxation_button_2');

@@ -54,8 +54,8 @@ window.addEventListener("load", () => {
       centeredSlides: false,
       slidesPerGroup: 1,
       breakpoints: {
-        0:    { slidesPerView: 'auto', spaceBetween: 9  },
-        768:  { slidesPerView: 'auto', spaceBetween: 16 },
+        0:    { slidesPerView: 2, spaceBetween: 9  },
+        768:  { slidesPerView: 2, spaceBetween: 16 },
         1280: { slidesPerView: 'auto', spaceBetween: 24 },
         1536: { slidesPerView: 'auto', spaceBetween: 24 },
       },
