@@ -34,7 +34,7 @@
           'full', false,
           ['class'    => 'w-full object-cover mb-8',]
         ); ?>
-        <div class="flex flex-col items-start justify-start gap-y-6">
+        <div class="flex flex-col items-start justify-start gap-y-6 max-w-40">
           <?php if ( have_rows('content_download_list') ) :
             $i = 0; // start at 0 so first is darkBlue
             while ( have_rows('content_download_list') ) : the_row();

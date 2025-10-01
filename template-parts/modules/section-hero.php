@@ -1,5 +1,5 @@
 <?php if ( 'full' === get_field( 'hero_hero_style' ) ) : ?>
-	<section id="section-hero" class="section-hero relative h-screen w-full z-20 bg-darkBlue">
+	<section id="section-hero" class="section-hero relative h-[96dvh] md:h-screen w-full z-20 bg-darkBlue">
 
 		<?php if ( get_field('hero_video_header') && get_field('hero_video') ) : ?>
 			<video 

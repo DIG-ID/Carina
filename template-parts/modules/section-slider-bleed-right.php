@@ -4,7 +4,7 @@
           <div class="col-span-2 md:col-span-4 xl:col-span-12">
             <h2 class="title-md text-darkBlue pb-8"><?php the_field( 'slider_title' ); ?></h2>
           </div>
-          <div class="col-span-2 md:col-span-4 xl:col-span-12">
+          <div class="col-span-2 md:col-span-6 xl:col-span-12 relative">
             <?php
             $images = get_field('slider_images');
             if ($images) : ?>
@@ -29,7 +29,7 @@
                     </div>
                   <?php endforeach; ?>
                 </div>
-                <div class="swiper-button-next right-4 xl:right-16"></div>
+                <div class="swiper-button-next !right-4"></div>
               </div>
             <?php endif; ?>
           </div>

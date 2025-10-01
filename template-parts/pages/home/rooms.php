@@ -17,11 +17,11 @@
                 <?php endif; ?>
             </div>
             <div class="col-span-2 md:col-span-3 xl:col-span-7">
-                <div class="bleed-right-child-7">
+                <div class="bleed-right-child-7 h-full">
                     <?php echo wp_get_attachment_image(
                         get_field('rooms_image'),
                         'full', false,
-                        ['class' => 'w-full object-cover xl:max-h-[75dvh]']
+                        ['class' => 'w-full h-full object-cover xl:max-h-[75dvh]']
                     ); ?>
                 </div>
                 <?php

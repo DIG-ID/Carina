@@ -3,9 +3,11 @@
   <div class="theme-container h-full flex items-end relative z-10">
     <div class="theme-grid">
     
-      <div class="col-span-2 md:col-span-3 xl:col-span-5 text-darkBlue">
-        <h2 class="title-md mb-[21px] md:mb-[50px] xl:mb-[70px] max-w-[320px] md:max-w-none xl:max-w-[478px]"><?php echo esc_html( get_field('relaxation_title') ); ?></h2>
-        <p class="block-text mb-[21px] md:mb-10 xl:mb-32 xl:max-w-[416px]"><?php echo esc_html( get_field('relaxation_description') ); ?></p>
+      <div class="col-span-2 md:col-span-3 xl:col-span-5 text-darkBlue flex flex-col justify-between items-start">
+        <div class="block-wrapper">
+          <h2 class="title-md mb-[21px] md:mb-[50px] xl:mb-[70px] max-w-[320px] md:max-w-none xl:max-w-[478px]"><?php echo esc_html( get_field('relaxation_title') ); ?></h2>
+          <p class="block-text mb-[21px] md:mb-10 xl:max-w-[416px]"><?php echo esc_html( get_field('relaxation_description') ); ?></p>
+        </div>
             <?php 
             $link = get_field('relaxation_button');
             if( $link ): 
@@ -31,7 +33,7 @@
   </div>
 
 
-  <div class="theme-container h-full flex items-end relative z-10 mt-[66px] md:mt-28">
+  <div class="theme-container h-full flex items-end relative z-10 mt-8 md:mt-28">
     <div class="theme-grid">
         <div class="col-span-2 md:col-span-3 xl:col-start-1 xl:col-span-7 order-2 md:order-none">
             <?php

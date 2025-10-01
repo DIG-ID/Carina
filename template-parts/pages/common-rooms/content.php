@@ -2,7 +2,7 @@
   <div class="theme-container">
     <div class="theme-grid">
       <div class="col-span-2 md:col-span-6 xl:col-span-8">
-        <h2 class="title-md text-darkBlue pb-12 xl:pb-5"><?php the_field( 'content_title' ); ?></h2>
+        <h2 class="title-md text-darkBlue pb-8 md:pb-12 xl:pb-5"><?php the_field( 'content_title' ); ?></h2>
       </div>
       <div class="left-col col-span-2 md:col-span-3 xl:col-span-6">
         <p class="block-text text-darkBlue pb-8 md:pb-16"><?php the_field( 'content_text' ); ?></p>

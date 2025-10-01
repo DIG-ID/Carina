@@ -20,7 +20,7 @@
             </div>
 
             <!-- TEXT CONTENT + BUTTON ON THE RIGHT -->
-            <div class="col-span-2 md:col-span-5 xl:col-span-12 flex items-center xl:items-start flex-col md:flex-row md:justify-between pt-7 xl:pt-14">
+            <div class="col-span-2 md:col-span-6 xl:col-span-12 flex items-start flex-col md:flex-row md:justify-between pt-7 xl:pt-14">
                 <div class="xl:col-span-6">
                     <h2 class="title-md text-lightGrey mb-7 xl:mb-20"><?php the_field('outro_heading'); ?></h2>
                     <p class="block-text text-lightGrey mb-7 md:max-w-[530px] xl:max-w-[601px]"><?php the_field('outro_text'); ?></p>
@@ -32,7 +32,7 @@
                     $link_title = $link['title'];
                     $link_target = $link['target'] ? $link['target'] : '_self';
                     ?>
-                    <a class="btn btn-block-lightGrey" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                    <a class="btn btn-block-lightGrey md:btn-block-lightGrey md:mt-24 xl:mt-5" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
                 <?php endif; ?>
             </div>
         </div>

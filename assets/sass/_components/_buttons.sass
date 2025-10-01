@@ -105,7 +105,7 @@
 
     &-download
         &-darkBlue
-            @apply inline-flex justify-center items-end text-[1rem] leading-none font-bold tracking-[-0.02rem] gap-x-7 text-darkBlue underline
+            @apply inline-flex justify-between items-end text-[1rem] leading-none font-bold tracking-[-0.02rem] text-darkBlue underline w-full
             &::after
                 content: ''
                 display: inline-block
@@ -120,19 +120,19 @@
                 &::after
                     background-color: #EC685B
             
-        &-coral
-            @apply inline-flex justify-center items-end text-[1rem] leading-none font-bold tracking-[-0.02rem] gap-x-7 text-coral underline
+        &-lightGrey
+            @apply inline-flex justify-center items-end text-[1rem] leading-none font-bold tracking-[-0.02rem] gap-x-7 text-lightGrey underline
             &::after
                 content: ''
                 display: inline-block
                 width: 54px
                 height: 24px
-                background-color: #EC685B
+                background-color: #F0F2F5
                 -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='31' viewBox='0 0 21 31' fill='none'%3E%3Cpath d='M6.76953 1C7.53561 2.44369 8.1589 3.96227 8.59407 5.54192C9.67632 9.47433 10.9671 16.7216 9.1063 25.1268' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M19.9174 12.2334L9.10729 25.1264L1 12.2334' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M1 29.1162H19.9174' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain
                 mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='31' viewBox='0 0 21 31' fill='none'%3E%3Cpath d='M6.76953 1C7.53561 2.44369 8.1589 3.96227 8.59407 5.54192C9.67632 9.47433 10.9671 16.7216 9.1063 25.1268' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M19.9174 12.2334L9.10729 25.1264L1 12.2334' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M1 29.1162H19.9174' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain
 
                 @apply transition-colors duration-300 ease-in-out
             &:hover
-                @apply text-darkBlue
+                @apply text-coral
                 &::after
-                    background-color: #0F1A1E
+                    background-color: #EC685B
