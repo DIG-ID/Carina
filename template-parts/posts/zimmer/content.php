@@ -40,61 +40,10 @@
           </p>
 
           <!-- Button -->
-          <a href="<?php the_field('general_booking_url', 'option'); ?>" class="btn btn-primary mb-7 md:mb-12 xl:mb-0 max-w-[150px]">
+          <a href="<?php the_field('general_booking_url', 'option'); ?>"
+             class="btn btn-primary mb-7 md:mb-12 xl:mb-0 max-w-[150px]">
             <?php esc_html_e('Jetzt buchen', 'carina'); ?>
           </a>
-
-          <!-- Icons (inside left column, padded from the button) -->
-          <div class="pt-12 md:pt-10 xl:pt-14">
-            <div class="grid grid-cols-2 xl:grid-cols-4 gap-x-8 gap-y-6">
-              <?php
-              /* ---- Room Space Icon (first item) ---- */
-              $room_space_icon = get_field('content_room_space_icon');
-              $room_space_text = get_field('content_size');
-
-              $first_icon_id = 0;
-              if (is_numeric($room_space_icon)) {
-                $first_icon_id = (int) $room_space_icon;
-              } elseif (is_array($room_space_icon) && !empty($room_space_icon['ID'])) {
-                $first_icon_id = (int) $room_space_icon['ID'];
-              }
-
-              if ($first_icon_id || !empty($room_space_text)) : ?>
-                <div class="flex flex-col items-center text-center">
-                  <?php
-                  if ($first_icon_id) {
-                    echo wp_get_attachment_image(
-                      $first_icon_id, 'full', false,
-                      ['class' => 'mb-3 w-10 h-10 object-contain']
-                    );
-                  }
-                  ?>
-                  <?php if (!empty($room_space_text)) : ?>
-                    <h3 class="title-sm text-darkBlue"><?php echo esc_html($room_space_text); ?></h3>
-                  <?php endif; ?>
-                </div>
-              <?php endif; ?>
-
-              <?php
-              /* ---- Repeater items ---- */
-              if (have_rows('content_amenities')):
-                while (have_rows('content_amenities')) : the_row(); ?>
-                  <div class="flex flex-col items-center text-center">
-                    <?php
-                    $icon = get_sub_field('icon');
-                    if ($icon) {
-                      echo wp_get_attachment_image(
-                        $icon, 'full', false,
-                        ['class' => 'mb-3 w-10 h-10 object-contain']
-                      );
-                    }
-                    ?>
-                    <h3 class="title-sm text-darkBlue"><?php the_sub_field('text'); ?></h3>
-                  </div>
-                <?php endwhile;
-              endif; ?>
-            </div>
-          </div>
         </div>
 
         <!-- Mobile image -->
@@ -105,6 +54,54 @@
               ['class' => 'block w-full h-auto object-cover']
             );
           endif; ?>
+        </div>
+
+        <!-- Icons -->
+        <div class="pt-12 md:pt-10 xl:pt-14 pb-[70px] md:pb-0">
+          <div class="grid grid-cols-2 xl:grid-cols-4 gap-x-8 gap-y-6">
+            <?php
+            /* ---- Room Space Icon  ---- */
+            $room_space_icon = get_field('content_room_space_icon');
+            $room_space_text = get_field('content_size');
+
+            $first_icon_id = 0;
+            if (is_numeric($room_space_icon)) {
+              $first_icon_id = (int) $room_space_icon;
+            } elseif (is_array($room_space_icon) && !empty($room_space_icon['ID'])) {
+              $first_icon_id = (int) $room_space_icon['ID'];
+            }
+
+            if ($first_icon_id || !empty($room_space_text)) : ?>
+              <div class="flex flex-col items-center text-center">
+                <?php if ($first_icon_id) {
+                  echo wp_get_attachment_image(
+                    $first_icon_id, 'full', false,
+                    ['class' => 'mb-3 w-10 h-10 object-contain']
+                  );
+                } ?>
+                <?php if (!empty($room_space_text)) : ?>
+                  <h3 class="title-sm text-darkBlue"><?php echo esc_html($room_space_text); ?></h3>
+                <?php endif; ?>
+              </div>
+            <?php endif; ?>
+
+            <?php
+            /* ---- Repeater items ---- */
+            if (have_rows('content_amenities')):
+              while (have_rows('content_amenities')) : the_row(); ?>
+                <div class="flex flex-col items-center text-center">
+                  <?php $icon = get_sub_field('icon');
+                  if ($icon) {
+                    echo wp_get_attachment_image(
+                      $icon, 'full', false,
+                      ['class' => 'mb-3 w-10 h-10 object-contain']
+                    );
+                  } ?>
+                  <h3 class="title-sm text-darkBlue"><?php the_sub_field('text'); ?></h3>
+                </div>
+              <?php endwhile;
+            endif; ?>
+          </div>
         </div>
       </div>
 

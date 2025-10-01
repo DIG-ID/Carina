@@ -22,23 +22,19 @@
 
       <!-- CONTENT (LEFT WRAPPER) -->
       <div class="col-span-2 md:col-span-3 xl:col-start-1 xl:col-span-6">
-        <!-- Title -->
         <div class="content-wrapper order-1 md:order-none">
           <h2 class="title-md text-darkBlue mb-7 md:mb-12 xl:mb-16 md:max-w-[351px] xl:max-w-full">
             <?php echo esc_html( get_field('content_title') ); ?>
           </h2>
 
-          <!-- Description -->
           <p class="block-17 text-darkBlue mb-7 md:mb-12 xl:mb-16 xl:max-w-[530px]">
             <?php echo get_field('content_description'); ?>
           </p>
 
-          <!-- Equipment title -->
           <h3 class="title-sm text-DarkBlue mb-7 md:mb-12 xl:mb-10 md:max-w-[351px] xl:max-w-[540px]">
             <?php echo get_field('content_equipments_title'); ?>
           </h3>
 
-          <!-- Equipment Description -->
           <p class="block-17 text-darkBlue mb-7 md:mb-12 xl:mb-16 xl:max-w-[530px]">
             <?php echo get_field('content_equipments_text'); ?>
           </p>
@@ -54,31 +50,19 @@
           <?php if ( $content_image = get_field('content_image') ) :
             echo wp_get_attachment_image(
               $content_image, 'full', false,
-              ['class'    => 'block w-full h-auto object-cover',]
+              ['class' => 'block w-full h-auto object-cover']
             );
           endif; ?>
         </div>
-      </div>
 
-      <!-- IMAGE (RIGHT SIDE) -->
-      <div class="col-span-2 md:col-start-4 md:col-span-3 xl:col-start-7 xl:col-span-6 xl:pb-0 order-2 md:order-none hidden md:block">
-        <?php if ( $content_image = get_field('content_image') ) :
-          echo wp_get_attachment_image(
-            $content_image, 'full', false,
-            ['class'    => 'block w-full h-full object-cover',]
-          );
-        endif; ?>
-      </div>
-    </div>
-    <div class="theme-grid pt-24">
-      <div class="col-span-2 md:col-span-3 xl:col-span-6">
-      <!-- Icons row -->
-        <div class="mt-12 order-3 md:order-none">
-          <div class="flex flex-row ml-5 md:ml-0 gap-28 md:gap-12 items-baseline">
+        <!-- Icons -->
+        <div class="pt-10 md:pt-10 xl:pt-14">
+          <div class="grid grid-cols-2 xl:grid-cols-4 gap-x-8 gap-y-6">
             <?php
               /* ---- Room Space Icon ---- */
-              $room_space_icon = get_field('content_room_space_icon');         
-              $room_space_text       = get_field('content_size');
+              $room_space_icon = get_field('content_room_space_icon');
+              $room_space_text = get_field('content_size');
+
               $first_icon_id = 0;
               if (is_numeric($room_space_icon)) {
                 $first_icon_id = (int) $room_space_icon;
@@ -87,40 +71,53 @@
               }
 
               if ($first_icon_id || !empty($room_space_text)) : ?>
-                <div class="items-center flex flex-col w-1/4">
+                <div class="flex flex-col items-center text-center">
                   <?php
                   if ($first_icon_id) {
                     echo wp_get_attachment_image(
                       $first_icon_id, 'full', false,
-                      ['class'    => 'mb-3 max-w-[70px] max-h-full object-cover',]
+                      ['class' => 'mb-3 w-10 h-10 object-contain']
                     );
                   }
                   ?>
                   <?php if (!empty($room_space_text)) : ?>
-                    <h3 class="title-sm text-darkBlue text-center"><?php echo esc_html($room_space_text); ?></h3>
+                    <h3 class="title-sm text-darkBlue"><?php echo esc_html($room_space_text); ?></h3>
                   <?php endif; ?>
                 </div>
-              <?php endif; ?>
-             <?php
-                if( have_rows('content_amenities') ):
-                    while( have_rows('content_amenities') ) : the_row(); ?>
-                    <div class="items-center flex flex-col w-1/4">
-                      <?php
-                      $icon = get_sub_field('icon');
-                      $size  = 'full';
-                      if ( $icon ) {echo wp_get_attachment_image(
-                          $icon, $size, false,
-                          ['class'    => 'mb-3 max-w-[70px] max-h-full object-cover',]
-                      );}
-                      ?>
-                      <h3 class="title-sm text-darkBlue text-center"><?php the_sub_field( 'text' ); ?></h3>
-                    </div>
-                    <?php 
-                    endwhile;
-                endif; ?>
+            <?php endif; ?>
+
+            <?php
+              /* ---- Repeater items ---- */
+              if ( have_rows('content_amenities') ):
+                while ( have_rows('content_amenities') ) : the_row(); ?>
+                  <div class="flex flex-col items-center text-center">
+                    <?php
+                    $icon = get_sub_field('icon');
+                    if ($icon) {
+                      echo wp_get_attachment_image(
+                        $icon, 'full', false,
+                        ['class' => 'mb-3 w-10 h-10 object-contain']
+                      );
+                    }
+                    ?>
+                    <h3 class="title-sm text-darkBlue"><?php the_sub_field('text'); ?></h3>
+                  </div>
+                <?php endwhile;
+              endif; ?>
           </div>
         </div>
       </div>
+
+      <!-- IMAGE (RIGHT SIDE) -->
+      <div class="col-span-2 md:col-start-4 md:col-span-3 xl:col-start-7 xl:col-span-6 xl:pb-0 order-2 md:order-none hidden md:block">
+        <?php if ( $content_image = get_field('content_image') ) :
+          echo wp_get_attachment_image(
+            $content_image, 'full', false,
+            ['class' => 'block w-full h-full object-cover']
+          );
+        endif; ?>
+      </div>
+
     </div>
   </div> 
 </section>
