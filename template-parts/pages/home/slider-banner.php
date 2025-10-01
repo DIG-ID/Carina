@@ -50,12 +50,9 @@
                 
               </div>
             </div>
-            <div class="controls absolute bottom-5 md:bottom-11 max-w-40 flex flex-row justify-between items-center mx-auto">
-              <div class="swiper-button-prev !relative mr-7"></div>
-              <div class="swiper-button-next !relative ml-7"></div>
-            </div>
           </article>
         </div>
+        
       <?php
         endwhile; wp_reset_postdata();
       else : ?>
@@ -68,6 +65,9 @@
     </div>
 
     <!-- Controls -->
-    
+    <div class="controls absolute bottom-5 md:bottom-11 left-1/2 -translate-x-1/2 max-w-40 flex flex-row justify-between items-center mx-auto z-10">
+      <div class="swiper-button-prev !relative mr-7"></div>
+      <div class="swiper-button-next !relative ml-7"></div>
+    </div>
   </div>
 </section>
