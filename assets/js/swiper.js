@@ -46,7 +46,7 @@ window.addEventListener("load", () => {
       loop: true,
       //loopAdditionalSlides: 3,
       autoplay: {
-        delay: 5000,
+        delay: 155000,
         disableOnInteraction: false,
       },
       slidesPerView: 'auto',

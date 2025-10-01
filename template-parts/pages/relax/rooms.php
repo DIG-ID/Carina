@@ -1,4 +1,4 @@
-<section id="section-rooms" class="section-rooms relative w-full pt-8 md:pt-14 xl:pt-20 pb-16 md:pb-24">
+<section id="section-rooms" class="section-rooms relative w-full pt-0 md:pt-0 xl:pt-20 pb-16 md:pb-24">
   <?php
 $images = get_field('rooms_images');
 
@@ -15,7 +15,7 @@ if (is_array($images) && !empty($images)) : ?>
             $size,
             false,
             [
-              'class' => 'block h-auto object-cover',
+              'class' => 'block h-auto xl:max-h-none object-cover',
               'sizes' => '(min-width:768px) 50vw, 100vw',
             ]
           );
@@ -24,7 +24,7 @@ if (is_array($images) && !empty($images)) : ?>
       <?php endforeach; ?>
     </div>
 
-    <div class="swiper-button-next right-4 xl:right-16"></div>
+    <div class="swiper-button-next !right-8 xl:right-16"></div>
   </div>
 <?php endif; ?>
 
@@ -34,10 +34,10 @@ if (is_array($images) && !empty($images)) : ?>
       <div class="col-span-2 md:col-span-5 xl:col-span-12">
           <h2 class="title-md text-darkBlue pb-7 md:pb-16"><?php the_field( 'rooms_title' ); ?></h2>
       </div>
-      <div class="col-span-2 md:col-span-5 xl:col-span-5">
-        <p class="block-text text-darkBlue"><?php the_field( 'rooms_text' ); ?></p>
+      <div class="col-span-2 md:col-span-4 xl:col-span-5">
+        <p class="block-text text-darkBlue pb-8 md:pb-0"><?php the_field( 'rooms_text' ); ?></p>
       </div>
-      <div class="col-span-2 md:col-span-2 xl:col-span-7 flex flex-col items-center md:items-end justify-center md:justify-end">
+      <div class="col-span-2 md:col-span-2 xl:col-span-7 flex flex-col items-start md:items-end justify-center md:justify-end">
         <?php 
         $link = get_field('rooms_button');
         if( $link ): 

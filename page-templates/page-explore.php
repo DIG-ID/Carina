@@ -12,7 +12,7 @@ if ( have_posts() ) :
 			get_template_part( 'template-parts/modules/section','intro' );
 			get_template_part( 'template-parts/pages/explore/seasons' );
 			get_template_part( 'template-parts/pages/explore/content' );
-			get_template_part( 'template-parts/pages/explore/places' );
+			//get_template_part( 'template-parts/pages/explore/places' );
 		do_action( 'after_main_content' );
 	endwhile;
 endif;

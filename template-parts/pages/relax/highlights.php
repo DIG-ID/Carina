@@ -13,9 +13,9 @@
               ['class'    => 'w-full max-w-14 md:max-w-24 xl:max-w-28 mx-auto',]
             ); ?>
           </div>
-          <h3 class="title-sm text-lightGrey pb-2"><?php the_field( 'highlights_description_1' ); ?></h3>
+          <h3 class="title-sm text-lightGrey pb-2 min-h-11 md:min-h-0"><?php the_field( 'highlights_description_1' ); ?></h3>
           <?php if ( get_field( 'highlights_temperature_1' ) ) : ?>
-          <p class="block-text text-lightGrey"><?php the_field( 'highlights_temperature_1' ); ?></p>
+          <p class="block-text text-lightGrey mx-auto max-w-24 md:max-w-none"><?php the_field( 'highlights_temperature_1' ); ?></p>
           <?php endif; ?>
         </div>
         <div class="wrapper flex flex-col w-1/3">
@@ -26,9 +26,9 @@
               ['class'    => 'w-full max-w-14 md:max-w-24 xl:max-w-28 mx-auto',]
             ); ?>
           </div>
-          <h3 class="title-sm text-lightGrey pb-2"><?php the_field( 'highlights_description_2' ); ?></h3>
+          <h3 class="title-sm text-lightGrey pb-2 min-h-11 md:min-h-0"><?php the_field( 'highlights_description_2' ); ?></h3>
           <?php if ( get_field( 'highlights_temperature_2' ) ) : ?>
-          <p class="block-text text-lightGrey"><?php the_field( 'highlights_temperature_2' ); ?></p>
+          <p class="block-text text-lightGrey mx-auto max-w-24 md:max-w-none"><?php the_field( 'highlights_temperature_2' ); ?></p>
           <?php endif; ?>
         </div>
         <div class="wrapper flex flex-col w-1/3">
@@ -39,9 +39,9 @@
               ['class'    => 'w-full max-w-14 md:max-w-24 xl:max-w-28 mx-auto',]
             ); ?>
           </div>
-          <h3 class="title-sm text-lightGrey pb-2"><?php the_field( 'highlights_description_3' ); ?></h3>
+          <h3 class="title-sm text-lightGrey pb-2 min-h-11 md:min-h-0"><?php the_field( 'highlights_description_3' ); ?></h3>
           <?php if ( get_field( 'highlights_temperature_3' ) ) : ?>
-          <p class="block-text text-lightGrey"><?php the_field( 'highlights_temperature_3' ); ?></p>
+          <p class="block-text text-lightGrey mx-auto max-w-24 md:max-w-none"><?php the_field( 'highlights_temperature_3' ); ?></p>
           <?php endif; ?>
         </div>
       </div>
