@@ -1,4 +1,4 @@
-<section id="section-four-icons" class="section-four-icons relative w-full pt-28 md:pt-36 xl:pt-72 pb-20 md:pb-24 xl:pb-16 bg-lightGrey z-0">
+<section id="section-four-icons" class="section-four-icons relative w-full pt-14 md:pt-36 xl:pt-72 pb-8 md:pb-24 xl:pb-16 bg-lightGrey z-0">
     <div class="theme-container">
         <div class="theme-grid">
             <div class="col-span-2 md:col-span-6 xl:col-span-12 mb-16">

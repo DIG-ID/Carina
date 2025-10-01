@@ -1,4 +1,4 @@
-<section id="section-testimonials" class="section-testimonials relative w-full bg-darkBlue pt-7 md:pt-14 xl:pt-24 pb-8 md:pb-12 xl:pb-20">
+<section id="section-testimonials" class="section-testimonials relative w-full bg-darkBlue pt-7 md:pt-14 xl:pt-24 pb-16 md:pb-12 xl:pb-20">
   <div class="theme-container">
     <div class="theme-grid">
       <div class="col-span-2 md:col-span-6 xl:col-span-12 text-center">
@@ -15,10 +15,10 @@
               foreach ( $testimonials_posts as $post ) :
                 setup_postdata( $post );
                 ?>
-                <div class="swiper-slide testimonial-card h-auto xl:min-h-64">
-                  <div class="testimonial-card-content bg-lightGrey px-4 py-6 md:py-6 md:px-6 xl:py-7 xl:px-8 flex flex-col justify-between min-h-full rounded-lg">
+                <div class="swiper-slide testimonial-card h-auto">
+                  <div class="testimonial-card-content bg-lightGrey px-4 py-6 md:py-6 md:px-6 xl:py-7 xl:px-8 flex flex-col justify-between rounded-lg min-h-72 md:min-h-80 xl:min-h-72">
                     <div class="testimonial-card--header">
-                      <p class="block-text text-darkBlue"><b><?php the_field( 'name' ); ?></b></p>
+                      <p class="block-text text-darkBlue pb-2 md:pb-0"><b><?php the_field( 'name' ); ?></b></p>
                       <p class="block-text text-darkBlue"><?php the_field( 'location' ); ?></p>
                     </div>
                     <div class="testimonial-card--content">

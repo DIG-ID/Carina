@@ -34,14 +34,14 @@
 
             <div class="theme-container h-full flex flex-col justify-center items-center relative z-10">
               <div class="content-wrapper text-center max-w-[80%] md:max-w-md xl:max-w-xl">
-                <h3 class="title-sm text-lightGrey pb-8 md:pb-6 xl:pb-8">
+                <h3 class="title-sm text-lightGrey pb-4 md:pb-6 xl:pb-8">
                   <?php the_title(); ?>
                 </h3>
                 <p class="block-text text-lightGrey">
                   <?php echo esc_html( wp_trim_words( get_the_excerpt(), 24, '…' ) ); ?>
                 </p>
 
-                <a href="<?php echo esc_url( get_permalink() ); ?>" class="mt-6 inline-flex items-center gap-2 text-lightGrey underline decoration-transparent hover:decoration-current">
+                <a href="<?php echo esc_url( get_permalink() ); ?>" class="mt-2 md:mt-6 inline-flex items-center gap-2 text-lightGrey underline decoration-transparent hover:decoration-current max-w-14 md:max-w-none">
                   <svg xmlns="http://www.w3.org/2000/svg" width="77" height="36" viewBox="0 0 77 36" fill="none">
                     <path d="M1 22.716C1 22.716 9.88134 37.2735 34.3389 24.0808C36.8318 22.7359 39.454 21.6417 42.1817 20.8777C48.972 18.9776 61.4862 16.7116 76 19.9784" stroke="#F0F2F5" stroke-width="2" stroke-linejoin="round"/>
                     <path d="M53.7363 1L75.9994 19.9783L53.7363 34.2115" stroke="#F0F2F5" stroke-width="2" stroke-linejoin="round"/>
@@ -50,7 +50,7 @@
                 
               </div>
             </div>
-            <div class="controls absolute bottom-11 max-w-40 flex flex-row justify-between items-center mx-auto">
+            <div class="controls absolute bottom-5 md:bottom-11 max-w-40 flex flex-row justify-between items-center mx-auto">
               <div class="swiper-button-prev !relative mr-7"></div>
               <div class="swiper-button-next !relative ml-7"></div>
             </div>

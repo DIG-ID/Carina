@@ -1,5 +1,5 @@
 <section id="section-banner" class="section-banner relative w-full pb-16 md:pb-24 xl:pb-16">
-  <div class="w-full pt-1 pb-56 sm:pb-20 md:pb-56 lg:pb-56 xl:pb-64 relative">
+  <div class="w-full pt-1 pb-64 sm:pb-20 md:pb-56 lg:pb-56 xl:pb-64 relative">
     <div class="background-wrapper relative">
       <?php echo wp_get_attachment_image(
         get_field('banner_background_image'),

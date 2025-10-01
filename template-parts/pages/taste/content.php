@@ -1,6 +1,6 @@
 <section id="section-content" class="section-content relative w-full pt-7 md:pt-16 pb-16 md:pb-24">
   <div class="theme-container">
-    <div class="theme-grid mb-16 xl:mb-20">
+    <div class="theme-grid mb-8 md:mb-16 xl:mb-20">
         <div class="col-span-2 md:col-span-3 xl:col-span-5">
           <h2 class="title-md text-darkBlue pb-8 md:pb-12 xl:pb-20"><?php the_field( 'content_title' ); ?></h2>
           <p class="block-text text-darkBlue pb-6 md:pb-0"><?php the_field( 'content_text' ); ?></p>
