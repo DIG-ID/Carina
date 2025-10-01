@@ -2,11 +2,12 @@
     <div class="theme-container h-full flex items-end relative z-10">
         <div class="theme-grid">
             <div class="col-span-2 md:col-span-3 xl:col-start-1 xl:col-span-6 order-2 md:order-none">
-                <?php 
-                $image = get_field('connection_space_image');
-                if( !empty( $image ) ): ?>
-                    <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
-                <?php endif; ?>
+                <?php if ($content_image = get_field('connection_space_image')) :
+                echo wp_get_attachment_image(
+                    $content_image, 'full', false,
+                    ['class' => 'block w-full h-full object-cover min-h-auto md:min-h-[638px] xl:min-h-auto']
+                );
+                endif; ?>
             </div>
 
             <div class="col-start-1 col-span-2 md:col-start-4 md:col-span-3 xl:col-start-7 xl:col-span-6 text-darkBlue">
