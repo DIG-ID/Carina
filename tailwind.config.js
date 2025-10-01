@@ -4,6 +4,7 @@ module.exports = {
     './front-page.php',
     './header.php',
     './index.php',
+    './home.php',
     './footer.php',
     './404.php',
     './inc/*.php',

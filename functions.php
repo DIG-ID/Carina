@@ -175,3 +175,13 @@ function my_console_log(...$data) {
 		 echo "<script>console.log({$json})</script>";
 	});
 }
+
+// Show 6 posts per page on the blog (Posts page)
+add_action('pre_get_posts', function ($q) {
+  if ( is_admin() || ! $q->is_main_query() ) return;
+
+  if ( $q->is_home() ) {
+    $q->set('posts_per_page', 6);
+    $q->set('ignore_sticky_posts', 1);
+  }
+});

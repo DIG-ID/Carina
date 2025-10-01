@@ -55,21 +55,37 @@ $cols_xl    = (int) get_field('hero_cols_xl', $blog_page_id) ?: 6;
     </div>
 </section>
 
+<?php
+// current page number
+$paged = max( 1, (int) get_query_var('paged') ?: (int) get_query_var('page') ?: 1 );
+
+// your custom query
+$blog_q = new WP_Query([
+  'post_type'           => 'post',
+  'posts_per_page'      => 6,
+  'paged'               => $paged,
+  'ignore_sticky_posts' => 1,
+]);
+
+// build prev/next with query args (works on static pages)
+$base = get_permalink( get_queried_object_id() );
+$prev_url = $paged > 1 ? esc_url( add_query_arg( 'paged', $paged - 1, $base ) ) : '';
+$next_url = $paged < (int) $blog_q->max_num_pages ? esc_url( add_query_arg( 'paged', $paged + 1, $base ) ) : '';
+
+?>
 <section id="section-blog" class="section-blog pt-8 pb-20 md:pb-20 md:pt-12">
   <div class="theme-container">
-    <?php if (have_posts()) : ?>
+    <?php if ( $blog_q->have_posts() ) : ?>
       <div class="theme-grid">
-        <?php while (have_posts()) : the_post(); ?>
+        <?php while ( $blog_q->have_posts() ) : $blog_q->the_post(); ?>
           <article <?php post_class('group col-span-2 md:col-span-3 xl:col-span-4 overflow-hidden transition-all mb-7 md:mb-20 xl:mb-24'); ?>>
             <a href="<?php the_permalink(); ?>" class="block relative">
-              <?php if (has_post_thumbnail()) :
+              <?php if ( has_post_thumbnail() ) :
                 the_post_thumbnail('image-thumbnails', [
                   'class' => 'w-full h-full object-cover object-center',
                 ]);
               else : ?>
-                <div class="w-full">
-                  <?php esc_html_e('No image', 'carina'); ?>
-                </div>
+                <div class="w-full"><?php esc_html_e('No image', 'carina'); ?></div>
               <?php endif; ?>
             </a>
 
@@ -96,10 +112,62 @@ $cols_xl    = (int) get_field('hero_cols_xl', $blog_page_id) ?: 6;
         <?php endwhile; ?>
       </div>
 
+      <?php
+      global $wp_query;
+
+      $total_pages = (int) $wp_query->max_num_pages;
+      if ( $total_pages > 1 ) :
+        $current  = max( 1, (int) get_query_var('paged') );
+        $prev_url = $current > 1 ? esc_url( get_pagenum_link( $current - 1 ) ) : '';
+        $next_url = $current < $total_pages ? esc_url( get_pagenum_link( $current + 1 ) ) : '';
+      ?>
+        <nav class="mt-10 flex items-center justify-center gap-4" aria-label="<?php esc_attr_e('Pagination', 'carina'); ?>">
+          <?php if ( $prev_url ) : ?>
+            <a href="<?php echo $prev_url; ?>" rel="prev" aria-label="<?php esc_attr_e('Previous page', 'carina'); ?>" class="text-darkBlue/90 hover:opacity-100 transition-opacity select-none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
+                <path d="M30.8932 12.7871C24.891 14.4666 13.8292 16.4697 1 13.582" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M20.6773 30.3568L0.999998 13.5812L20.6773 1" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          <?php else : ?>
+            <span class="opacity-30 select-none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
+                <path d="M30.8932 12.7871C24.891 14.4666 13.8292 16.4697 1 13.582" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M20.6773 30.3568L0.999998 13.5812L20.6773 1" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          <?php endif; ?>
+
+          <span class="min-w-6 text-center text-darkBlue select-none">
+            <?php echo esc_html( number_format_i18n( $current ) ); ?>
+          </span>
+
+          <?php if ( $next_url ) : ?>
+            <a href="<?php echo $next_url; ?>" rel="next" aria-label="<?php esc_attr_e('Next page', 'carina'); ?>" class="text-darkBlue hover:opacity-100 transition-opacity select-none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
+                <path d="M1.1068 18.2129C7.109 16.5334 18.1708 14.5303 31 17.418" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M11.3227 0.643183L31 17.4188L11.3227 30" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          <?php else : ?>
+            <span class="opacity-30 select-none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
+                <path d="M1.1068 18.2129C7.109 16.5334 18.1708 14.5303 31 17.418" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M11.3227 0.643183L31 17.4188L11.3227 30" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          <?php endif; ?>
+        </nav>
+      <?php endif; ?>
+
+
+      <?php wp_reset_postdata(); ?>
+
     <?php else : ?>
       <p class="mt-10 text-darkBlue"><?php esc_html_e('No posts yet.', 'carina'); ?></p>
     <?php endif; ?>
   </div>
 </section>
+
 
 <?php get_footer(); ?>
