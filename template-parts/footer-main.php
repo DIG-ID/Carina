@@ -8,8 +8,8 @@
         </div>
         <div class="contacts-wrapper">
           <p class="block-text text-lightGrey"><?php esc_html_e( 'Kontaktdaten','carina' ); ?></p>
-          <p class="block-text text-lightGrey"><?php esc_html_e( 'Telefon: ','carina' ); ?><a href="tel:<?php the_field( 'general_phone','option' ); ?>"><?php the_field( 'general_phone','option' ); ?></a></p>
-          <p class="block-text text-lightGrey"><?php esc_html_e( 'E-Mail: ','carina' ); ?><a href="mailto:<?php the_field( 'general_e-mail','option' ); ?>"><?php the_field( 'general_e-mail','option' ); ?></a></p>
+          <p class="block-text text-lightGrey "><?php esc_html_e( 'Telefon: ','carina' ); ?><a href="tel:<?php the_field( 'general_phone','option' ); ?>" class="text-inline-link"><?php the_field( 'general_phone','option' ); ?></a></p>
+          <p class="block-text text-lightGrey"><?php esc_html_e( 'E-Mail: ','carina' ); ?><a href="mailto:<?php the_field( 'general_e-mail','option' ); ?>" class="text-inline-link"><?php the_field( 'general_e-mail','option' ); ?></a></p>
         </div>
       </div>
       <div class="col-span-2 md:col-span-2 xl:col-span-6 flex flex-col md:items-center justify-start py-16 md:py-0">
