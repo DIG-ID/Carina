@@ -73,7 +73,7 @@
     <div class="theme-grid pt-24">
       <div class="col-span-2 md:col-span-3 xl:col-span-6">
       <!-- Icons row -->
-        <div class="mt-12 md:mt-0 order-3 md:order-none">
+        <div class="mt-12 order-3 md:order-none">
           <div class="flex flex-row ml-5 md:ml-0 gap-28 md:gap-12 items-baseline">
             <?php
               /* ---- Room Space Icon ---- */
