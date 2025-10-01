@@ -50,7 +50,7 @@
 <?php else : ?>
 	<section class="section-hero theme-container">
 		<div class="theme-grid">
-			<div class="col-span-2 md:col-span-6 xl:col-span-10 mt-56 mb-28">
+			<div class="col-span-2 md:col-span-6 xl:col-span-10 mt-40 mb-16 xl:mt-56 xl:mb-28">
 				<?php
 				$page_title = get_field( 'hero_title' );
 				if ( $page_title ) :
