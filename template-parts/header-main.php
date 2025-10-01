@@ -31,7 +31,7 @@
 		</div>
 	</div>
 	<div class="menu-offcanvas">
-		<nav id="primary-nav" class="theme-container theme-grid mt-32 md:mt-[13%]" aria-label="<?php esc_attr_e( 'Main Menu', 'carina' ); ?>" role="navigation">
+		<nav id="primary-nav" class="theme-container theme-grid mt-32 md:mt-44 xl:mt-[13%]" aria-label="<?php esc_attr_e( 'Main Menu', 'carina' ); ?>" role="navigation">
 			<div class="col-span-2 xl:col-span-4" data-menu-col>
 				<?php
 				if ( has_nav_menu( 'stay-menu' ) ) :
