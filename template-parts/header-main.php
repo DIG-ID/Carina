@@ -25,7 +25,7 @@
 					</a>
 				</div>
 				<div class="col-span-1 flex items-center justify-end">
-					<a href="<?php the_field( 'general_booking_url', 'option' ); ?>" class="btn btn-primary hidden invisible md:block md:visible text-center"><?php esc_html_e( 'Jetzt buchen', 'carina' ); ?></a>
+					<a href="<?php the_field( 'general_booking_url', 'option' ); ?>" target="_blank" class="btn btn-primary hidden invisible md:block md:visible text-center"><?php esc_html_e( 'Jetzt buchen', 'carina' ); ?></a>
 				</div>
 			</div>
 		</div>
