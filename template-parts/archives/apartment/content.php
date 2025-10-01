@@ -61,7 +61,7 @@
                 </p>
               <?php endif; ?>
 
-              <a href="<?php the_permalink(); ?>" class="btn btn-arrow-darkBlue mb-16 md:mb-0 md:mt-auto justify-end">
+              <a href="<?php the_permalink(); ?>" class="btn btn-arrow-darkBlue mb-16 md:mb-0 md:mt-auto justify-end self-start">
                   <?php esc_html_e('Mehr erfahren', 'carina'); ?>
               </a>
             </div>
