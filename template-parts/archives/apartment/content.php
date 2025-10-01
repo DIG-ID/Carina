@@ -33,7 +33,7 @@
               if ( $image ) {
                 echo wp_get_attachment_image(
                   $image, 'rooms-thumbnails', false,
-                  ['class'    => 'min-h-auto md:min-h-[515px] xl:min-h-auto block w-full h-auto object-cover',]
+                  ['class'    => 'min-h-auto md:min-h-[415px] xl:min-h-auto block w-full h-auto object-cover',]
                 );
               }
               ?>
