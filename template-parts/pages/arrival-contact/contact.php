@@ -3,7 +3,7 @@
 		<div class="col-span-2 md:col-span-6 xl:col-span-12">
 			<h2 class="title-sm mb-7"><?php the_field( 'contact_form_title' ); ?></h2>
 		</div>
-		<div class="col-span-2 md:col-span-6 xl:col-start-2 xl:col-span-10">
+		<div class="col-span-2 md:col-span-6 xl:col-span-12">
 			<?php
 			$form = get_field( 'contact_form_contact_form_shortcode' );
 			if ( $form ) :
