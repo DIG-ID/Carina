@@ -10,7 +10,7 @@
 				<h2 class="title-md"><?php the_field( 'apartment_content_title', 'options' ); ?></h2>
 			</div>
 		</div>
-		<div class="theme-grid gap-y-6 md:gap-y-16 xl:gap-y-20 content-wrapper">
+		<div class="theme-grid gap-y-16 xl:gap-y-20 content-wrapper">
 			<?php
 			$apt_args = array(
 				'post_type'      => 'apartment',

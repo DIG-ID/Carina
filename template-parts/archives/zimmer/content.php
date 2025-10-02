@@ -11,7 +11,7 @@
 			</div>
 		</div>
 		<!-- Content -->
-		<div class="theme-grid gap-y-6 md:gap-y-16 xl:gap-y-20 content-wrapper">
+		<div class="theme-grid gap-y-16 xl:gap-y-20 content-wrapper">
 			<?php
 			$zimmer_args = array(
 				'post_type'      => 'zimmer',
