@@ -76,12 +76,12 @@
                   if ($first_icon_id) {
                     echo wp_get_attachment_image(
                       $first_icon_id, 'full', false,
-                      ['class' => 'mb-3 w-10 h-10 object-contain']
+                      ['class' => 'mb-3 max-w-[50px] h-10 object-contain']
                     );
                   }
                   ?>
                   <?php if (!empty($room_space_text)) : ?>
-                    <h3 class="title-sm text-darkBlue"><?php echo esc_html($room_space_text); ?></h3>
+                    <h3 class="block-text text-darkBlue max-w-[80px]"><?php echo esc_html($room_space_text); ?></h3>
                   <?php endif; ?>
                 </div>
             <?php endif; ?>
@@ -96,11 +96,11 @@
                     if ($icon) {
                       echo wp_get_attachment_image(
                         $icon, 'full', false,
-                        ['class' => 'mb-3 w-10 h-10 object-contain']
+                        ['class' => 'mb-3 max-w-[50px] h-10 object-contain']
                       );
                     }
                     ?>
-                    <h3 class="title-sm text-darkBlue"><?php the_sub_field('text'); ?></h3>
+                    <h3 class="block-text text-darkBlue max-w-[80px]"><?php the_sub_field('text'); ?></h3>
                   </div>
                 <?php endwhile;
               endif; ?>
