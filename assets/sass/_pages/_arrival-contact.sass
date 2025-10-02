@@ -16,7 +16,7 @@
     .carina-form-field__submit
       @apply col-span-2 lg:col-span-2
     .carina-form-field__submit
-      @apply flex justify-center md:justify-end items-center
+      @apply flex flex-col xl:flex-row gap-6 justify-center md:justify-between items-center
     .wpcf7-form-control-wrap
       input,
       textarea
@@ -33,6 +33,34 @@
     .wpcf7-response-output
       @extend .block-text
       @apply text-sm border-none py-3 px-4 text-darkBlue
+
+    .checkbox-wrapper
+      input[type="checkbox"]
+        @apply hidden
+
+      .terms-label
+        @apply cursor-pointer flex flex-row items-center
+
+      .label-text
+        @apply ml-2
+
+      .checkbox-svg
+        @apply w-[30px] h-[30px]
+    
+
+      .checkbox-box
+        @apply fill-white stroke-coral transition-all duration-500 ease-in
+        stroke-dasharray: 800
+        stroke-dashoffset: 800
+
+      .checkbox-tick
+        @apply stroke-coral transition-all duration-500 ease-in
+        stroke-dasharray: 172
+        stroke-dashoffset: 172
+
+    .checkbox-wrapper input[type="checkbox"]:checked + .terms-label .checkbox-box,
+    .checkbox-wrapper input[type="checkbox"]:checked + .terms-label .checkbox-tick
+      stroke-dashoffset: 0
 
 .wpcf7:has(.wpcf7-form.invalid) .wpcf7-response-output
   @apply bg-amber-300
