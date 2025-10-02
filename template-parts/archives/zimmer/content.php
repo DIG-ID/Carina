@@ -91,8 +91,9 @@
                   <?php esc_html_e('Mehr erfahren', 'carina'); ?>
               </a>
             </div>
-          <?php endwhile; ?>
           </article>
+          
+          <?php endwhile; ?>
       </div>
     </div>
   </div>

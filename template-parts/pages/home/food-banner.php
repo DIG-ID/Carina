@@ -14,7 +14,7 @@
       <div class="col-span-2 md:col-span-3 xl:col-span-4 col-start-1 md:col-start-4 xl:col-start-8">
         <div class="bg-lightGrey px-4 md:px-7 xl:px-8 py-2 md:pt-6 xl:pt-9 xl:pb-0 w-3/5 float-right md:float-none md:w-full">
           <?php if( get_field( 'food_banner_description' ) ) : ?>
-            <p class="block-text mb-6"><?php the_field( 'food_banner_description' ); ?></p>
+            <p class="block-text mb-6 xl:mb-[4.3rem]"><?php the_field( 'food_banner_description' ); ?></p>
           <?php endif; ?>
           <?php 
           $link = get_field('food_banner_button');
