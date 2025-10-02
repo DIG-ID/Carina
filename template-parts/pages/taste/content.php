@@ -28,7 +28,8 @@
         </div>
       </div>
       <div class="col-span-2 md:col-span-3 xl:col-span-5 md:pt-20 xl:pt-56">
-        <p class="block-30 text-darkBlue mb-8"><?php the_field( 'content_opening_hours' ); ?></p>
+        <p class="font-funnelsans font-bold text-[18px] md:text-[1.75rem] leading-[1.75rem] md:leading-[2.375rem] tracking-[-0.03563rem] text-darkBlue mb-2"><?php the_field( 'content_opening_hours_title' ); ?></p>
+        <p class="font-funnelsans font-normal text-[16px] md:text-[1.375rem] leading-[1.75rem] md:leading-[2.375rem] tracking-[-0.03563rem] text-darkBlue mb-8"><?php the_field( 'content_opening_hours_text' ); ?></p>
         <?php echo wp_get_attachment_image(
           get_field('content_image_3'),
           'full', false,
