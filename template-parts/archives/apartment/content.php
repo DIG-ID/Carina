@@ -25,7 +25,7 @@
 					$description = get_field( 'content_short_description' );
 					$size        = get_field( 'content_size_max_persons' );
 					?>
-					<article <?php post_class( 'col-span-2 md:col-span-6 xl:col-span-12 theme-grid' ); ?> id="zimmer-<?php the_ID(); ?>">
+					<article <?php post_class( 'col-span-2 md:col-span-6 xl:col-span-12 theme-grid' ); ?> id="apartment-<?php the_ID(); ?>">
 						<!-- Image column -->
 						<div class="col-start-1 col-span-2 md:col-span-3 xl:col-span-6 relative">
 							<a href="<?php the_permalink(); ?>">
