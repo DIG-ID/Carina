@@ -31,7 +31,7 @@
             <?php echo get_field('content_description'); ?>
           </p>
 
-          <div class="flex flex-row items-start justify-start gap-x-8 mb-10">
+          <div class="flex flex-col lg:flex-row items-start justify-start gap-y-5 lg:gap-y-0 lg:gap-x-8 mb-10">
             <?php if ( have_rows('content_plans') ) :
               $i = 0; // start at 0 so first is darkBlue
               while ( have_rows('content_plans') ) : the_row();
