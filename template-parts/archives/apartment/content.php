@@ -51,7 +51,7 @@
 									<?php echo esc_html( $description ); ?>
 								</p>
 							<?php endif; ?>
-							<a href="<?php the_permalink(); ?>" class="btn btn-arrow-darkBlue mt-auto self-start md:self-end md:mb-6">
+							<a href="<?php the_permalink(); ?>" class="btn btn-arrow-darkBlue mt-auto self-start md:self-end md:mb-9">
 								<?php esc_html_e( 'Mehr erfahren', 'carina' ); ?>
 							</a>
 						</div>
@@ -59,7 +59,7 @@
 					<?php
 				endwhile;
 			else :
-				esc_html_e( 'Leider wurden keine Wohnungen gefunden, die Ihren Kriterien entsprechen.', 'carina' );
+				esc_html_e( 'Leider wurden keine Apartments gefunden, die Ihren Kriterien entsprechen.', 'carina' );
 			endif;
 			wp_reset_postdata();
 			?>

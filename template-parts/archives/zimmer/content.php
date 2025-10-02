@@ -25,7 +25,6 @@
 					$zimmer_query->the_post();
 					$size        = get_field( 'content_size' );
 					$description = get_field( 'content_short_description' );
-					$image       = get_post_thumbnail_id( get_the_ID() );
 					?>
 					<article <?php post_class( 'col-span-2 md:col-span-6 xl:col-span-12 theme-grid' ); ?> id="zimmer-<?php the_ID(); ?>">
 						<!-- Image column -->
@@ -79,7 +78,7 @@
 									?>
 								</div>
 							</div>
-							<a href="<?php the_permalink(); ?>" class="btn btn-arrow-darkBlue mt-auto self-start md:self-end md:mb-6">
+							<a href="<?php the_permalink(); ?>" class="btn btn-arrow-darkBlue mt-auto self-start md:self-end md:mb-9">
 								<?php esc_html_e( 'Mehr erfahren', 'carina' ); ?>
 							</a>
 						</div>
