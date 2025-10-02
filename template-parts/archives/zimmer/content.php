@@ -27,7 +27,7 @@
 					$description  = get_field( 'content_short_description' );
 					$image        = get_post_thumbnail_id( get_the_ID() );
 					?>
-					<article <?php post_class( 'col-span-2 md:col-span-6 xl:col-span-12' ); ?> id="zimmer-<?php the_ID(); ?>">
+					<article <?php post_class( 'col-span-2 md:col-span-6 xl:col-span-12 theme-grid' ); ?> id="zimmer-<?php the_ID(); ?>">
 						<!-- Image column -->
 						<div class="col-span-2 md:col-span-3 xl:col-start-1 xl:col-span-6 relative ">
 							<a href="<?php the_permalink(); ?>" class="overflow-hidden pb-[33px]">
