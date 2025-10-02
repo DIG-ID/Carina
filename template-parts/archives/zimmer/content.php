@@ -11,29 +11,29 @@
 			</div>
 		</div>
 		<!-- Content -->
-		<div class="theme-grid gap-y-16 content-wrapper">
+		<div class="theme-grid gap-y-6 md:gap-y-16 xl:gap-y-20 content-wrapper">
 			<?php
-			$args = array(
+			$zimmer_args = array(
 				'post_type'      => 'zimmer',
 				'posts_per_page' => -1,
 				'order'          => 'ASC',
 				'orderby'        => 'date',
 			);
-			$zimmer_query = new WP_Query( $args );
+			$zimmer_query = new WP_Query( $zimmer_args );
 			if ( $zimmer_query->have_posts() ) :
 				while ( $zimmer_query->have_posts() ) :
 					$zimmer_query->the_post();
-					$size         = get_field( 'content_size' );
-					$description  = get_field( 'content_short_description' );
-					$image        = get_post_thumbnail_id( get_the_ID() );
+					$size        = get_field( 'content_size' );
+					$description = get_field( 'content_short_description' );
+					$image       = get_post_thumbnail_id( get_the_ID() );
 					?>
 					<article <?php post_class( 'col-span-2 md:col-span-6 xl:col-span-12 theme-grid' ); ?> id="zimmer-<?php the_ID(); ?>">
 						<!-- Image column -->
 						<div class="col-span-2 md:col-span-3 xl:col-start-1 xl:col-span-6 relative ">
 							<a href="<?php the_permalink(); ?>" class="overflow-hidden pb-[33px]">
 							<?php
-							if ( $image ) :
-								echo wp_get_attachment_image( $image, 'rooms-thumbnails', false, array( 'class' => 'min-h-auto md:min-h-[415px] xl:min-h-auto block w-full h-auto object-cover' ) );
+							if ( has_post_thumbnail() ) :
+								echo get_the_post_thumbnail( get_the_ID(), 'rooms-thumbnails', array( 'class' => 'min-h-auto md:min-h-[415px] xl:min-h-auto block w-full h-auto object-cover' ) );
 							endif;
 							?>
 							</a>
