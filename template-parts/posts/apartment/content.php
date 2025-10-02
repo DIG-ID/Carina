@@ -27,11 +27,33 @@
             <?php echo esc_html( get_field('content_title') ); ?>
           </h2>
 
-          <p class="block-17 text-darkBlue mb-7 md:mb-12 xl:mb-16 xl:max-w-[530px]">
+          <p class="block-17 text-darkBlue mb-7 md:mb-10 xl:mb-10 xl:max-w-[530px]">
             <?php echo get_field('content_description'); ?>
           </p>
 
-          <h3 class="title-sm text-DarkBlue mb-7 md:mb-12 xl:mb-10 md:max-w-[351px] xl:max-w-[540px]">
+          <div class="flex flex-row items-start justify-start gap-x-8 mb-10">
+            <?php if ( have_rows('content_plans') ) :
+              $i = 0; // start at 0 so first is darkBlue
+              while ( have_rows('content_plans') ) : the_row();
+                $link = get_sub_field('button');
+                if ( $link ) :
+                  $link_url   = $link['url'];
+                  $link_title = $link['title'];
+                  $link_target= $link['target'] ? $link['target'] : '_self';
+                  ?>
+                  <a class="btn btn-download-darkBlue max-w-36 !font-normal !items-center"
+                    href="<?php echo esc_url($link_url); ?>"
+                    target="<?php echo esc_attr($link_target); ?>"
+                    data-fancybox="open-zimmer">
+                    <?php echo esc_html($link_title); ?>
+                  </a>
+                <?php endif;
+                $i++; // increment each loop
+              endwhile;
+            endif; ?>
+          </div>
+
+          <h3 class="title-sm text-DarkBlue mb-7 md:mb-8 xl:mb-8 md:max-w-[351px] xl:max-w-[540px]">
             <?php echo get_field('content_equipments_title'); ?>
           </h3>
 
