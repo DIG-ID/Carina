@@ -33,13 +33,11 @@
   <div class="theme-container spirit-block pt-0 xl:pt-1">
     <div class="theme-grid">
       <div class="col-span-2 md:col-span-3 xl:col-span-6">
-        <div class="bleed-left-child">
           <?php echo wp_get_attachment_image(
             get_field('spirit_block_image'),
             'full', false,
             ['class' => 'w-full object-cover xl:max-h-[70dvh]']
           ); ?>
-        </div>
       </div>
       <div class="col-span-2 md:col-span-3 xl:col-span-6 pt-7 md:pt-0">
         <h2 class="title-md text-lightGrey pb-7 md:pb-12"><?php the_field( 'spirit_block_title' ); ?></h2>
