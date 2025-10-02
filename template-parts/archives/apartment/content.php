@@ -38,7 +38,7 @@
 						</div>
 						<!-- Content column -->
 						<div class="col-start-1 col-span-2 md:col-start-4 md:col-span-3 xl:col-start-7 xl:col-span-6 flex flex-col">
-							<h3 class="title-30 text-darkBlue mt-4 md:mt-0 mb-2 md:mb-0">
+							<h3 class="title-30 text-darkBlue mt-2 md:mt-0 mb-2 md:mb-0">
 								<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 							</h3>
 							<?php if ( $size ) : ?>
