@@ -23,7 +23,7 @@
         <?php echo wp_get_attachment_image(
           get_field('content_left_col_image_2'),
           'full', false,
-          ['class' => 'w-full object-cover',]
+          ['class' => 'w-full object-cover mb-8 md:mb-0',]
         ); ?>
       </div>
       <div class="right-col col-span-2 md:col-span-7 xl:col-span-7">
