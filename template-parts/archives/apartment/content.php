@@ -51,7 +51,7 @@
 									<?php echo esc_html( $description ); ?>
 								</p>
 							<?php endif; ?>
-							<a href="<?php the_permalink(); ?>" class="btn btn-arrow-darkBlue mt-auto self-start md:self-end md:mb-9">
+							<a href="<?php the_permalink(); ?>" class="btn btn-arrow-darkBlue mt-auto md:mb-9">
 								<?php esc_html_e( 'Mehr erfahren', 'carina' ); ?>
 							</a>
 						</div>
