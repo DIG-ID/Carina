@@ -78,7 +78,7 @@
 									?>
 								</div>
 							</div>
-							<a href="<?php the_permalink(); ?>" class="btn btn-arrow-darkBlue mt-auto self-start md:mb-9">
+							<a href="<?php the_permalink(); ?>" class="btn btn-arrow-darkBlue mt-auto self-start md:mb-4">
 								<?php esc_html_e( 'Mehr erfahren', 'carina' ); ?>
 							</a>
 						</div>
