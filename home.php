@@ -16,7 +16,7 @@ $cols_md    = (int) get_field('hero_cols_md', $blog_page_id) ?: 4;
 $cols_xl    = (int) get_field('hero_cols_xl', $blog_page_id) ?: 6;
 ?>
 
-<section id="section-hero" class="section-hero relative h-screen w-full z-20 bg-darkBlue">
+<section id="section-hero" class="section-hero relative h-[100dvh] md:h-screen w-full z-20 bg-darkBlue">
   <?php
   // Background image: ACF -> fallback to the Blog page featured image
   if ($hero_bg_id) {
@@ -138,7 +138,7 @@ $next_url = $paged < (int) $blog_q->max_num_pages ? esc_url( add_query_arg( 'pag
             </span>
           <?php endif; ?>
 
-          <span class="min-w-6 text-center text-darkBlue select-none">
+          <span class="font-funnelsans min-w-6 text-center text-darkBlue select-none">
             <?php echo esc_html( number_format_i18n( $current ) ); ?>
           </span>
 
