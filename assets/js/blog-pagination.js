@@ -51,8 +51,15 @@
         if (url) window.history.pushState({ page: p.current }, '', url);
 
         // Scroll back to the section top for a stable UX
-        if (section && section.scrollIntoView) {
+        /*if (section && section.scrollIntoView) {
           section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }*/
+        const intro = document.querySelector('#section-intro, .section-intro');
+        const headerOffset = findHeaderHeight();
+        if (intro) {
+          smoothScrollTo(intro, headerOffset + 8); 
+        } else if (section) {
+          smoothScrollTo(section, headerOffset + 8);
         }
       })
       .catch(() => {
