@@ -1,7 +1,7 @@
 (function () {
-  const grid    = document.getElementById('blog-grid');
-  const pager   = document.getElementById('blog-pager');
-  const number  = document.getElementById('blog-current');
+  const grid   = document.getElementById('blog-grid');
+  const pager  = document.getElementById('blog-pager');
+  const number = document.getElementById('blog-current');
   if (!grid || !pager || !number) return;
 
   // ---------- helpers ----------
@@ -14,9 +14,7 @@
       const query  = u.searchParams.get('paged');
       const n = parseInt(pretty || query || '1', 10);
       return Number.isFinite(n) && n > 0 ? n : 1;
-    } catch {
-      return 1;
-    }
+    } catch { return 1; }
   };
 
   const setLinkState = (el, enabled, href, page) => {
@@ -50,19 +48,49 @@
     return h;
   };
 
-  const smoothScrollToIntro = () => {
+  // Wait for images in the grid (first load after swap often needs this)
+  const waitForImages = (root, timeout = 800) => new Promise((resolve) => {
+    const imgs = [...root.querySelectorAll('img')].filter(img => !img.complete);
+    if (imgs.length === 0) {
+      // allow layout to flush
+      requestAnimationFrame(() => resolve());
+      return;
+    }
+    let remaining = imgs.length, done = false;
+    const finish = () => { if (done) return; done = true; resolve(); };
+    const t = setTimeout(finish, timeout);
+    imgs.forEach(img => {
+      const cb = () => { if (--remaining === 0) { clearTimeout(t); finish(); } };
+      img.addEventListener('load', cb, { once: true });
+      img.addEventListener('error', cb, { once: true });
+    });
+  });
+
+  // Scroll after layout settles (double rAF avoids the first-frame jump)
+  const scrollToIntroAfterLayout = () => {
     const intro = document.querySelector('#section-intro, .section-intro');
     if (!intro) return;
-    const y = Math.max(0, intro.getBoundingClientRect().top + window.scrollY - (getHeaderOffset() + 8));
-    window.scrollTo({ top: y, behavior: 'smooth' });
+    const offset = getHeaderOffset() + 8;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const y = Math.max(0, intro.getBoundingClientRect().top + window.scrollY - offset);
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      });
+    });
   };
 
-  // ---------- history priming (handles hard refresh) ----------
+  // ---------- history priming (handles hard refresh cleanly) ----------
   const initialPage = parsePageFromUrl(window.location.href);
   if (!history.state || typeof history.state.page === 'undefined') {
     history.replaceState({ page: initialPage }, '', window.location.href);
   }
   let lastStatePage = history.state?.page || initialPage;
+
+  // Ensure visible number is correct on a hard refresh
+  const printed = parseInt(number.textContent.trim() || '0', 10);
+  if (!printed || printed !== initialPage) {
+    number.textContent = String(initialPage);
+  }
 
   // ---------- ajax loader ----------
   const ajax = (page) => {
@@ -88,10 +116,10 @@
           lastStatePage = p.current;
         }
 
-        smoothScrollToIntro();
+        // Wait for images/layout to settle, then smooth scroll to intro
+        return waitForImages(grid).then(scrollToIntroAfterLayout);
       })
       .catch(() => {
-        // hard fallback
         const a = pager.querySelector(`[data-page="${page}"]`);
         const href = a?.getAttribute('href');
         if (href) window.location.href = href;
@@ -107,7 +135,7 @@
     if (!a) return;
     if (a.getAttribute('aria-disabled') === 'true') return;
 
-    // prefer data-page; fall back to href parsing; default to 1
+    // Prefer data-page; fallback to href parsing; default to 1
     let page = parseInt(a.dataset.page || '0', 10);
     if (!page) page = parsePageFromUrl(a.getAttribute('href') || '');
     if (!page) page = 1;
@@ -118,7 +146,7 @@
 
   // ---------- browser back/forward ----------
   window.addEventListener('popstate', (e) => {
-    // if state missing/empty, derive from current URL
+    // If state missing/empty, derive from the URL (hard refresh or manual nav)
     const page = (e.state && typeof e.state.page !== 'undefined')
       ? parseInt(e.state.page, 10)
       : parsePageFromUrl(window.location.href);

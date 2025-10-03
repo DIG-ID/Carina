@@ -264,7 +264,6 @@ function carina_load_posts() {
 		'page_url' => $page > 1 ? get_pagenum_link($page) : get_permalink(get_option('page_for_posts')),
 	];
 
-
   wp_reset_postdata();
   wp_send_json_success($payload);
 }
