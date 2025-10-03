@@ -186,21 +186,39 @@ add_action('pre_get_posts', function ($q) {
   }
 });
 
+add_action('init', function () {
+  if ( is_admin() ) return; // front-end only
+  if ( ($_SERVER['REQUEST_METHOD'] ?? '') !== 'GET' ) return;
+
+  $uri = $_SERVER['REQUEST_URI'] ?? '';
+  $is_admin_ajax = (strpos($uri, 'admin-ajax.php') !== false);
+  $has_action    = isset($_REQUEST['action']) && $_REQUEST['action'] !== '';
+  $has_paged     = isset($_GET['paged']) && is_numeric($_GET['paged']);
+
+  if ($is_admin_ajax && !$has_action && $has_paged) {
+    $n   = max(1, (int) $_GET['paged']);
+    $url = ($n > 1) ? get_pagenum_link($n) : get_permalink(get_option('page_for_posts'));
+    wp_safe_redirect($url, 302);
+    exit;
+  }
+});
+
+
+
+
 
 // Enqueue the ajax script on the Posts page (home)
 add_action('wp_enqueue_scripts', function () {
   if ( is_home() ) {
-    wp_enqueue_script('carina-blog-ajax', get_template_directory_uri() . '/assets/js/blog-ajax.js', [], null, true);
+    wp_enqueue_script('carina-blog-ajax', get_template_directory_uri() . '/assets/js/blog-pagination.js', [], null, true);
     wp_localize_script('carina-blog-ajax', 'CARINA_BLOG', [
-      'ajax_url'  => admin_url('admin-ajax.php'),
-      'nonce'     => wp_create_nonce('carina_blog'),
-      'queryVars' => [
-        'post_type'           => 'post',
-        'posts_per_page'      => 6,
-        'ignore_sticky_posts' => 1,
-      ],
-      'baseUrl'   => get_permalink( get_queried_object_id() ), // pretty URL for pushState
-    ]);
+			'ajax_url'  => admin_url('admin-ajax.php'),
+			'nonce'     => wp_create_nonce('carina_blog'),
+			// Always the Posts page URL:
+			'baseUrl'   => get_permalink( get_option('page_for_posts') ),
+			// Convenience to build /page/N/ on the client:
+			'pageBase'  => trailingslashit( get_permalink( get_option('page_for_posts') ) ) . 'page/',
+		]);
   }
 });
 

@@ -59,19 +59,13 @@ $cols_xl    = (int) get_field('hero_cols_xl', $blog_page_id) ?: 6;
 // current page number
 $paged = max( 1, (int) get_query_var('paged') ?: (int) get_query_var('page') ?: 1 );
 
-// your custom query
+// custom query (6 posts per page)
 $blog_q = new WP_Query([
   'post_type'           => 'post',
   'posts_per_page'      => 6,
   'paged'               => $paged,
   'ignore_sticky_posts' => 1,
 ]);
-
-// build prev/next with query args (works on static pages)
-$base = get_permalink( get_queried_object_id() );
-$prev_url = $paged > 1 ? esc_url( add_query_arg( 'paged', $paged - 1, $base ) ) : '';
-$next_url = $paged < (int) $blog_q->max_num_pages ? esc_url( add_query_arg( 'paged', $paged + 1, $base ) ) : '';
-
 ?>
 <section id="section-blog" class="section-blog pt-8 pb-20 md:pb-20 md:pt-12">
   <div class="theme-container">
@@ -81,9 +75,7 @@ $next_url = $paged < (int) $blog_q->max_num_pages ? esc_url( add_query_arg( 'pag
           <article <?php post_class('group col-span-2 md:col-span-3 xl:col-span-4 overflow-hidden transition-all mb-7 md:mb-20 xl:mb-24'); ?>>
             <a href="<?php the_permalink(); ?>" class="block relative">
               <?php if ( has_post_thumbnail() ) :
-                the_post_thumbnail('image-thumbnails', [
-                  'class' => 'w-full h-full object-cover object-center',
-                ]);
+                the_post_thumbnail('image-thumbnails', ['class' => 'w-full h-full object-cover object-center']);
               else : ?>
                 <div class="w-full"><?php esc_html_e('No image', 'carina'); ?></div>
               <?php endif; ?>
@@ -91,20 +83,14 @@ $next_url = $paged < (int) $blog_q->max_num_pages ? esc_url( add_query_arg( 'pag
 
             <a href="<?php the_permalink(); ?>" class="block py-6 xl:px-4 content-link">
               <h2 class="mb-4 block-text text-darkBlue"><?php the_title(); ?></h2>
-
               <time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>" class="block-text text-darkBlue">
                 <?php echo esc_html( wp_date( 'j. F Y', get_post_timestamp() ) ); ?>
               </time>
-
               <p class="mt-3 block-text text-darkBlue">
                 <?php
-                $raw = has_excerpt()
-                  ? get_post_field('post_excerpt', get_the_ID())
-                  : get_post_field('post_content', get_the_ID());
-
-                echo wp_kses_post(
-                  wp_trim_words( wp_strip_all_tags( strip_shortcodes( $raw ) ), 26, '…' )
-                );
+                  $raw = has_excerpt() ? get_post_field('post_excerpt', get_the_ID())
+                                       : get_post_field('post_content', get_the_ID());
+                  echo wp_kses_post( wp_trim_words( wp_strip_all_tags( strip_shortcodes( $raw ) ), 26, '…' ) );
                 ?>
               </p>
             </a>
@@ -113,60 +99,68 @@ $next_url = $paged < (int) $blog_q->max_num_pages ? esc_url( add_query_arg( 'pag
       </div>
 
       <?php
-      $total_pages = (int) $blog_q->max_num_pages;
-      if ( $total_pages > 1 ) :
-        $current  = $paged;
-        $prev_url = $current > 1 ? esc_url( get_pagenum_link( $current - 1 ) ) : '';
-        $next_url = $current < $total_pages ? esc_url( get_pagenum_link( $current + 1 ) ) : '';
-      ?>
-      <nav id="blog-pager" class="mt-10 flex items-center justify-center gap-4">
-        <?php
+        $total_pages = (int) $blog_q->max_num_pages;
+        if ( $total_pages > 1 ) :
+          $current       = $paged;
+          $prev_url      = $current > 1 ? get_pagenum_link( $current - 1 ) : '';
+          $next_url      = $current < $total_pages ? get_pagenum_link( $current + 1 ) : '';
           $prev_disabled = $current <= 1;
           $next_disabled = $current >= $total_pages;
-        ?>
+      ?>
+        <nav id="blog-pager" class="mt-10 flex items-center justify-center gap-4">
+          <button
+            type="button"
+            data-page="<?php echo $prev_disabled ? '' : ($current - 1); ?>"
+            data-href="<?php echo esc_url( $prev_url ?: '#' ); ?>"
+            class="pager-prev <?php echo $prev_disabled ? 'opacity-30 pointer-events-none' : 'hover:opacity-100'; ?> select-none"
+            aria-disabled="<?php echo $prev_disabled ? 'true' : 'false'; ?>"
+            <?php echo $prev_disabled ? 'tabindex="-1" disabled' : 'tabindex="0"'; ?>
+            data-no-ajax="true" data-pjax="false" data-swup="false" data-barba-prevent="self" data-turbo="false"
+          >
+            <!-- left SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
+              <path d="M30.8932 12.7871C24.891 14.4666 13.8292 16.4697 1 13.582" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M20.6773 30.3568L1 13.5812L20.6773 1" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </button>
 
-        <a
-          href="<?php echo $prev_disabled ? '#' : $prev_url; ?>"
-          data-page="<?php echo $prev_disabled ? '' : ($current - 1); ?>"
-          class="pager-prev <?php echo $prev_disabled ? 'opacity-30 pointer-events-none' : 'hover:opacity-100'; ?> select-none"
-          rel="prev"
-          aria-disabled="<?php echo $prev_disabled ? 'true' : 'false'; ?>"
-          tabindex="<?php echo $prev_disabled ? '-1' : '0'; ?>"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
-            <path d="M30.8932 12.7871C24.891 14.4666 13.8292 16.4697 1 13.582" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
-            <path d="M20.6773 30.3568L0.999998 13.5812L20.6773 1" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
-          </svg>
-        </a>
+          <span id="blog-current" class="min-w-6 text-center select-none">
+            <?php echo esc_html( number_format_i18n( $current ) ); ?>
+          </span>
 
-        <span id="blog-current" class="min-w-6 text-center select-none">
-          <?php echo esc_html( number_format_i18n( $current ) ); ?>
-        </span>
+          <button
+            type="button"
+            data-page="<?php echo $next_disabled ? '' : ($current + 1); ?>"
+            data-href="<?php echo esc_url( $next_url ?: '#' ); ?>"
+            class="pager-next <?php echo $next_disabled ? 'opacity-30 pointer-events-none' : 'hover:opacity-100'; ?> select-none"
+            aria-disabled="<?php echo $next_disabled ? 'true' : 'false'; ?>"
+            <?php echo $next_disabled ? 'tabindex="-1" disabled' : 'tabindex="0"'; ?>
+            data-no-ajax="true" data-pjax="false" data-swup="false" data-barba-prevent="self" data-turbo="false"
+          >
+            <!-- right SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
+              <path d="M1.1068 18.2129C7.109 16.5334 18.1708 14.5303 31 17.418" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M11.3227 0.643183L31 17.4188L11.3227 30" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </button>
 
-        <a
-          href="<?php echo $next_disabled ? '#' : $next_url; ?>"
-          data-page="<?php echo $next_disabled ? '' : ($current + 1); ?>"
-          class="pager-next <?php echo $next_disabled ? 'opacity-30 pointer-events-none' : 'hover:opacity-100'; ?> select-none"
-          rel="next"
-          aria-disabled="<?php echo $next_disabled ? 'true' : 'false'; ?>"
-          tabindex="<?php echo $next_disabled ? '-1' : '0'; ?>"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
-            <path d="M1.1068 18.2129C7.109 16.5334 18.1708 14.5303 31 17.418" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
-            <path d="M11.3227 0.643183L31 17.4188L11.3227 30" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </nav>
+          <noscript>
+            <div class="mt-6 flex items-center justify-center gap-4">
+              <?php if ( $prev_url ) : ?><a href="<?php echo esc_url( $prev_url ); ?>">&larr; <?php esc_html_e('Previous','carina'); ?></a><?php endif; ?>
+              <?php if ( $next_url ) : ?><a href="<?php echo esc_url( $next_url ); ?>"><?php esc_html_e('Next','carina'); ?> &rarr;</a><?php endif; ?>
+            </div>
+          </noscript>
+        </nav>
       <?php endif; ?>
 
-
-    <?php wp_reset_postdata(); ?>
+      <?php wp_reset_postdata(); ?>
 
     <?php else : ?>
       <p class="mt-10 text-darkBlue"><?php esc_html_e('No posts yet.', 'carina'); ?></p>
     <?php endif; ?>
   </div>
 </section>
+
 
 
 <?php get_footer(); ?>

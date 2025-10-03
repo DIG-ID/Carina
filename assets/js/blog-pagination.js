@@ -2,12 +2,12 @@
   const grid   = document.getElementById('blog-grid');
   const pager  = document.getElementById('blog-pager');
   const number = document.getElementById('blog-current');
-  if (!grid || !pager || !number) return;
+  const section = document.getElementById('section-blog');
+  if (!grid || !pager || !number || !section) return;
 
-  // ---------- helpers ----------
   const q = (sel, root = document) => root.querySelector(sel);
 
-  const parsePageFromUrl = (href) => {
+  const parsePageFromHref = (href) => {
     try {
       const u = new URL(href || window.location.href, window.location.href);
       const pretty = (u.pathname.match(/\/page\/(\d+)\/?$/) || [])[1];
@@ -17,20 +17,20 @@
     } catch { return 1; }
   };
 
-  const setLinkState = (el, enabled, href, page) => {
-    if (!el) return;
+  const setBtnState = (btn, enabled, href, page) => {
+    if (!btn) return;
+    btn.dataset.href = href || '#';
+    btn.dataset.page = enabled ? String(page || '') : '';
     if (enabled) {
-      el.classList.remove('opacity-30','pointer-events-none');
-      el.setAttribute('aria-disabled', 'false');
-      el.setAttribute('tabindex', '0');
-      el.setAttribute('href', href || '#');
-      el.dataset.page = String(page || '');
+      btn.classList.remove('opacity-30','pointer-events-none');
+      btn.removeAttribute('aria-disabled');
+      btn.removeAttribute('disabled');
+      btn.setAttribute('tabindex','0');
     } else {
-      el.classList.add('opacity-30','pointer-events-none');
-      el.setAttribute('aria-disabled', 'true');
-      el.setAttribute('tabindex', '-1');
-      el.setAttribute('href', href || '#');
-      el.dataset.page = '';
+      btn.classList.add('opacity-30','pointer-events-none');
+      btn.setAttribute('aria-disabled','true');
+      btn.setAttribute('disabled','');
+      btn.setAttribute('tabindex','-1');
     }
   };
 
@@ -38,8 +38,8 @@
     const prev = q('.pager-prev', pager);
     const next = q('.pager-next', pager);
     number.textContent = String(p.current);
-    setLinkState(prev, p.has_prev, p.prev_url, p.current - 1);
-    setLinkState(next, p.has_next, p.next_url, p.current + 1);
+    setBtnState(prev, p.has_prev, p.prev_url, p.current - 1);
+    setBtnState(next, p.has_next, p.next_url, p.current + 1);
   };
 
   const getHeaderOffset = () => {
@@ -48,16 +48,11 @@
     return h;
   };
 
-  // Wait for images in the grid (first load after swap often needs this)
   const waitForImages = (root, timeout = 800) => new Promise((resolve) => {
     const imgs = [...root.querySelectorAll('img')].filter(img => !img.complete);
-    if (imgs.length === 0) {
-      // allow layout to flush
-      requestAnimationFrame(() => resolve());
-      return;
-    }
+    if (!imgs.length) return requestAnimationFrame(() => resolve());
     let remaining = imgs.length, done = false;
-    const finish = () => { if (done) return; done = true; resolve(); };
+    const finish = () => { if (!done) { done = true; resolve(); } };
     const t = setTimeout(finish, timeout);
     imgs.forEach(img => {
       const cb = () => { if (--remaining === 0) { clearTimeout(t); finish(); } };
@@ -66,7 +61,6 @@
     });
   });
 
-  // Scroll after layout settles (double rAF avoids the first-frame jump)
   const scrollToIntroAfterLayout = () => {
     const intro = document.querySelector('#section-intro, .section-intro');
     if (!intro) return;
@@ -79,20 +73,17 @@
     });
   };
 
-  // ---------- history priming (handles hard refresh cleanly) ----------
-  const initialPage = parsePageFromUrl(window.location.href);
+  // History priming
+  const initialPage = parsePageFromHref(window.location.href);
   if (!history.state || typeof history.state.page === 'undefined') {
     history.replaceState({ page: initialPage }, '', window.location.href);
   }
-  let lastStatePage = history.state?.page || initialPage;
-
-  // Ensure visible number is correct on a hard refresh
-  const printed = parseInt(number.textContent.trim() || '0', 10);
-  if (!printed || printed !== initialPage) {
+  if ((parseInt(number.textContent.trim() || '0',10) || 0) !== initialPage) {
     number.textContent = String(initialPage);
   }
+  let lastStatePage = history.state?.page || initialPage;
 
-  // ---------- ajax loader ----------
+  // AJAX loader
   const ajax = (page) => {
     const fd = new FormData();
     fd.append('action', 'carina_load_posts');
@@ -116,12 +107,12 @@
           lastStatePage = p.current;
         }
 
-        // Wait for images/layout to settle, then smooth scroll to intro
         return waitForImages(grid).then(scrollToIntroAfterLayout);
       })
       .catch(() => {
-        const a = pager.querySelector(`[data-page="${page}"]`);
-        const href = a?.getAttribute('href');
+        // Hard fallback: navigate to the pretty URL we control
+        const btn = pager.querySelector(`[data-page="${page}"]`);
+        const href = btn?.dataset.href;
         if (href) window.location.href = href;
       })
       .finally(() => {
@@ -129,28 +120,55 @@
       });
   };
 
-  // ---------- click handling ----------
-  pager.addEventListener('click', (e) => {
-    const a = e.target.closest('a[data-page]');
-    if (!a) return;
-    if (a.getAttribute('aria-disabled') === 'true') return;
+  // GLOBAL GUARD 1: cancel any pointerdown that targets admin-ajax links
+  document.addEventListener('pointerdown', (e) => {
+    const a = e.target.closest('a');
+    if (!a || !section.contains(a)) return;
+    if (/admin-ajax\.php/i.test(a.getAttribute('href') || '')) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+    }
+  }, { capture: true });
 
-    // Prefer data-page; fallback to href parsing; default to 1
-    let page = parseInt(a.dataset.page || '0', 10);
-    if (!page) page = parsePageFromUrl(a.getAttribute('href') || '');
-    if (!page) page = 1;
+  // GLOBAL GUARD 2: cancel any click to admin-ajax and reroute to pretty URL via our AJAX
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a');
+    if (!a || !section.contains(a)) return;
+    const href = a.getAttribute('href') || '';
+    if (/admin-ajax\.php/i.test(href)) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+
+      const page = parsePageFromHref(href) || 1;
+      history.pushState({ page }, '', page > 1 ? (CARINA_BLOG.pageBase + page + '/') : CARINA_BLOG.baseUrl);
+      ajax(page);
+    }
+  }, { capture: true });
+
+  // Our pager buttons
+  pager.addEventListener('click', (e) => {
+    const btn = e.target.closest('button.pager-prev, button.pager-next');
+    if (!btn || !pager.contains(btn)) return;
+    if (btn.getAttribute('aria-disabled') === 'true' || btn.hasAttribute('disabled')) return;
 
     e.preventDefault();
-    ajax(page);
-  });
+    e.stopPropagation();
+    if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
 
-  // ---------- browser back/forward ----------
+    let page = parseInt(btn.dataset.page || '0', 10);
+    if (!page) page = parsePageFromHref(btn.dataset.href || '');
+    if (!page) page = 1;
+
+    ajax(page);
+  }, { capture: true });
+
+  // Back/Forward
   window.addEventListener('popstate', (e) => {
-    // If state missing/empty, derive from the URL (hard refresh or manual nav)
     const page = (e.state && typeof e.state.page !== 'undefined')
       ? parseInt(e.state.page, 10)
-      : parsePageFromUrl(window.location.href);
-
+      : parsePageFromHref(window.location.href);
     if (!page || page === lastStatePage) return;
     lastStatePage = page;
     ajax(page);

@@ -17,3 +17,9 @@ body
 
 .theme-grid
     @apply grid grid-cols-2 md:grid-cols-6 xl:grid-cols-12 gap-x-5 md:gap-x-4 xl:gap-x-8
+
+
+/* Hard block any accidental admin-ajax links in the blog area */
+#section-blog a[href*="admin-ajax.php"]
+    pointer-events: none !important
+    cursor: default !important
