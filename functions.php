@@ -254,15 +254,16 @@ function carina_load_posts() {
   $html = ob_get_clean();
 
   $payload = [
-		'html'       => $html,
-		'current'    => $page,
-		'max'        => (int) $q->max_num_pages,
-		'has_prev'   => $page > 1,
-		'has_next'   => $page < (int) $q->max_num_pages,
-		'prev_url'   => $page > 1 ? get_pagenum_link($page - 1) : '',
-		'next_url'   => $page < (int) $q->max_num_pages ? get_pagenum_link($page + 1) : '',
-		'page_url'   => $page > 1 ? get_pagenum_link($page) : '', // <-- add this
+		'html'     => $html,
+		'current'  => $page,
+		'max'      => (int) $q->max_num_pages,
+		'has_prev' => $page > 1,
+		'has_next' => $page < (int) $q->max_num_pages,
+		'prev_url' => $page > 1 ? get_pagenum_link($page - 1) : '',
+		'next_url' => $page < (int) $q->max_num_pages ? get_pagenum_link($page + 1) : '',
+		'page_url' => $page > 1 ? get_pagenum_link($page) : get_permalink(get_option('page_for_posts')),
 	];
+
 
   wp_reset_postdata();
   wp_send_json_success($payload);

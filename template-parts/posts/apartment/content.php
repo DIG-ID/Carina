@@ -5,11 +5,15 @@
       <!-- Previous/next buttons -->
       <div class="col-span-2 md:col-span-6 xl:col-span-12 flex w-full pb-16 md:pb-24">
         <div>
-          <?php if ( $prev = get_previous_post() ) : ?>
-            <a class="btn btn-arrow-previous" href="<?php echo esc_url( get_permalink( $prev->ID ) ); ?>">
-              <?php echo esc_html__( 'Zurück zur Zimmerübersicht', 'carina' ); ?>
-            </a>
-          <?php endif; ?>
+          <?php
+          $archive_url = get_post_type_archive_link( 'apartment' );
+          if ( function_exists( 'apply_filters' ) && defined( 'ICL_LANGUAGE_CODE' ) ) {
+            $archive_url = apply_filters( 'wpml_permalink', $archive_url, ICL_LANGUAGE_CODE );
+          }
+          ?>
+          <a class="btn btn-arrow-previous" href="<?php echo esc_url( $archive_url ); ?>">
+            <?php esc_html_e( 'Zurück zur Apartmentübersicht', 'carina' ); ?>
+          </a>
         </div>
         <div class="ml-auto">
           <?php if ( $next = get_next_post() ) : ?>

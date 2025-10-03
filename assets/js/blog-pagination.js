@@ -2,8 +2,22 @@
   const grid    = document.getElementById('blog-grid');
   const pager   = document.getElementById('blog-pager');
   const number  = document.getElementById('blog-current');
-  const section = document.getElementById('section-blog');
   if (!grid || !pager || !number) return;
+
+  // ---------- helpers ----------
+  const q = (sel, root = document) => root.querySelector(sel);
+
+  const parsePageFromUrl = (href) => {
+    try {
+      const u = new URL(href || window.location.href, window.location.href);
+      const pretty = (u.pathname.match(/\/page\/(\d+)\/?$/) || [])[1];
+      const query  = u.searchParams.get('paged');
+      const n = parseInt(pretty || query || '1', 10);
+      return Number.isFinite(n) && n > 0 ? n : 1;
+    } catch {
+      return 1;
+    }
+  };
 
   const setLinkState = (el, enabled, href, page) => {
     if (!el) return;
@@ -17,16 +31,45 @@
       el.classList.add('opacity-30','pointer-events-none');
       el.setAttribute('aria-disabled', 'true');
       el.setAttribute('tabindex', '-1');
-      el.setAttribute('href', '#');
+      el.setAttribute('href', href || '#');
       el.dataset.page = '';
     }
   };
 
+  const updatePagerFromPayload = (p) => {
+    const prev = q('.pager-prev', pager);
+    const next = q('.pager-next', pager);
+    number.textContent = String(p.current);
+    setLinkState(prev, p.has_prev, p.prev_url, p.current - 1);
+    setLinkState(next, p.has_next, p.next_url, p.current + 1);
+  };
+
+  const getHeaderOffset = () => {
+    const candidates = document.querySelectorAll('header[role="banner"], .site-header, .header, #site-header');
+    let h = 0; candidates.forEach(el => { h = Math.max(h, el.offsetHeight || 0); });
+    return h;
+  };
+
+  const smoothScrollToIntro = () => {
+    const intro = document.querySelector('#section-intro, .section-intro');
+    if (!intro) return;
+    const y = Math.max(0, intro.getBoundingClientRect().top + window.scrollY - (getHeaderOffset() + 8));
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  };
+
+  // ---------- history priming (handles hard refresh) ----------
+  const initialPage = parsePageFromUrl(window.location.href);
+  if (!history.state || typeof history.state.page === 'undefined') {
+    history.replaceState({ page: initialPage }, '', window.location.href);
+  }
+  let lastStatePage = history.state?.page || initialPage;
+
+  // ---------- ajax loader ----------
   const ajax = (page) => {
     const fd = new FormData();
     fd.append('action', 'carina_load_posts');
-    fd.append('nonce', CARINA_BLOG.nonce);
-    fd.append('page', page);
+    fd.append('nonce',  CARINA_BLOG.nonce);
+    fd.append('page',   page);
 
     pager.classList.add('opacity-50','pointer-events-none');
 
@@ -36,49 +79,52 @@
         if (!data || !data.success) throw new Error('Request failed');
         const p = data.data;
 
-        // Swap cards
         grid.innerHTML = p.html;
-        number.textContent = p.current;
+        updatePagerFromPayload(p);
 
-        // Toggle links
-        const prev = pager.querySelector('.pager-prev');
-        const next = pager.querySelector('.pager-next');
-        setLinkState(prev, p.has_prev, p.prev_url, p.current - 1);
-        setLinkState(next, p.has_next, p.next_url, p.current + 1);
-
-        // Update the address bar (pretty URL)
-        const url = p.page_url || CARINA_BLOG.baseUrl;
-        if (url) window.history.pushState({ page: p.current }, '', url);
-
-        // Scroll back to the section top for a stable UX
-        if (section && section.scrollIntoView) {
-          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const pretty = p.page_url || CARINA_BLOG.baseUrl;
+        if (pretty) {
+          history.pushState({ page: p.current }, '', pretty);
+          lastStatePage = p.current;
         }
+
+        smoothScrollToIntro();
       })
       .catch(() => {
-        // Fallback to normal navigation if AJAX fails
+        // hard fallback
         const a = pager.querySelector(`[data-page="${page}"]`);
-        if (a && a.getAttribute('href')) window.location.href = a.getAttribute('href');
+        const href = a?.getAttribute('href');
+        if (href) window.location.href = href;
       })
       .finally(() => {
         pager.classList.remove('opacity-50','pointer-events-none');
       });
   };
 
-  // Intercept clicks (ignore disabled)
+  // ---------- click handling ----------
   pager.addEventListener('click', (e) => {
     const a = e.target.closest('a[data-page]');
     if (!a) return;
     if (a.getAttribute('aria-disabled') === 'true') return;
-    const page = parseInt(a.dataset.page || '0', 10);
-    if (!page) return;
+
+    // prefer data-page; fall back to href parsing; default to 1
+    let page = parseInt(a.dataset.page || '0', 10);
+    if (!page) page = parsePageFromUrl(a.getAttribute('href') || '');
+    if (!page) page = 1;
+
     e.preventDefault();
     ajax(page);
   });
 
-  // Browser back/forward
+  // ---------- browser back/forward ----------
   window.addEventListener('popstate', (e) => {
-    const page = e.state?.page ? parseInt(e.state.page, 10) : 1;
+    // if state missing/empty, derive from current URL
+    const page = (e.state && typeof e.state.page !== 'undefined')
+      ? parseInt(e.state.page, 10)
+      : parsePageFromUrl(window.location.href);
+
+    if (!page || page === lastStatePage) return;
+    lastStatePage = page;
     ajax(page);
   });
 })();
