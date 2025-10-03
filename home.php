@@ -76,7 +76,7 @@ $next_url = $paged < (int) $blog_q->max_num_pages ? esc_url( add_query_arg( 'pag
 <section id="section-blog" class="section-blog pt-8 pb-20 md:pb-20 md:pt-12">
   <div class="theme-container">
     <?php if ( $blog_q->have_posts() ) : ?>
-      <div class="theme-grid">
+      <div id="blog-grid" class="theme-grid">
         <?php while ( $blog_q->have_posts() ) : $blog_q->the_post(); ?>
           <article <?php post_class('group col-span-2 md:col-span-3 xl:col-span-4 overflow-hidden transition-all mb-7 md:mb-20 xl:mb-24'); ?>>
             <a href="<?php the_permalink(); ?>" class="block relative">
@@ -113,55 +113,54 @@ $next_url = $paged < (int) $blog_q->max_num_pages ? esc_url( add_query_arg( 'pag
       </div>
 
       <?php
-      global $wp_query;
-
-      $total_pages = (int) $wp_query->max_num_pages;
+      $total_pages = (int) $blog_q->max_num_pages;
       if ( $total_pages > 1 ) :
-        $current  = max( 1, (int) get_query_var('paged') );
+        $current  = $paged;
         $prev_url = $current > 1 ? esc_url( get_pagenum_link( $current - 1 ) ) : '';
         $next_url = $current < $total_pages ? esc_url( get_pagenum_link( $current + 1 ) ) : '';
       ?>
-        <nav class="mt-10 flex items-center justify-center gap-4" aria-label="<?php esc_attr_e('Pagination', 'carina'); ?>">
-          <?php if ( $prev_url ) : ?>
-            <a href="<?php echo $prev_url; ?>" rel="prev" aria-label="<?php esc_attr_e('Previous page', 'carina'); ?>" class="text-darkBlue/90 hover:opacity-100 transition-opacity select-none">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
-                <path d="M30.8932 12.7871C24.891 14.4666 13.8292 16.4697 1 13.582" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
-                <path d="M20.6773 30.3568L0.999998 13.5812L20.6773 1" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          <?php else : ?>
-            <span class="opacity-30 select-none">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
-                <path d="M30.8932 12.7871C24.891 14.4666 13.8292 16.4697 1 13.582" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
-                <path d="M20.6773 30.3568L0.999998 13.5812L20.6773 1" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          <?php endif; ?>
+      <nav id="blog-pager" class="mt-10 flex items-center justify-center gap-4">
+        <?php
+          $prev_disabled = $current <= 1;
+          $next_disabled = $current >= $total_pages;
+        ?>
 
-          <span class="font-funnelsans min-w-6 text-center text-darkBlue select-none">
-            <?php echo esc_html( number_format_i18n( $current ) ); ?>
-          </span>
+        <a
+          href="<?php echo $prev_disabled ? '#' : $prev_url; ?>"
+          data-page="<?php echo $prev_disabled ? '' : ($current - 1); ?>"
+          class="pager-prev <?php echo $prev_disabled ? 'opacity-30 pointer-events-none' : 'hover:opacity-100'; ?> select-none"
+          rel="prev"
+          aria-disabled="<?php echo $prev_disabled ? 'true' : 'false'; ?>"
+          tabindex="<?php echo $prev_disabled ? '-1' : '0'; ?>"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
+            <path d="M30.8932 12.7871C24.891 14.4666 13.8292 16.4697 1 13.582" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M20.6773 30.3568L0.999998 13.5812L20.6773 1" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </a>
 
-          <?php if ( $next_url ) : ?>
-            <a href="<?php echo $next_url; ?>" rel="next" aria-label="<?php esc_attr_e('Next page', 'carina'); ?>" class="text-darkBlue hover:opacity-100 transition-opacity select-none">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
-                <path d="M1.1068 18.2129C7.109 16.5334 18.1708 14.5303 31 17.418" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
-                <path d="M11.3227 0.643183L31 17.4188L11.3227 30" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          <?php else : ?>
-            <span class="opacity-30 select-none">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
-                <path d="M1.1068 18.2129C7.109 16.5334 18.1708 14.5303 31 17.418" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
-                <path d="M11.3227 0.643183L31 17.4188L11.3227 30" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          <?php endif; ?>
-        </nav>
+        <span id="blog-current" class="min-w-6 text-center select-none">
+          <?php echo esc_html( number_format_i18n( $current ) ); ?>
+        </span>
+
+        <a
+          href="<?php echo $next_disabled ? '#' : $next_url; ?>"
+          data-page="<?php echo $next_disabled ? '' : ($current + 1); ?>"
+          class="pager-next <?php echo $next_disabled ? 'opacity-30 pointer-events-none' : 'hover:opacity-100'; ?> select-none"
+          rel="next"
+          aria-disabled="<?php echo $next_disabled ? 'true' : 'false'; ?>"
+          tabindex="<?php echo $next_disabled ? '-1' : '0'; ?>"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
+            <path d="M1.1068 18.2129C7.109 16.5334 18.1708 14.5303 31 17.418" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M11.3227 0.643183L31 17.4188L11.3227 30" stroke="#0F1A1E" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </nav>
       <?php endif; ?>
 
 
-      <?php wp_reset_postdata(); ?>
+    <?php wp_reset_postdata(); ?>
 
     <?php else : ?>
       <p class="mt-10 text-darkBlue"><?php esc_html_e('No posts yet.', 'carina'); ?></p>
