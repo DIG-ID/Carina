@@ -11,20 +11,21 @@
 						$posts_page_id = icl_object_id( $posts_page_id, 'page', true );
 					}
 
-					return $posts_page_id ? get_permalink($posts_page_id) : home_url('/'); // fallback when posts are on front page
+					return $posts_page_id ? get_permalink($posts_page_id) : home_url('/');
 				}
 				?>
-            <a class="btn btn-arrow-previous" href="<?php echo esc_url( carina_posts_page_url() ); ?>">
-              <?php echo esc_html_e( 'Zurück', 'carina' ); ?>
-            </a>
+				<a class="btn btn-arrow-previous" href="<?php echo esc_url( carina_posts_page_url() ); ?>">
+					<?php echo esc_html_e( 'Zurück', 'carina' ); ?>
+				</a>
       </div>
     </div>
 		<div class="theme-grid">
 			<div class="col-span-2 md:col-span-6">
-        <time datetime="<?php echo esc_attr( get_post_time('c') ); ?>">
-          <span class="mr-14 block-text text-darkBlue"><?php esc_html_e( 'Datum:', 'carina' ); ?></span><span class="block-text text-darkBlue"><?php echo esc_html( get_the_date( 'j. M. Y' ) ); ?></span>
+        
+				<h3 class="title-sm text-darkBlue xl:mb-2 mb-1"><?php the_title(); ?></h3>
+				<time class="inline-block xl:mb-8 mb-5" datetime="<?php echo esc_attr( get_post_time('c') ); ?>">
+          <span class="mr-10 block-text text-darkBlue"><?php esc_html_e( 'Datum:', 'carina' ); ?></span><span class="block-text text-darkBlue"><?php echo esc_html( wp_date( 'j. F Y', get_post_timestamp() ) ); ?></span>
         </time>
-				<h3 class="title-sm text-darkBlue mt-9 xl:mt-20 mb-6 xl:mb-11"><?php the_title(); ?></h3>
 				<div class="section-post-content-wrapper">
 					<?php the_content(); ?>
 				</div>

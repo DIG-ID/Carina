@@ -28,8 +28,10 @@
 						?>
 						<div class="ml-4 pr-6 flex flex-col justify-start">
               <time datetime="<?php echo esc_attr( get_post_time('c') ); ?>">
-                <span class="block-text text-lightGrey"><?php echo esc_html( get_the_date( 'j. M. Y' ) ); ?></span>
-              </time>
+								<span class="block-text text-lightGrey">
+									<?php echo esc_html( get_the_date( 'j M Y' ) ); ?>
+								</span>
+							</time>
 							<p class="block-text text-lightGrey pt-5 line-clamp-3"><?php the_title(); ?></p>
 						</div>
 					</article>
