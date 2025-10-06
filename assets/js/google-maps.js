@@ -9,7 +9,7 @@
       // remove all POIs (icons + shapes + labels)
       { featureType: "poi", elementType: "all", stylers: [{ visibility: "off" }] },
       // (optional) also remove transit icons
-      { featureType: "poi.business", elementType: "all", stylers: [{ visibility: "off" }] }
+      { featureType: "poi.business", elementType: "all", stylers: [{ visibility: "off" }] },
 
       // keep your earlier tweaks
       { featureType: "administrative.land_parcel", elementType: "labels", stylers: [{ visibility: "off" }] },
