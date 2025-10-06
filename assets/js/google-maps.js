@@ -1,155 +1,84 @@
-(function( $ ) {
-    window.initMap = function(){}
-  /**
-   * initMap
-   *
-   * Renders a Google Map onto the selected jQuery element
-   *
-   * @date    22/10/19
-   * @since   5.8.6
-   *
-   * @param   jQuery $el The jQuery element.
-   * @return  object The map instance.
-   */
-  function initMap( $el ) {
-    // Find marker elements within map.
+(function ($) {
+  window.initMap = function(){}
+
+  function initMap($el) {
     var $markers = $el.find('.marker');
-  
-    // Define custom map style.
+
+    // Hide all POIs (incl. hotels), keep your custom marker visible
     var mapStyle = [
-      {
-        "featureType": "administrative.land_parcel",
-        "elementType": "labels",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "featureType": "poi",
-        "elementType": "labels.text",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "featureType": "road.local",
-        "elementType": "labels",
-        "stylers": [
-          {
-            "visibility": "on"
-          }
-        ]
-      }
+      // remove all POIs (icons + shapes + labels)
+      { featureType: "poi", elementType: "all", stylers: [{ visibility: "off" }] },
+      // (optional) also remove transit icons
+      { featureType: "transit", elementType: "all", stylers: [{ visibility: "off" }] },
+      // keep your earlier tweaks
+      { featureType: "administrative.land_parcel", elementType: "labels", stylers: [{ visibility: "off" }] },
+      { featureType: "road.local", elementType: "labels", stylers: [{ visibility: "on" }] }
     ];
-  
-    // Create gerenic map.
+
     var mapArgs = {
-      zoom        : $el.data('zoom') || 12,
-      mapTypeId   : google.maps.MapTypeId.ROADMAP,
+      zoom: $el.data('zoom') || 16,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
       fullscreenControl: false,
       streetViewControl: false,
       mapTypeControl: false,
       zoomControl: true,
       scrollwheel: false,
-      styles: mapStyle
+      styles: mapStyle,
+      // make Google’s default POIs unclickable (belt & suspenders)
+      clickableIcons: false
     };
-    var map = new google.maps.Map( $el[0], mapArgs );
-  
-    // Add markers.
+
+    var map = new google.maps.Map($el[0], mapArgs);
+
     map.markers = [];
-    $markers.each(function(){
-      initMarker( $(this), map );
+    $markers.each(function () {
+      initMarker($(this), map);
     });
-  
-    // Center map based on markers.
-    centerMap( map );
-  
-    // Return map instance.
+
+    centerMap(map);
     return map;
   }
-  
-  /**
-   * initMarker
-   *
-   * Creates a marker for the given jQuery element and map.
-   *
-   * @date    22/10/19
-   * @since   5.8.6
-   *
-   * @param   jQuery $el The jQuery element.
-   * @param   object The map instance.
-   * @return  object The marker instance.
-   */
-  function initMarker( $marker, map ) {
-    // Get position from marker.
+
+  function initMarker($marker, map) {
     var lat = $marker.data('lat');
     var lng = $marker.data('lng');
-    var latLng = {
-      lat: parseFloat( lat ),
-      lng: parseFloat( lng )
-    };
-  
-    // Create marker instance.
+    var latLng = { lat: parseFloat(lat), lng: parseFloat(lng) };
+
+    // Optional: use a custom hotel icon so it's clear which pin is yours
     var marker = new google.maps.Marker({
-      position : latLng,
-      map: map
+      position: latLng,
+      map: map,
+      // icon: { url: '/path/to/carina-pin.png', scaledSize: new google.maps.Size(32, 32) }
     });
-  
-    // Append to reference for later use.
-    map.markers.push( marker );
-  
-    // If marker contains HTML, add it to an infoWindow.
-    if( $marker.html() ){
-      // Create info window.
-      var infowindow = new google.maps.InfoWindow({
-        content: $marker.html()
-      });
-      // Show info window when marker is clicked.
-      google.maps.event.addListener(marker, 'click', function() {
-        infowindow.open( map, marker );
+
+    map.markers.push(marker);
+
+    if ($marker.html()) {
+      var infowindow = new google.maps.InfoWindow({ content: $marker.html() });
+      google.maps.event.addListener(marker, 'click', function () {
+        infowindow.open(map, marker);
       });
     }
   }
-  
-  /**
-   * centerMap
-   *
-   * Centers the map showing all markers in view.
-   *
-   * @date    22/10/19
-   * @since   5.8.6
-   *
-   * @param   object The map instance.
-   * @return  void
-   */
-  function centerMap( map ) {
-    // Create map boundaries from all map markers.
+
+  function centerMap(map) {
     var bounds = new google.maps.LatLngBounds();
-    map.markers.forEach(function( marker ){
-      bounds.extend({
-        lat: marker.position.lat(),
-        lng: marker.position.lng()
-      });
+    map.markers.forEach(function (marker) {
+      bounds.extend({ lat: marker.position.lat(), lng: marker.position.lng() });
     });
-  
-    // Case: Single marker.
-    if( map.markers.length == 1 ){
-      map.setCenter( bounds.getCenter() );
-    // Case: Multiple markers.
-    } else{
-        map.fitBounds( bounds );
+
+    if (map.markers.length === 1) {
+      map.setCenter(bounds.getCenter());
+      // keep your chosen zoom (e.g., 16)
+    } else {
+      map.fitBounds(bounds);
     }
   }
-  
-  // Render maps on page load.
-  $(document).on( 'ready', () => {
-    $('.acf-map').each(function(){
-      var map = initMap( $(this) );
+
+  $(document).on('ready', () => {
+    $('.acf-map').each(function () {
+      initMap($(this));
     });
   });
-  
-  })(jQuery);
+
+})(jQuery);
