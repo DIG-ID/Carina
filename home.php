@@ -82,11 +82,11 @@ $blog_q = new WP_Query([
             </a>
 
             <a href="<?php the_permalink(); ?>" class="block py-6 xl:px-4 content-link">
-              <h2 class="mb-4 block-text text-darkBlue"><?php the_title(); ?></h2>
+              <h2 class="mb-3 block-text text-darkBlue !font-semibold min-h-[52px] line-clamp-2"><?php the_title(); ?></h2>
               <time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>" class="block-text text-darkBlue">
                 <?php echo esc_html( wp_date( 'j. F Y', get_post_timestamp() ) ); ?>
               </time>
-              <p class="mt-3 block-text text-darkBlue line-clamp-4">
+              <p class="block-text text-darkBlue line-clamp-4">
                 <?php
                   $raw = has_excerpt() ? get_post_field('post_excerpt', get_the_ID())
                                        : get_post_field('post_content', get_the_ID());
