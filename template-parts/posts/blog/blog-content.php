@@ -22,7 +22,7 @@
 		<div class="theme-grid">
 			<div class="col-span-2 md:col-span-6">
         
-				<h3 class="title-sm text-darkBlue xl:mb-2 mb-1"><?php the_title(); ?></h3>
+				<h3 class="title-sm text-darkBlue xl:mb-8 mb-5"><?php the_title(); ?></h3>
 				<time class="inline-block xl:mb-8 mb-5" datetime="<?php echo esc_attr( get_post_time('c') ); ?>">
           <span class="mr-10 block-text text-darkBlue"><?php esc_html_e( 'Datum:', 'carina' ); ?></span><span class="block-text text-darkBlue"><?php echo esc_html( wp_date( 'j. F Y', get_post_timestamp() ) ); ?></span>
         </time>
