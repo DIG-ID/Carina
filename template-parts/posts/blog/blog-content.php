@@ -2,7 +2,19 @@
 	<div class="theme-container">
     <div class="theme-grid">
       <div class="col-span-2 md:col-span-6 xl:col-span-12 mb-8 xl:mb-16">
-            <a class="btn btn-arrow-previous" href="/blog/">
+				<?php
+				function carina_posts_page_url() {
+					$posts_page_id = (int) get_option('page_for_posts');
+
+					// WPML-aware: get the translated page ID if available
+					if ( $posts_page_id && function_exists('icl_object_id') ) {
+						$posts_page_id = icl_object_id( $posts_page_id, 'page', true );
+					}
+
+					return $posts_page_id ? get_permalink($posts_page_id) : home_url('/'); // fallback when posts are on front page
+				}
+				?>
+            <a class="btn btn-arrow-previous" href="<?php echo esc_url( carina_posts_page_url() ); ?>">
               <?php echo esc_html_e( 'Zurück', 'carina' ); ?>
             </a>
       </div>
