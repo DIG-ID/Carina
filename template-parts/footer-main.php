@@ -25,17 +25,21 @@
           );
         ?>
       </div>
-      <div class="col-span-2 md:col-span-2 xl:col-span-3 flex flex-col items-start justify-between">
-        <p class="block-text text-lightGrey mb-7"><?php the_field( 'newsletter_title','option' ); ?></p>
-        <?php 
-          $form_shortcode = get_field('newsletter_shortcode', 'option');
-          echo do_shortcode($form_shortcode);
-        ?>
-        <?php do_action( 'socials' ); ?>
+      <div class="col-span-2 md:col-span-2 xl:col-span-3 flex flex-col items-start justify-between mb-8 md:mb-0">
+        <div class="w-full mb-12 md:mb-0">
+          <p class="block-text text-lightGrey mb-7"><?php the_field( 'newsletter_title','option' ); ?></p>
+          <?php 
+            $form_shortcode = get_field('newsletter_shortcode', 'option');
+            echo do_shortcode($form_shortcode);
+          ?>
+        </div>
+        <div class="w-full flex md:block justify-center md:justify-normal">
+          <?php do_action( 'socials' ); ?>
+        </div>
       </div>
     </div>
     <div class="theme-grid pb-11 md:pb-16 xl:pb-24">
-      <div class="col-span-2 md:col-span-6 xl:col-span-12">
+      <div class="col-span-2 md:col-span-6 xl:col-span-12 flex md:block justify-evenly md:justify-normal mb-7 md:mb-0">
       <?php
       if( have_rows('partner_logos','option') ):
           while( have_rows('partner_logos','option') ) : the_row(); ?>
@@ -49,7 +53,7 @@
                   $size,
                   false,
                   [
-                  'class'    => 'h-[73px] w-auto mr-16',
+                  'class'    => 'h-[73px] w-auto md:mr-16',
                   'loading'  => 'eager',
                   'decoding' => 'async',
                   ]
