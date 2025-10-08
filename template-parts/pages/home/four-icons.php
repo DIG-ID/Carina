@@ -47,7 +47,7 @@
                         </div>
                         <div class="w-4/5 pl-6">
                             <h3 class="title-sm text-darkBlue pb-5"><?php the_sub_field('title'); ?></h3>
-                            <p class="block-text text-darkBlue"><?php the_sub_field( 'text' ); ?></p>
+                            <p class="block-text text-darkBlue md:min-h-[104px] xl:min-h-[78px]"><?php the_sub_field( 'text' ); ?></p>
                         </div>
                     </div>
                     <?php 
