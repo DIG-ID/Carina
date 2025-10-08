@@ -7,7 +7,7 @@
 			</div>
 			<!-- Section heading -->
 			<div class="mb-8 md:mb-16 xl:mb-7 col-span-2 md:col-span-6 xl:col-span-7">
-				<h2 class="title-md"><?php the_field( 'apartment_content_title', 'options' ); ?></h2>
+				<h2 class="title-md md:max-w-[530px] xl:max-w-[530px]"><?php the_field( 'apartment_content_title', 'options' ); ?></h2>
 			</div>
 		</div>
 		<div class="theme-grid gap-y-16 xl:gap-y-20 content-wrapper">
