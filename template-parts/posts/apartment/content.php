@@ -107,7 +107,7 @@
                   }
                   ?>
                   <?php if (!empty($room_space_text)) : ?>
-                    <h3 class="block-text text-darkBlue max-w-[80px]"><?php echo esc_html($room_space_text); ?></h3>
+                    <h3 class="block-text text-darkBlue"><?php echo esc_html($room_space_text); ?></h3>
                   <?php endif; ?>
                 </div>
             <?php endif; ?>
@@ -126,7 +126,7 @@
                       );
                     }
                     ?>
-                    <h3 class="block-text text-darkBlue max-w-[80px]"><?php the_sub_field('text'); ?></h3>
+                    <h3 class="block-text text-darkBlue"><?php the_sub_field('text'); ?></h3>
                   </div>
                 <?php endwhile;
               endif; ?>

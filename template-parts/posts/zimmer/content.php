@@ -84,7 +84,7 @@
 
         <!-- Icons -->
         <div class="pt-12 md:pt-10 xl:pt-14 pb-[70px] md:pb-0 text-center ">
-          <div class="grid grid-cols-2 xl:grid-cols-4 gap-x-8 gap-y-6 max-w-[420px]">
+          <div class="grid grid-cols-2 xl:grid-cols-4 gap-x-8 gap-y-6">
             <?php
             /* ---- Room Space Icon  ---- */
             $room_space_icon = get_field('content_room_space_icon');
@@ -98,7 +98,7 @@
             }
 
             if ($first_icon_id || !empty($room_space_text)) : ?>
-              <div class="flex flex-col items-center text-center max-w-[80px]">
+              <div class="flex flex-col items-center text-center">
                 <?php if ($first_icon_id) {
                   echo wp_get_attachment_image(
                     $first_icon_id, 'full', false,
@@ -106,7 +106,7 @@
                   );
                 } ?>
                 <?php if (!empty($room_space_text)) : ?>
-                  <h3 class="block-text text-darkBlue max-w-[80px]"><?php echo esc_html($room_space_text); ?></h3>
+                  <h3 class="block-text text-darkBlue"><?php echo esc_html($room_space_text); ?></h3>
                 <?php endif; ?>
               </div>
             <?php endif; ?>
@@ -123,7 +123,7 @@
                       ['class' => 'mb-3 max-w-[50px] h-10 object-contain']
                     );
                   } ?>
-                  <h3 class="block-text text-darkBlue max-w-[80px]"><?php the_sub_field('text'); ?></h3>
+                  <h3 class="block-text text-darkBlue"><?php the_sub_field('text'); ?></h3>
                 </div>
               <?php endwhile;
             endif; ?>
