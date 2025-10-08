@@ -57,9 +57,7 @@
         endwhile; wp_reset_postdata();
       else : ?>
         <div class="swiper-slide">
-          <div class="min-h-[50svh] flex items-center justify-center text-lightGrey/70">
-            <?php esc_html_e('No posts found.', 'carina'); ?>
-          </div>
+          
         </div>
       <?php endif; ?>
     </div>
