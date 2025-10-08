@@ -18,7 +18,7 @@
         <div class="ml-auto">
           <?php if ( $next = get_next_post() ) : ?>
             <a class="btn btn-arrow-next" href="<?php echo esc_url( get_permalink( $next->ID ) ); ?>">
-              <?php echo esc_html__( 'Nächstes Zimmer', 'carina' ); ?>
+              <?php echo esc_html__( 'Nächstes Apartment', 'carina' ); ?>
             </a>
           <?php endif; ?>
         </div>
