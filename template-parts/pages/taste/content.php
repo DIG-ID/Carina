@@ -27,15 +27,19 @@
           <p class="block-text text-darkBlue pb-6 md:pb-0"><?php the_field( 'content_text_2' ); ?></p>
         </div>
       </div>
-      <div class="col-span-2 md:col-span-3 xl:col-span-5 md:pt-20 xl:pt-56">
-        <p class="font-funnelsans font-bold text-[18px] md:text-[1.75rem] leading-[1.75rem] md:leading-[2.375rem] tracking-[-0.03563rem] text-darkBlue mb-2"><?php the_field( 'content_opening_hours_title' ); ?></p>
-        <p class="font-funnelsans font-normal text-[16px] md:text-[1.375rem] leading-[1.75rem] md:leading-[2.375rem] tracking-[-0.03563rem] text-darkBlue mb-8"><?php the_field( 'content_opening_hours_text' ); ?></p>
-        <?php echo wp_get_attachment_image(
-          get_field('content_image_3'),
-          'full', false,
-          ['class'    => 'w-full object-cover mb-8',]
-        ); ?>
-        <div class="flex flex-col items-start justify-start gap-y-6 max-w-40">
+      <div class="col-span-2 md:col-span-3 xl:col-span-5 md:pt-20 xl:pt-56 flex flex-col">
+        <div class="w-full opening-hours order-1 md:order-1">
+          <p class="font-funnelsans font-bold text-[18px] md:text-[1.75rem] leading-[1.75rem] md:leading-[2.375rem] tracking-[-0.03563rem] text-darkBlue mb-2"><?php the_field( 'content_opening_hours_title' ); ?></p>
+          <p class="font-funnelsans font-normal text-[16px] md:text-[1.375rem] leading-[1.75rem] md:leading-[2.375rem] tracking-[-0.03563rem] text-darkBlue mb-8"><?php the_field( 'content_opening_hours_text' ); ?></p>
+        </div>
+        <div class="img-wrapper order-3 md:order-2">
+          <?php echo wp_get_attachment_image(
+            get_field('content_image_3'),
+            'full', false,
+            ['class'    => 'w-full object-cover md:mb-8',]
+          ); ?>
+        </div>
+        <div class="flex flex-col items-start justify-start gap-y-6 max-w-40 order-2 md:order-3 mb-8 md:mb-0">
           <?php if ( have_rows('content_download_list') ) :
             $i = 0; // start at 0 so first is darkBlue
             while ( have_rows('content_download_list') ) : the_row();

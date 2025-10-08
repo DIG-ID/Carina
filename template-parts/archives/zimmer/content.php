@@ -2,8 +2,8 @@
 	<div class="theme-container">
 		<div class="theme-grid">
 			<!-- Breadcrumbs -->
-			<div class="title-30 mb-2 md:mb-4 xl:mb-4 col-span-2 md:col-span-6 xl:col-span-12">
-				<?php the_field( 'room_content_over_title', 'options' ); ?>
+			<div class="mb-4 col-span-2 md:col-span-6 xl:col-span-12">
+				<h3 class="title-sm"><?php the_field( 'room_content_over_title', 'options' ); ?></h3>
 			</div>
 			<!-- Section heading -->
 			<div class="mb-8 md:mb-16 xl:mb-7 col-span-2 md:col-span-5 xl:col-span-7">
@@ -54,30 +54,32 @@
 							<?php endif; ?>
 							<!-- Amenities -->
 							<!-- Icons -->
+							
+							<?php
+							if ( have_rows( 'content_amenities' ) ) : ?>
 							<div class="flex gap-10 xl:gap-20">
 								<div class="w-full grid grid-cols-2 gap-x-12 gap-y-6 mb-8 md:mb-0">
-									<?php
-									if ( have_rows( 'content_amenities' ) ) :
-										while ( have_rows( 'content_amenities' ) ) :
-											the_row();
-											$icon_field = get_sub_field( 'icon' );
-											$text       = get_sub_field( 'text' );
-											$icon_id    = is_numeric( $icon_field ) ? (int) $icon_field : ( ( is_array( $icon_field ) && ! empty( $icon_field['ID'] ) ) ? (int) $icon_field['ID'] : 0 );
-											?>
-											<div class="flex items-center gap-3">
-												<?php if ( $icon_id ) : ?>
-													<?php echo wp_get_attachment_image( $icon_id, 'full', false, array( 'class' => 'w-6 h-6' ) ); ?>
-												<?php endif; ?>
-												<?php if ( ! empty( $text ) ) : ?>
-													<h3 class="block-text text-darkBlue text-left"><?php echo esc_html( $text ); ?></h3>
-												<?php endif; ?>
-											</div>
-											<?php
-										endwhile;
-									endif;
-									?>
+									<?php	while ( have_rows( 'content_amenities' ) ) :
+										the_row();
+										$icon_field = get_sub_field( 'icon' );
+										$text       = get_sub_field( 'text' );
+										$icon_id    = is_numeric( $icon_field ) ? (int) $icon_field : ( ( is_array( $icon_field ) && ! empty( $icon_field['ID'] ) ) ? (int) $icon_field['ID'] : 0 );
+										?>
+										<div class="flex items-center gap-3">
+											<?php if ( $icon_id ) : ?>
+												<?php echo wp_get_attachment_image( $icon_id, 'full', false, array( 'class' => 'w-6 h-6' ) ); ?>
+											<?php endif; ?>
+											<?php if ( ! empty( $text ) ) : ?>
+												<h3 class="block-text text-darkBlue text-left"><?php echo esc_html( $text ); ?></h3>
+											<?php endif; ?>
+										</div>
+										<?php
+									endwhile; ?>
 								</div>
 							</div>
+							<?php endif;
+							?>
+								
 							<a href="<?php the_permalink(); ?>" class="btn btn-arrow-darkBlue mt-auto self-start md:mb-4">
 								<?php esc_html_e( 'Mehr erfahren', 'carina' ); ?>
 							</a>

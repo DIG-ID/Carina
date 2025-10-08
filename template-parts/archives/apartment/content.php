@@ -2,11 +2,11 @@
 	<div class="theme-container">
 		<div class="theme-grid">
 			<!-- Breadcrumbs -->
-			<div class="mb-4 xl:mb-4 col-span-2 md:col-span-6 xl:col-span-12">
-				<h3 class="title-30"><?php the_field( 'apartment_content_over_title', 'options' ); ?></h3>
+			<div class="mb-4 col-span-2 md:col-span-6 xl:col-span-12">
+				<h3 class="title-sm"><?php the_field( 'apartment_content_over_title', 'options' ); ?></h3>
 			</div>
 			<!-- Section heading -->
-			<div class="mb-[70px] xl:mb-7 col-span-2 md:col-span-6 xl:col-span-7">
+			<div class="mb-8 md:mb-16 xl:mb-7 col-span-2 md:col-span-6 xl:col-span-7">
 				<h2 class="title-md"><?php the_field( 'apartment_content_title', 'options' ); ?></h2>
 			</div>
 		</div>
@@ -47,7 +47,7 @@
 								</p>
 							<?php endif; ?>
 							<?php if ( $description ) : ?>
-								<p class="block-17 mb-24 md:mb-0">
+								<p class="block-17 mb-4 md:mb-0">
 									<?php echo esc_html( $description ); ?>
 								</p>
 							<?php endif; ?>

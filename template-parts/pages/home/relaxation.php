@@ -1,6 +1,6 @@
-<section id="section-relaxation" class="section-relaxation pt-16 md:pt-24 xl:pt-36 pb-14 xl:pb-[150px]">
+<section id="section-relaxation" class="section-relaxation pt-16 md:pt-24 xl:pt-36 pb-14 xl:pb-36">
 
-  <div class="theme-container h-full flex items-end relative z-10">
+  <div class="theme-container h-full flex items-end relative z-10 pb-14 md:pb-0">
     <div class="theme-grid">
     
       <div class="col-span-2 md:col-span-3 xl:col-span-5 text-darkBlue flex flex-col justify-start items-start">
