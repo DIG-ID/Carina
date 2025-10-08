@@ -45,7 +45,7 @@
                   $link_title = $link['title'];
                   $link_target= $link['target'] ? $link['target'] : '_self';
                   ?>
-                  <a class="btn btn-download-darkBlue max-w-36"
+                  <a class="btn btn-download-darkBlue max-w-48"
                     href="<?php echo esc_url($link_url); ?>"
                     target="<?php echo esc_attr($link_target); ?>"
                     data-fancybox="open-zimmer">

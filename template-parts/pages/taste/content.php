@@ -39,7 +39,7 @@
             ['class'    => 'w-full object-cover md:mb-8',]
           ); ?>
         </div>
-        <div class="flex flex-col items-start justify-start gap-y-6 max-w-40 order-2 md:order-3 mb-8 md:mb-0">
+        <div class="flex flex-col items-start justify-start gap-y-6 max-w-48 order-2 md:order-3 mb-8 md:mb-0">
           <?php if ( have_rows('content_download_list') ) :
             $i = 0; // start at 0 so first is darkBlue
             while ( have_rows('content_download_list') ) : the_row();
