@@ -19,9 +19,9 @@
 				['class'    => 'absolute inset-0 w-full h-full object-cover -z-10',]
 			); ?>
 		<?php endif; ?>
-		<?php if ( is_front_page() ) : ?>
+		<?php /*if ( is_front_page() ) :*/ ?>
 			<div class="home-hero-overlay" aria-hidden="true"></div>
-		<?php endif; ?>
+		<?php /*endif;*/ ?>
 
 		<?php if ( is_front_page() ) : ?>
 		<div class="theme-container justify-center h-full flex items-end pb-36 xl:pb-20 relative z-10">
