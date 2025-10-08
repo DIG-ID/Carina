@@ -28,7 +28,7 @@
       <div class="col-span-2 md:col-span-3 xl:col-start-1 xl:col-span-6">
         <div class="content-wrapper order-1 md:order-none">
           <h2 class="title-md text-darkBlue mb-7 md:mb-12 xl:mb-16 md:max-w-[351px] xl:max-w-full">
-            <?php echo esc_html( get_field('content_title') ); ?>
+            <?php the_field('content_title'); ?>
           </h2>
 
           <p class="block-17 text-darkBlue mb-7 md:mb-10 xl:mb-10 xl:max-w-[530px]">

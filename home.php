@@ -86,11 +86,11 @@ $blog_q = new WP_Query([
               <time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>" class="block-text text-darkBlue">
                 <?php echo esc_html( wp_date( 'j. F Y', get_post_timestamp() ) ); ?>
               </time>
-              <p class="block-text text-darkBlue line-clamp-4">
+              <p class="block-text text-darkBlue line-clamp-4 xl:min-h-[104px]">
                 <?php
                   $raw = has_excerpt() ? get_post_field('post_excerpt', get_the_ID())
                                        : get_post_field('post_content', get_the_ID());
-                  echo wp_kses_post( wp_trim_words( wp_strip_all_tags( strip_shortcodes( $raw ) ), 26, '…' ) );
+                  echo esc_html( wp_strip_all_tags( strip_shortcodes( $raw ) ) );
                 ?>
               </p>
             </a>
