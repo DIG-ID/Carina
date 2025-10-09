@@ -2,7 +2,7 @@
 	<div class="theme-container border-t border-b border-lightGrey">
     <div class="theme-grid pt-16 md:pt-16 xl:pt-11 pb-12">
       <div class="col-span-2 md:col-span-2 xl:col-span-3 flex flex-col items-start justify-between">
-        <div class="address-wrapper">
+        <div class="address-wrapper mb-8 md:mb-0">
           <p class="block-text text-lightGrey"><?php esc_html_e( 'Adresse','carina' ); ?></p>
           <p class="block-text text-lightGrey"><?php the_field( 'general_address','option' ); ?></p>
         </div>
