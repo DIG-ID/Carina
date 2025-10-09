@@ -38,7 +38,7 @@
           <div class="flex flex-col lg:flex-row items-start justify-start gap-y-5 lg:gap-y-0 lg:gap-x-8 mb-10">
             <?php
             $ids = get_field('content_plans_maps');
-            $btn_label = get_field('plans_button_label') ?: __('Raumplan', 'carina');
+            $btn_label = get_field('plans_button_label') ?: __('Raumpläne', 'carina');
 
             if (is_array($ids) && !empty($ids)) :
               ?>
