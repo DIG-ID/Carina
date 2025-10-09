@@ -36,25 +36,49 @@
           </p>
 
           <div class="flex flex-col lg:flex-row items-start justify-start gap-y-5 lg:gap-y-0 lg:gap-x-8 mb-10">
-            <?php if ( have_rows('content_plans') ) :
-              $i = 0; // start at 0 so first is darkBlue
-              while ( have_rows('content_plans') ) : the_row();
-                $link = get_sub_field('button');
-                if ( $link ) :
-                  $link_url   = $link['url'];
-                  $link_title = $link['title'];
-                  $link_target= $link['target'] ? $link['target'] : '_self';
+            <?php
+            $ids = get_field('content_plans_maps');
+            $btn_label = get_field('plans_button_label') ?: __('Raumplan', 'carina');
+
+            if (is_array($ids) && !empty($ids)) :
+              ?>
+              <div class="sr-only" aria-hidden="true">
+                <?php foreach ($ids as $id) :
+                  $id = (int) $id;
+                  if ($id <= 0) { continue; }
+
+                  $url      = wp_get_attachment_image_url($id, 'full');
+                  if (!$url) { continue; }
+
+                  $caption  = wp_get_attachment_caption($id);
+                  $alt_attr = trim(get_post_meta($id, '_wp_attachment_image_alt', true));
                   ?>
-                  <a class="btn btn-download-darkBlue max-w-48"
-                    href="<?php echo esc_url($link_url); ?>"
-                    target="<?php echo esc_attr($link_target); ?>"
-                    data-fancybox="open-zimmer">
-                    <?php echo esc_html($link_title); ?>
-                  </a>
-                <?php endif;
-                $i++; // increment each loop
-              endwhile;
-            endif; ?>
+                  <a
+                    href="<?php echo esc_url($url); ?>"
+                    data-fancybox="open-zimmer"
+                    <?php if ($caption) : ?>
+                      data-caption="<?php echo esc_attr($caption); ?>"
+                    <?php endif; ?>
+                    <?php if ($alt_attr) : ?>
+                      aria-label="<?php echo esc_attr($alt_attr); ?>"
+                    <?php endif; ?>
+                  ></a>
+                <?php endforeach; ?>
+              </div>
+
+              <?php
+              $first_id  = (int) reset($ids);
+              $first_url = $first_id ? (wp_get_attachment_image_url($first_id, 'full') ?: '') : '';
+              ?>
+              <a
+                class="btn btn-download-darkBlue max-w-44"
+                data-fancybox-trigger="open-zimmer"
+                href="<?php echo esc_url($first_url ?: '#'); ?>"
+                role="button"
+              >
+                <?php echo esc_html($btn_label); ?>
+              </a>
+            <?php endif; ?>
           </div>
 
           <h3 class="title-sm text-DarkBlue mb-7 md:mb-8 xl:mb-8 md:max-w-[351px] xl:max-w-[540px]">
