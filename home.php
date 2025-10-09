@@ -102,8 +102,11 @@ $blog_q = new WP_Query([
         $total_pages = (int) $blog_q->max_num_pages;
         if ( $total_pages > 1 ) :
           $current       = $paged;
-          $prev_url      = $current > 1 ? get_pagenum_link( $current - 1 ) : '';
-          $next_url      = $current < $total_pages ? get_pagenum_link( $current + 1 ) : '';
+          //$prev_url = $current > 1 ? get_pagenum_link($current - 1) : '';
+          //$next_url = $current < $total_pages ? get_pagenum_link($current + 1) : '';
+          $base_url = get_permalink(get_option('page_for_posts'));
+          $prev_url = $current > 1 ? ($current - 1 === 1 ? $base_url : trailingslashit($base_url) . 'page/' . ($current - 1) . '/') : '';
+          $next_url = $current < $total_pages ? trailingslashit($base_url) . 'page/' . ($current + 1) . '/' : '';
           $prev_disabled = $current <= 1;
           $next_disabled = $current >= $total_pages;
       ?>

@@ -8,13 +8,47 @@
   const q = (sel, root = document) => root.querySelector(sel);
 
   const parsePageFromHref = (href) => {
+    if (!href || href === '#' || href.includes('admin-ajax.php')) {
+      return null;
+    }
+    
     try {
-      const u = new URL(href || window.location.href, window.location.href);
-      const pretty = (u.pathname.match(/\/page\/(\d+)\/?$/) || [])[1];
-      const query  = u.searchParams.get('paged');
-      const n = parseInt(pretty || query || '1', 10);
-      return Number.isFinite(n) && n > 0 ? n : 1;
-    } catch { return 1; }
+      const u = new URL(href, window.location.origin);
+      const path = u.pathname;
+      
+      // Handle pretty permalinks: /geschichten/page/2/
+      const prettyMatch = path.match(/\/page\/(\d+)\/?$/);
+      if (prettyMatch) {
+        return parseInt(prettyMatch[1], 10);
+      }
+      
+      // Handle query parameter: ?paged=2
+      const queryPage = u.searchParams.get('paged');
+      if (queryPage) {
+        return parseInt(queryPage, 10);
+      }
+      
+      // If it's the base URL without /page/1/, it's page 1
+      const basePath = new URL(CARINA_BLOG.baseUrl).pathname;
+      if (path === basePath || path === basePath.replace(/\/$/, '') || path + '/' === basePath) {
+        return 1;
+      }
+      
+      return null;
+    } catch { 
+      return null; 
+    }
+  };
+
+  const parsePageFromData = (btn) => {
+    // First try data-page attribute
+    if (btn.dataset.page) {
+      const page = parseInt(btn.dataset.page, 10);
+      if (!isNaN(page) && page > 0) return page;
+    }
+    
+    // Fall back to parsing href
+    return parsePageFromHref(btn.dataset.href) || 1;
   };
 
   const setBtnState = (btn, enabled, href, page) => {
@@ -73,10 +107,19 @@
     });
   };
 
+  // Build pretty URL for any page number
+  const buildPrettyUrl = (page) => {
+    if (page === 1) {
+      return CARINA_BLOG.baseUrl;
+    } else {
+      return CARINA_BLOG.pageBase + page + '/';
+    }
+  };
+
   // History priming
-  const initialPage = parsePageFromHref(window.location.href);
+  const initialPage = parsePageFromHref(window.location.href) || 1;
   if (!history.state || typeof history.state.page === 'undefined') {
-    history.replaceState({ page: initialPage }, '', window.location.href);
+    history.replaceState({ page: initialPage }, '', buildPrettyUrl(initialPage));
   }
   if ((parseInt(number.textContent.trim() || '0',10) || 0) !== initialPage) {
     number.textContent = String(initialPage);
@@ -101,48 +144,36 @@
         grid.innerHTML = p.html;
         updatePagerFromPayload(p);
 
-        const pretty = p.page_url || CARINA_BLOG.baseUrl;
-        if (pretty) {
-          history.pushState({ page: p.current }, '', pretty);
-          lastStatePage = p.current;
-        }
+        // Always use pretty URL for history
+        const prettyUrl = buildPrettyUrl(p.current);
+        history.pushState({ page: p.current }, '', prettyUrl);
+        lastStatePage = p.current;
 
         return waitForImages(grid).then(scrollToIntroAfterLayout);
       })
-      .catch(() => {
-        // Hard fallback: navigate to the pretty URL we control
-        const btn = pager.querySelector(`[data-page="${page}"]`);
-        const href = btn?.dataset.href;
-        if (href) window.location.href = href;
+      .catch((error) => {
+        console.error('AJAX error:', error);
+        // Fallback: navigate to the pretty URL
+        const fallbackUrl = buildPrettyUrl(page);
+        window.location.href = fallbackUrl;
       })
       .finally(() => {
         pager.classList.remove('opacity-50','pointer-events-none');
       });
   };
 
-  // GLOBAL GUARD 1: cancel any pointerdown that targets admin-ajax links
-  document.addEventListener('pointerdown', (e) => {
-    const a = e.target.closest('a');
-    if (!a || !section.contains(a)) return;
-    if (/admin-ajax\.php/i.test(a.getAttribute('href') || '')) {
-      e.preventDefault();
-      e.stopPropagation();
-      if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
-    }
-  }, { capture: true });
-
-  // GLOBAL GUARD 2: cancel any click to admin-ajax and reroute to pretty URL via our AJAX
+  // GLOBAL GUARD: cancel any click to admin-ajax and reroute to pretty URL via our AJAX
   document.addEventListener('click', (e) => {
     const a = e.target.closest('a');
     if (!a || !section.contains(a)) return;
     const href = a.getAttribute('href') || '';
+    
     if (/admin-ajax\.php/i.test(href)) {
       e.preventDefault();
       e.stopPropagation();
       if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
 
       const page = parsePageFromHref(href) || 1;
-      history.pushState({ page }, '', page > 1 ? (CARINA_BLOG.pageBase + page + '/') : CARINA_BLOG.baseUrl);
       ajax(page);
     }
   }, { capture: true });
@@ -157,18 +188,18 @@
     e.stopPropagation();
     if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
 
-    let page = parseInt(btn.dataset.page || '0', 10);
-    if (!page) page = parsePageFromHref(btn.dataset.href || '');
-    if (!page) page = 1;
-
-    ajax(page);
+    const page = parsePageFromData(btn);
+    if (page) {
+      ajax(page);
+    }
   }, { capture: true });
 
   // Back/Forward
   window.addEventListener('popstate', (e) => {
     const page = (e.state && typeof e.state.page !== 'undefined')
       ? parseInt(e.state.page, 10)
-      : parsePageFromHref(window.location.href);
+      : parsePageFromHref(window.location.href) || 1;
+      
     if (!page || page === lastStatePage) return;
     lastStatePage = page;
     ajax(page);

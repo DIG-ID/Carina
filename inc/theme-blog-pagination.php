@@ -56,12 +56,17 @@ function carina_load_posts() {
   ];
 
   $q = new WP_Query($args);
+  
+  // Build pretty URLs
+  $base_url = get_permalink(get_option('page_for_posts'));
+  $prev_url = $page > 1 ? ($page - 1 === 1 ? $base_url : trailingslashit($base_url) . 'page/' . ($page - 1) . '/') : '';
+  $next_url = $page < (int) $q->max_num_pages ? trailingslashit($base_url) . 'page/' . ($page + 1) . '/' : '';
+  $page_url = $page > 1 ? trailingslashit($base_url) . 'page/' . $page . '/' : $base_url;
 
   ob_start();
   if ( $q->have_posts() ) {
     while ( $q->have_posts() ) { $q->the_post();
-      // Reuse your exact card markup. Option A: inline here.
-      // Option B (cleaner): get_template_part('template-parts/blog/card'); 
+      // Your card markup here
       ?>
       <article <?php post_class('group col-span-2 md:col-span-3 xl:col-span-4 overflow-hidden transition-all mb-7 md:mb-20 xl:mb-24'); ?>>
         <a href="<?php the_permalink(); ?>" class="block relative">
@@ -91,15 +96,15 @@ function carina_load_posts() {
   $html = ob_get_clean();
 
   $payload = [
-		'html'     => $html,
-		'current'  => $page,
-		'max'      => (int) $q->max_num_pages,
-		'has_prev' => $page > 1,
-		'has_next' => $page < (int) $q->max_num_pages,
-		'prev_url' => $page > 1 ? get_pagenum_link($page - 1) : '',
-		'next_url' => $page < (int) $q->max_num_pages ? get_pagenum_link($page + 1) : '',
-		'page_url' => $page > 1 ? get_pagenum_link($page) : get_permalink(get_option('page_for_posts')),
-	];
+    'html'     => $html,
+    'current'  => $page,
+    'max'      => (int) $q->max_num_pages,
+    'has_prev' => $page > 1,
+    'has_next' => $page < (int) $q->max_num_pages,
+    'prev_url' => $prev_url,
+    'next_url' => $next_url,
+    'page_url' => $page_url,
+  ];
 
   wp_reset_postdata();
   wp_send_json_success($payload);
