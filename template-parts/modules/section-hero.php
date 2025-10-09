@@ -12,13 +12,30 @@
 				<source src="<?php echo esc_url( get_field('hero_video')['url'] ); ?>" type="<?php echo esc_attr( get_field('hero_video')['mime_type'] ); ?>">
 			</video>
 
-		<?php elseif ( get_field('hero_background_image') ) : ?>
-			<?php echo wp_get_attachment_image(
-				get_field('hero_background_image'),
-				'full', false,
-				['class'    => 'absolute inset-0 w-full h-full object-cover -z-10',]
-			); ?>
+		<?php elseif ( $id = (int) get_field('hero_background_image') ) : ?>
+			<picture>
+				<source
+					media="(max-width: 767px)"
+					srcset="<?php echo esc_attr(
+						wp_get_attachment_image_srcset( $id, 'hero-mobile' )
+						?: wp_get_attachment_image_url( $id, 'hero-mobile' )
+					); ?>"
+					sizes="100vw" />
+				<?php echo wp_get_attachment_image(
+					$id,
+					'full',
+					false,
+					[
+						'class'          => 'absolute inset-0 w-full h-full object-cover -z-10',
+						'sizes'          => '100vw',
+						'fetchpriority'  => 'high',
+						'decoding'       => 'async',
+					]
+				); ?>
+			</picture>
 		<?php endif; ?>
+
+
 		<?php /*if ( is_front_page() ) :*/ ?>
 			<div class="home-hero-overlay" aria-hidden="true"></div>
 		<?php /*endif;*/ ?>
