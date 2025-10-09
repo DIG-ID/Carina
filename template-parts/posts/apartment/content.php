@@ -71,7 +71,7 @@
               $first_url = $first_id ? (wp_get_attachment_image_url($first_id, 'full') ?: '') : '';
               ?>
               <a
-                class="btn btn-download-darkBlue max-w-44"
+                class="btn btn-download-darkBlue !justify-start"
                 data-fancybox-trigger="open-zimmer"
                 href="<?php echo esc_url($first_url ?: '#'); ?>"
                 role="button"
