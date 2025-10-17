@@ -2,38 +2,91 @@
 	<section id="section-hero" class="section-hero relative h-[100dvh] md:h-screen w-full z-20 bg-darkBlue">
 
 		<?php if ( get_field('hero_video_header') && get_field('hero_video') ) : ?>
-			<video 
-				autoplay 
-				muted 
-				loop 
-				playsinline 
-				class="absolute inset-0 w-full h-full object-cover -z-10"
-			>
-				<source src="<?php echo esc_url( get_field('hero_video')['url'] ); ?>" type="<?php echo esc_attr( get_field('hero_video')['mime_type'] ); ?>">
-			</video>
+  <?php
+  $bg_id  = (int) get_field('hero_background_image');
+  $poster = $bg_id ? wp_get_attachment_image_url($bg_id, 'full') : '';
+  ?>
 
-		<?php elseif ( $id = (int) get_field('hero_background_image') ) : ?>
-			<picture>
-				<source
-					media="(max-width: 767px)"
-					srcset="<?php echo esc_attr(
-						wp_get_attachment_image_srcset( $id, 'hero-mobile' )
-						?: wp_get_attachment_image_url( $id, 'hero-mobile' )
-					); ?>"
-					sizes="100vw" />
-				<?php echo wp_get_attachment_image(
-					$id,
-					'full',
-					false,
-					[
-						'class'          => 'absolute inset-0 w-full h-full object-cover -z-10',
-						'sizes'          => '100vw',
-						'fetchpriority'  => 'high',
-						'decoding'       => 'async',
-					]
-				); ?>
-			</picture>
-		<?php endif; ?>
+  <?php if ( $bg_id ) : ?>
+    <picture aria-hidden="true" class="pointer-events-none">
+      <source
+        media="(max-width: 767px)"
+        srcset="<?php echo esc_attr(
+          wp_get_attachment_image_srcset( $bg_id, 'hero-mobile' )
+          ?: wp_get_attachment_image_url( $bg_id, 'hero-mobile' )
+        ); ?>"
+        sizes="100vw" />
+      <?php echo wp_get_attachment_image(
+        $bg_id,
+        'full',
+        false,
+        [
+          'class' => 'absolute inset-0 w-full h-full object-cover -z-10',
+          'sizes' => '100vw',
+          'decoding' => 'async',
+        ]
+      ); ?>
+    </picture>
+  <?php endif; ?>
+
+  <video
+    id="hero-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    <?php if ( $poster ) : ?>poster="<?php echo esc_url( $poster ); ?>"<?php endif; ?>
+    class="absolute inset-0 w-full h-full object-cover -z-10 opacity-0 transition-opacity duration-500"
+  >
+    <source
+      src="<?php echo esc_url( get_field('hero_video')['url'] ); ?>"
+      type="<?php echo esc_attr( get_field('hero_video')['mime_type'] ); ?>">
+  </video>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var v = document.getElementById('hero-video');
+      if (!v) return;
+
+      // Fade in only when we actually have data to play
+      var reveal = function () { v.classList.add('opacity-100'); };
+      v.addEventListener('loadeddata', reveal, { once: true });
+
+      // If the source errors, remove the video so the image stays visible
+      v.addEventListener('error', function () { v.remove(); });
+
+      // Safety timeout: if we still don't have data after N ms, treat as failed
+      setTimeout(function () {
+        if (v && v.readyState < 2) { // HAVE_CURRENT_DATA
+          v.dispatchEvent(new Event('error'));
+        }
+      }, 4000);
+    });
+  </script>
+	<?php elseif ( $id = (int) get_field('hero_background_image') ) : ?>
+		<!-- your existing picture fallback for when there is no video configured -->
+		<picture>
+			<source
+				media="(max-width: 767px)"
+				srcset="<?php echo esc_attr(
+					wp_get_attachment_image_srcset( $id, 'hero-mobile' )
+					?: wp_get_attachment_image_url( $id, 'hero-mobile' )
+				); ?>"
+				sizes="100vw" />
+			<?php echo wp_get_attachment_image(
+				$id,
+				'full',
+				false,
+				[
+					'class'          => 'absolute inset-0 w-full h-full object-cover -z-10',
+					'sizes'          => '100vw',
+					'fetchpriority'  => 'high',
+					'decoding'       => 'async',
+				]
+			); ?>
+		</picture>
+	<?php endif; ?>
+
 
 
 		<?php /*if ( is_front_page() ) :*/ ?>
