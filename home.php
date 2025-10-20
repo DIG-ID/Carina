@@ -89,12 +89,12 @@ $blog_q = new WP_Query([
             // Pick the display format per language
             switch ($lang) {
               case 'de': // German
+              case 'fr': // French
                 $fmt = 'd.m.y';
                 break;
               case 'en': // UK English
-              case 'fr': // French
               default:
-                $fmt = 'j F Y';
+                $fmt = 'm.d.y';
                 break;
             }
             ?>
