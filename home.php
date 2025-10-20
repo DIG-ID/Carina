@@ -80,12 +80,30 @@ $blog_q = new WP_Query([
                 <div class="w-full"><?php esc_html_e('No image', 'carina'); ?></div>
               <?php endif; ?>
             </a>
+            <?php
+            // WPML current language (falls back to locale prefix)
+            $lang = defined('ICL_LANGUAGE_CODE')
+              ? ICL_LANGUAGE_CODE
+              : substr( get_locale(), 0, 2 );
 
+            // Pick the display format per language
+            switch ($lang) {
+              case 'de': // German
+                $fmt = 'd.m.y';
+                break;
+              case 'en': // UK English
+              case 'fr': // French
+              default:
+                $fmt = 'j F Y';
+                break;
+            }
+            ?>
             <a href="<?php the_permalink(); ?>" class="block py-6 xl:px-4 content-link">
               <h2 class="mb-3 block-text text-darkBlue !font-semibold min-h-[52px] line-clamp-2"><?php the_title(); ?></h2>
-              <time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>" class="block-text text-darkBlue">
-                <?php echo esc_html( wp_date( 'j. F Y', get_post_timestamp() ) ); ?>
+              <time datetime="<?php echo esc_attr( get_post_time( DATE_W3C ) ); ?>" class="block-text text-darkBlue">
+                <?php echo esc_html( wp_date( $fmt, get_post_timestamp() ) ); ?>
               </time>
+
               <p class="block-text text-darkBlue line-clamp-4 xl:min-h-[104px]">
                 <?php
                   $raw = has_excerpt() ? get_post_field('post_excerpt', get_the_ID())
