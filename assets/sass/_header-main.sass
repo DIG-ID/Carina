@@ -45,10 +45,13 @@
 
 // Menu offcanvas
 .menu-offcanvas
-  @apply fixed left-0 top-0 w-full h-dvh bg-darkBlue text-lightGrey z-30 overflow-auto
+  @apply fixed left-0 top-0 w-full h-dvh bg-darkBlue text-lightGrey z-30 overflow-auto max-h-dvh overflow-y-auto
   clip-path: polygon(40% 0, 60% 0, 100% 0, 0 0)
   transform: translate3d(0, -100%, 0)
   will-change: transform, clip-path
+  -webkit-overflow-scrolling: touch
+  [data-menu-col]
+    @apply min-h-0
 
 nav#primary-nav
   ul
@@ -118,3 +121,45 @@ body.header-style-light.is-scrolled
       .menu-toggle__bars
         .menu-toggle__bar
           @apply bg-lightGrey
+
+
+/* Short screens: tighten spacings and fonts */
+@media (min-width: 768px) and (max-height: 800px)
+  .menu-offcanvas
+    --menu-top-offset: 150px   /* 130px header + buffer */
+    padding-top: var(--menu-top-offset)
+    @apply overflow-y-auto
+    padding-bottom: max(1rem, env(safe-area-inset-bottom))
+  nav#primary-nav
+    @apply mt-10  /* was mt-32/44/52/56 */
+    ul
+      @apply mb-6
+      li.menu-item
+        @apply mb-3
+    /* Make big items smaller */
+    ul.menu-offcanvas__stay li:first-child a,
+    ul.menu-offcanvas__main li a
+      @apply text-base md:text-lg
+
+  /* Keep the language/social bar visible and save space */
+  .menu-offcanvas .theme-container.theme-grid.mb-16
+    @apply mb-6 sticky bottom-0 bg-darkBlue
+    padding-bottom: max(1rem, env(safe-area-inset-bottom))
+
+@media (min-width: 768px) and (max-height: 700px)
+  .menu-offcanvas
+    --menu-top-offset: 150px   /* 130px header + buffer */
+    padding-top: var(--menu-top-offset)
+    @apply overflow-y-auto
+    padding-bottom: max(1rem, env(safe-area-inset-bottom))
+  nav#primary-nav
+    /* If height is *really* tight, go to 2 columns to reduce vertical stacking */
+    .theme-grid
+      grid-template-columns: repeat(2, minmax(0,1fr))
+    ul
+      @apply mb-4
+      li.menu-item
+        @apply mb-2
+    ul.menu-offcanvas__stay li:first-child a,
+    ul.menu-offcanvas__main li a
+      @apply text-sm md:text-base
