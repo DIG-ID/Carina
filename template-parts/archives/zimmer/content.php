@@ -67,7 +67,7 @@
 										?>
 										<div class="flex items-center gap-3">
 											<?php if ( $icon_id ) : ?>
-												<?php echo wp_get_attachment_image( $icon_id, 'full', false, array( 'class' => 'w-9 h-6' ) ); ?>
+												<?php echo wp_get_attachment_image( $icon_id, 'full', false, array( 'class' => 'w-8 h-6' ) ); ?>
 											<?php endif; ?>
 											<?php if ( ! empty( $text ) ) : ?>
 												<h3 class="block-text text-darkBlue text-left"><?php echo esc_html( $text ); ?></h3>
