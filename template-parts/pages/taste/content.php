@@ -4,7 +4,7 @@
         <div class="col-span-2 md:col-span-3 xl:col-span-5">
           <h2 class="title-md text-darkBlue pb-8 md:pb-12 xl:pb-20"><?php the_field( 'content_title' ); ?></h2>
           <p class="block-text text-darkBlue pb-6 md:pb-0"><?php the_field( 'content_text' ); ?></p>
-          <div class="flex flex-col items-start justify-start gap-y-6 max-w-48 order-2 md:order-3 mt-8 mb-8 md:mb-0">
+          <div class="flex flex-col items-start justify-start gap-y-6 max-w-48 order-2 md:order-3 mt-2 md:mt-8 mb-10 md:mb-0">
           <?php if ( have_rows('content_download_list') ) :
             $i = 0; // start at 0 so first is darkBlue
             while ( have_rows('content_download_list') ) : the_row();
