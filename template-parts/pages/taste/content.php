@@ -4,6 +4,28 @@
         <div class="col-span-2 md:col-span-3 xl:col-span-5">
           <h2 class="title-md text-darkBlue pb-8 md:pb-12 xl:pb-20"><?php the_field( 'content_title' ); ?></h2>
           <p class="block-text text-darkBlue pb-6 md:pb-0"><?php the_field( 'content_text' ); ?></p>
+          <div class="flex flex-col items-start justify-start gap-y-6 max-w-48 order-2 md:order-3 mt-8 mb-8 md:mb-0">
+          <?php if ( have_rows('content_download_list') ) :
+            $i = 0; // start at 0 so first is darkBlue
+            while ( have_rows('content_download_list') ) : the_row();
+              $link = get_sub_field('button');
+              if ( $link ) :
+                $link_url   = $link['url'];
+                $link_title = $link['title'];
+                $link_target= $link['target'] ? $link['target'] : '_self';
+
+                $variant = ( get_row_index() % 2 === 1 ) ? 'btn-download-darkBlue' : 'btn-download-darkBlue';
+                ?>
+                <a class="btn <?php echo esc_attr($variant); ?>"
+                  href="<?php echo esc_url($link_url); ?>"
+                  target="<?php echo esc_attr($link_target); ?>">
+                  <?php echo esc_html($link_title); ?>
+                </a>
+              <?php endif;
+              $i++; // increment each loop
+            endwhile;
+          endif; ?>
+        </div>
         </div>
         <div class="col-span-2 md:col-span-3 xl:col-span-7">
           <?php echo wp_get_attachment_image(
@@ -38,28 +60,6 @@
             'full', false,
             ['class'    => 'w-full object-cover md:mb-8',]
           ); ?>
-        </div>
-        <div class="flex flex-col items-start justify-start gap-y-6 max-w-48 order-2 md:order-3 mb-8 md:mb-0">
-          <?php if ( have_rows('content_download_list') ) :
-            $i = 0; // start at 0 so first is darkBlue
-            while ( have_rows('content_download_list') ) : the_row();
-              $link = get_sub_field('button');
-              if ( $link ) :
-                $link_url   = $link['url'];
-                $link_title = $link['title'];
-                $link_target= $link['target'] ? $link['target'] : '_self';
-
-                $variant = ( get_row_index() % 2 === 1 ) ? 'btn-download-darkBlue' : 'btn-download-darkBlue';
-                ?>
-                <a class="btn <?php echo esc_attr($variant); ?>"
-                  href="<?php echo esc_url($link_url); ?>"
-                  target="<?php echo esc_attr($link_target); ?>">
-                  <?php echo esc_html($link_title); ?>
-                </a>
-              <?php endif;
-              $i++; // increment each loop
-            endwhile;
-          endif; ?>
         </div>
       </div>
     </div>
