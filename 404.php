@@ -3,7 +3,7 @@ get_header();
 do_action( 'before_main_content' );
 ?>
 <section id="404" class="section-404 xl:pt-[162px] xl:pb-[52px]">
-	<div class="theme-container bg-no-repeat bg-center bg-cover py-10 min-h-[700px] h-full flex flex-col justify-between items-center text-center" style="background-image: url( <?php echo esc_url( get_theme_file_uri( 'assets/images/404-bg.jpg' ) ); ?> );">
+	<div class="theme-container bg-no-repeat bg-center bg-cover py-10 min-h-[700px] h-full flex flex-col justify-between items-center text-center" style="background-image: url( <?php echo esc_url( get_theme_file_uri( 'assets/images/404-bg-winter.jpg' ) ); ?> );">
 
 			<div class="flex flex-col gap-10 mt-20 md:mt-32 xl:mt-0">
 				<h1 class="font-magnatText font-bold text-8xl xl:text-[9.375rem] leading-none text-darkBlue uppercase "><?php esc_html_e( '404', 'carina' ); ?></h1>
