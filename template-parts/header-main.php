@@ -24,8 +24,12 @@
 						<?php do_action( 'theme_logo' ); ?>
 					</a>
 				</div>
-				<div class="col-span-1 flex items-center justify-end">
-					<a href="<?php the_field( 'general_booking_url', 'option' ); ?>" target="_blank" class="btn btn-primary hidden invisible md:block md:visible text-center"><?php esc_html_e( 'Jetzt buchen', 'carina' ); ?></a>
+				<div class="col-span-1 flex items-center justify-end gap-2">
+					<?php if ( ! is_page_template( 'page-templates/page-taste.php' ) ) : ?>
+						<a href="<?php the_field( 'general_booking_url', 'option' ); ?>" target="_blank" class="btn btn-primary hidden invisible md:block md:visible text-center"><?php esc_html_e( 'Jetzt buchen', 'carina' ); ?></a>
+					<?php else: ?>
+						<a href="<?php the_field( 'general_book_a_table_url', 'option' ); ?>" target="_blank" class="btn btn-secondary hidden invisible md:block md:visible text-center"><?php esc_html_e( 'Tisch Reservation', 'carina' ); ?></a>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
@@ -89,8 +93,15 @@
 		</nav>
 		<div class="theme-container theme-grid mb-16 md:mb-0 md:mt-32 border-t border-lightGrey">
 			<div class="col-span-12 flex flex-col md:flex-row justify-center items-center md:justify-between md:items-center py-6 md:pt-9 text-lightGrey gap-y-4">
-				<div class="flex flex-col md:flex-row items-center"><span class="font-funnelsans text-base uppercase"><?php //esc_html_e( 'Sprache:', 'carina' ); ?></span> <?php if ( function_exists( 'dynamic_sidebar' ) ) { dynamic_sidebar( 'header_ls' ); } ?></div>
 				<?php do_action( 'socials' ); ?>
+				<div class="relative">
+					<div class="flex flex-col md:flex-row items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/4 md:-translate-y-1/2"><span class="font-funnelsans text-base uppercase"><?php //esc_html_e( 'Sprache:', 'carina' ); ?></span> <?php if ( function_exists( 'dynamic_sidebar' ) ) { dynamic_sidebar( 'header_ls' ); } ?></div>
+				</div>
+				<?php if ( is_page_template( 'page-templates/page-taste.php' ) ) : ?>
+					<a href="<?php the_field( 'general_booking_url', 'option' ); ?>" target="_blank" class="btn btn-primary hidden invisible md:block md:visible text-center"><?php esc_html_e( 'Jetzt buchen', 'carina' ); ?></a>
+				<?php else : ?>
+					<a href="<?php the_field( 'general_book_a_table_url', 'option' ); ?>" class="table-reservation-btn btn btn-secondary px-8 hidden invisible opacity-0 md:block md:visible md:opacity-100 text-center whitespace-nowrap"><?php esc_html_e( 'Tisch Reservation', 'carina' ); ?></a>
+				<?php endif; ?>
 			</div>
 		</div>
 		
