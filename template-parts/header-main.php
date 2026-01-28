@@ -28,7 +28,7 @@
 					<?php if ( ! is_page_template( 'page-templates/page-taste.php' ) ) : ?>
 						<a href="<?php the_field( 'general_booking_url', 'option' ); ?>" target="_blank" class="btn btn-primary hidden invisible md:block md:visible text-center"><?php esc_html_e( 'Jetzt buchen', 'carina' ); ?></a>
 					<?php else: ?>
-						<a href="<?php the_field( 'general_book_a_table_url', 'option' ); ?>" target="_blank" class="btn btn-secondary hidden invisible md:block md:visible text-center"><?php esc_html_e( 'Tisch Reservation', 'carina' ); ?></a>
+						<a href="<?php the_field( 'general_book_a_table_url', 'option' ); ?>" target="_blank" class="btn btn-secondary hidden invisible md:block md:visible text-center"><?php esc_html_e( 'Tisch reservieren', 'carina' ); ?></a>
 					<?php endif; ?>
 				</div>
 			</div>
@@ -100,7 +100,7 @@
 				<?php if ( is_page_template( 'page-templates/page-taste.php' ) ) : ?>
 					<a href="<?php the_field( 'general_booking_url', 'option' ); ?>" target="_blank" class="btn btn-primary hidden invisible md:block md:visible text-center"><?php esc_html_e( 'Jetzt buchen', 'carina' ); ?></a>
 				<?php else : ?>
-					<a href="<?php the_field( 'general_book_a_table_url', 'option' ); ?>" class="table-reservation-btn btn btn-secondary px-8 hidden invisible opacity-0 md:block md:visible md:opacity-100 text-center whitespace-nowrap"><?php esc_html_e( 'Tisch Reservation', 'carina' ); ?></a>
+					<a href="<?php the_field( 'general_book_a_table_url', 'option' ); ?>" class="table-reservation-btn btn btn-secondary px-8 hidden invisible opacity-0 md:block md:visible md:opacity-100 text-center whitespace-nowrap"><?php esc_html_e( 'Tisch reservieren', 'carina' ); ?></a>
 				<?php endif; ?>
 			</div>
 		</div>

@@ -112,5 +112,5 @@
 </footer>
 	<div class="fixed-booking-button fixed bottom-6 left-0 w-full h-auto z-20 flex flex-col sm:flex-row justify-center items-center gap-2">
 		<a href="<?php the_field( 'general_booking_url', 'option' ); ?>" class="btn btn-primary px-8 block visible md:hidden md:invisible shadow-md w-full max-w-48"><?php esc_html_e( 'Jetzt buchen', 'carina' ); ?></a>
-		<a href="<?php the_field( 'general_book_a_table_url', 'option' ); ?>" class="btn btn-secondary px-8 block visible md:hidden md:invisible shadow-md w-full max-w-48"><?php esc_html_e( 'Tisch Reservation', 'carina' ); ?></a>
+		<a href="<?php the_field( 'general_book_a_table_url', 'option' ); ?>" class="btn btn-secondary px-8 block visible md:hidden md:invisible shadow-md w-full max-w-48"><?php esc_html_e( 'Tisch reservieren', 'carina' ); ?></a>
 	</div>
