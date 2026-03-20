@@ -50,8 +50,8 @@
 
 					var reveal = function () { v.classList.add('opacity-100'); };
 
-					if (v.readyState >= 3) { reveal(); return; }
-					v.addEventListener('canplay', reveal, { once: true });
+					if (!v.paused) { reveal(); return; }
+					v.addEventListener('playing', reveal, { once: true });
 					v.addEventListener('error', function () { v.remove(); });
 				})();
 			</script>
