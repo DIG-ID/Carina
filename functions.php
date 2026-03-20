@@ -72,13 +72,13 @@ add_action( 'widgets_init', 'carina_theme_footer_widgets_init' );
 
 
 /**
-	 * Preloads Local Fonts to improve performance.
-	 */
+ * Preloads Local Fonts to improve performance.
+ */
 function carina_preload_local_fonts() {
 	$theme_uri = get_template_directory_uri();
 	?>
 	<link rel="preload" as="font" type="font/woff2" href="<?php echo esc_url( $theme_uri ); ?>/assets/fonts/funnel-sans/FunnelSans-VariableFont_wght.woff2" crossorigin>
-	<link rel="preload" as="font" type="font/woff" href="<?php echo esc_url( $theme_uri ); ?>/assets/fonts/magnat-font-family/NeueMagnatTextTest-Regular-BF63e9a00ba26a8.woff" crossorigin>
+	<link rel="preload" as="font" type="font/woff" href="<?php echo esc_url( $theme_uri ); ?>/assets/fonts/magnat-font-family/NeueMagnatTextTest-Medium-BF63e9a00b7573b.woff" crossorigin>
 	<?php
 }
 add_action( 'wp_head', 'carina_preload_local_fonts', 1 );
