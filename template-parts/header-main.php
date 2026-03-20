@@ -14,7 +14,7 @@
 					</div>
 				</div>
 				<div class="col-span-1 flex items-center justify-center">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="header-logo transition-all duration-500 ease-in-out" itemprop="url">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="header-logo transition-all duration-500 ease-in-out" itemprop="url" aria-label="<?php esc_attr_e( 'Hotel Carina Zermatt - Startseite', 'carina' ); ?>">
 						<?php /*
 						$logo = get_field( 'general_theme-logo_light', 'option' );
 						if ( $logo ) :

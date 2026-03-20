@@ -43,7 +43,7 @@
 			<?php
 			if( have_rows('partner_logos','option') ):
 					while( have_rows('partner_logos','option') ) : the_row(); ?>
-						<a href="<?php the_sub_field('link'); ?>" target="_blank" rel="noopener" class="inline-block">
+						<a href="<?php the_sub_field('link'); ?>" target="_blank" rel="noopener" class="inline-block" aria-label="<?php echo esc_attr( get_sub_field( 'name' ) ? get_sub_field( 'name' ) : 'Partner' ); ?>">
 						<?php 
 							$img = get_sub_field('image');
 							$size  = 'full';
@@ -67,7 +67,7 @@
 		</div>
 		<div class="theme-grid">
 			<div class="col-span-2 md:col-span-6 xl:col-span-8 col-start-1 xl:col-start-3 pb-11 md:pb-16 xl:pb-20">
-				<a href="<?php echo esc_url( home_url('/') ); ?>" rel="home">
+				<a href="<?php echo esc_url( home_url('/') ); ?>" rel="home" aria-label="<?php esc_attr_e( 'Hotel Carina Zermatt - Startseite', 'carina' ); ?>">
 					<?php
 						$imgLogo = get_field('general_theme-logo_light','option');
 						$size  = 'full';

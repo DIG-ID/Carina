@@ -36,6 +36,7 @@
 				muted
 				loop
 				playsinline
+				aria-hidden="true"
 				class="absolute inset-0 w-full h-full object-cover -z-10 opacity-0 transition-opacity duration-500"
 			>
 				<source

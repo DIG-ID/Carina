@@ -156,7 +156,7 @@ function theme_socials() {
 				esc_url( $social_data['url'] ),
 				esc_attr( $platform ),
 				/* translators: %s: social media platform name, e.g. "Facebook" */
-				esc_attr( sprintf( __( 'Besuche uns auf %s', 'ambassador' ), ucfirst( $platform ) ) ),
+				esc_attr( sprintf( __( 'Besuche uns auf %s', 'carina' ), ucfirst( $platform ) ) ),
 				$social_data['svg']
 			);
 		endif;
