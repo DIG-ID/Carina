@@ -45,27 +45,14 @@
 
 			<script data-no-rocket-defer>
 				(function () {
-					function initVideo() {
-						var v = document.getElementById('hero-video');
-						if (!v) return;
+					var v = document.getElementById('hero-video');
+					if (!v) return;
 
-						var reveal = function () { v.classList.add('opacity-100'); };
-						if (v.readyState >= 2) { reveal(); return; }
-						v.addEventListener('loadeddata', reveal, { once: true });
-						v.addEventListener('error', function () { v.remove(); });
+					var reveal = function () { v.classList.add('opacity-100'); };
 
-						setTimeout(function () {
-							if (v && v.readyState < 2) {
-								v.dispatchEvent(new Event('error'));
-							}
-						}, 4000);
-					}
-
-					if (document.readyState === 'loading') {
-						document.addEventListener('DOMContentLoaded', initVideo);
-					} else {
-						initVideo();
-					}
+					if (v.readyState >= 3) { reveal(); return; }
+					v.addEventListener('canplay', reveal, { once: true });
+					v.addEventListener('error', function () { v.remove(); });
 				})();
 			</script>
 		<?php elseif ( $bg_id ) : ?>
