@@ -43,7 +43,7 @@
 					type="<?php echo esc_attr( get_field( 'hero_video' )['mime_type'] ); ?>">
 			</video>
 
-			<script>
+			<script data-nowprocket>
 				(function () {
 					var v = document.getElementById('hero-video');
 					if (!v) return;

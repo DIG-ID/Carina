@@ -89,11 +89,12 @@ add_action( 'wp_head', 'carina_preload_local_fonts', 1 );
  */
 function carina_theme_enqueue_styles() {
 
-	// Remove Gutenberg block styles if not using the block editor on the frontend.
+	// Remove unnecessary styles on the frontend.
 	wp_dequeue_style( 'wp-block-library' );
 	wp_dequeue_style( 'wp-block-library-theme' );
-	wp_dequeue_style( 'wc-blocks-style' );
 	wp_dequeue_style( 'global-styles' );
+	wp_dequeue_style( 'classic-theme-styles' );
+	wp_dequeue_style( 'wp-block-paragraph' );
 
 	// Get the theme data.
 	$the_theme     = wp_get_theme();
