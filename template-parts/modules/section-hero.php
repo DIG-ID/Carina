@@ -23,9 +23,8 @@
 						array(
 							'class'         => 'absolute inset-0 w-full h-full object-cover -z-10',
 							'sizes'         => '100vw',
-							'fetchpriority' => 'high',
-							'decoding'      => 'async',
 							'loading'       => 'eager',
+							'fetchpriority' => 'high',
 						)
 					); ?>
 				</picture>
@@ -51,6 +50,7 @@
 						if (!v) return;
 
 						var reveal = function () { v.classList.add('opacity-100'); };
+						if (v.readyState >= 2) { reveal(); return; }
 						v.addEventListener('loadeddata', reveal, { once: true });
 						v.addEventListener('error', function () { v.remove(); });
 
@@ -72,10 +72,13 @@
 			<picture>
 				<source
 					media="(max-width: 767px)"
-					srcset="<?php echo esc_attr(
+					srcset="
+					<?php
+					echo esc_attr(
 						wp_get_attachment_image_srcset( $bg_id, 'hero-mobile' )
 						?: wp_get_attachment_image_url( $bg_id, 'hero-mobile' )
-					); ?>"
+					);
+					?>"
 					sizes="100vw" />
 				<?php echo wp_get_attachment_image(
 					$bg_id,
