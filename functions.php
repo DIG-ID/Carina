@@ -31,7 +31,7 @@ function carina_theme_setup() {
 
 	add_image_size( 'image-thumbnails', 415, 335, array( 'center', 'center' ) );
 
-	add_image_size( 'rooms-thumbnails', 640, 400, array( 'center', 'center' ) );
+	add_image_size( 'rooms-thumbnails', 1280, 800, array( 'center', 'center' ) );
 
 	add_image_size( 'hero-mobile', 1536, 2048, array( 'center', 'center' ) );
 
