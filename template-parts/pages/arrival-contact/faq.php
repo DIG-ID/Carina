@@ -15,7 +15,7 @@
 						the_row();
 						++$i;
 						?>
-						<details id="faq-<?php echo esc_attr( $gi . '-' . $i ); ?>" class="accordion__item group bg-lightGrey text-darkBlue mb-4">
+						<details id="faq-<?php echo esc_attr( $i ); ?>" class="accordion__item group bg-lightGrey text-darkBlue mb-4">
 							<summary class="accordion__item-title flex justify-between items-center cursor-pointer px-9 py-4 [&::-webkit-details-marker]:hidden hover:bg-coral hover:text-lightGrey font-magnatText font-normal text-lg tracking-[0.0003rem] group-open:text-2xl group-open:bg-coral group-open:text-lightGrey transition-all duration-500 ease-in-out">
 								<?php the_sub_field( 'question' ); ?>
 								<span class="accordion__item-icon transition-all duration-500 ease-in-out group-open:rotate-180 ">

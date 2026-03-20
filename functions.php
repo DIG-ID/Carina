@@ -89,6 +89,12 @@ add_action( 'wp_head', 'carina_preload_local_fonts', 1 );
  */
 function carina_theme_enqueue_styles() {
 
+	// Remove Gutenberg block styles if not using the block editor on the frontend.
+	wp_dequeue_style( 'wp-block-library' );
+	wp_dequeue_style( 'wp-block-library-theme' );
+	wp_dequeue_style( 'wc-blocks-style' );
+	wp_dequeue_style( 'global-styles' );
+
 	// Get the theme data.
 	$the_theme     = wp_get_theme();
 	$theme_version = $the_theme->get( 'Version' );
@@ -145,6 +151,19 @@ add_action( 'acf/init', 'carina_google_map_init' );
  * Remove <p> Tag From Contact Form 7.
  */
 add_filter( 'wpcf7_autop_or_not', '__return_false' );
+
+/**
+ * Load Contact Form 7 and reCAPTCHA scripts only on the contact page.
+ */
+function carina_dequeue_cf7_scripts() {
+	if ( ! is_page_template( 'page-templates/page-arrival-contacts.php' ) ) {
+		wp_dequeue_script( 'contact-form-7' );
+		wp_dequeue_style( 'contact-form-7' );
+		wp_dequeue_script( 'google-recaptcha' );
+		wp_dequeue_script( 'wpcf7-recaptcha' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'carina_dequeue_cf7_scripts', 99 );
 
 /**
  * Lowers the metabox priority to 'core' for Yoast SEO's metabox.
