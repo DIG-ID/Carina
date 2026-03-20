@@ -1,5 +1,16 @@
 // webpack.mix.js
 
+const os = require('os');
+const path = require('path');
+
+// Caminho para os certificados do Local by WPEngine
+const certPath = path.join(
+  os.homedir(),
+  os.platform() === 'win32'
+    ? 'AppData/Roaming/Local/run/router/nginx/certs'
+    : 'Library/Application Support/Local/run/router/nginx/certs'
+);
+
 const mix = require('laravel-mix');
 const tailwindcss = require('tailwindcss');
 
@@ -9,7 +20,6 @@ mix
   .autoload({
     jquery: ['$', 'window.jQuery', 'jQuery']
   })
-
   .js('assets/js/main.js', 'js')
   .sass('assets/sass/main.sass', 'css')
   .sass('assets/sass/admin-login.sass', 'css')
@@ -17,17 +27,19 @@ mix
     postCss: [ tailwindcss('./tailwind.config.js') ],
     processCssUrls: false,
   })
-
   .browserSync({
-    proxy: {
-      target: "https://carinazermatt.digid/",
-      ws: true,
+    proxy: "https://carinazermatt.digid/",
+    host: "carinazermatt.digid",
+    open: "external",
+    port: 3000,
+    ws: true,
+    https: {
+      key: path.join(certPath, 'carinazermatt.digid.key'),
+      cert: path.join(certPath, 'carinazermatt.digid.crt'),
     },
-    https: true,
     files: ["./**/*.php", "./dist/js/*.js", "./dist/css/*.css"]
   })
   .disableNotifications();
-  
 
 if (!mix.inProduction()) {
   mix

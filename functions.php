@@ -70,40 +70,16 @@ function carina_theme_footer_widgets_init() {
 
 add_action( 'widgets_init', 'carina_theme_footer_widgets_init' );
 
-if ( ! function_exists( 'carina_get_font_face_styles' ) ) :
-	/**
-	 * Get font face styles.
-	 * This is used by the theme or editor to inject @import for Google Fonts.
-	 */
-	function carina_get_font_face_styles() {
-		return "
-			@import url('https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-		";
-	}
-endif;
-
-if ( ! function_exists( 'carina_preload_webfonts' ) ) :
-	/**
-	 * Preloads Google Fonts to improve performance.
-	 */
-	function carina_preload_webfonts() {
-		?>
-		<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<?php
-	}
-endif;
-
-add_action( 'wp_head', 'carina_preload_webfonts' );
 
 /**
 	 * Preloads Local Fonts to improve performance.
 	 */
 function carina_preload_local_fonts() {
-    $base = get_template_directory_uri() . '/assets/fonts/magnat-font-family/';
-    ?>
-    <link rel="preload" as="font" type="font/woff" href="<?php echo $base; ?>NeueMagnatTextTest-Regular-BF63e9a00ba26a8.woff" crossorigin>
-    <?php
+	$theme_uri = get_template_directory_uri();
+	?>
+	<link rel="preload" as="font" type="font/woff2" href="<?php echo esc_url( $theme_uri ); ?>/assets/fonts/funnel-sans/FunnelSans-VariableFont_wght.woff2" crossorigin>
+	<link rel="preload" as="font" type="font/woff" href="<?php echo esc_url( $theme_uri ); ?>/assets/fonts/magnat-font-family/NeueMagnatTextTest-Regular-BF63e9a00ba26a8.woff" crossorigin>
+	<?php
 }
 add_action( 'wp_head', 'carina_preload_local_fonts', 1 );
 
@@ -112,23 +88,45 @@ add_action( 'wp_head', 'carina_preload_local_fonts', 1 );
  * Enqueue styles and scripts
  */
 function carina_theme_enqueue_styles() {
-	//Get the theme data
+
+	// Get the theme data.
 	$the_theme     = wp_get_theme();
 	$theme_version = $the_theme->get( 'Version' );
 
-	// Register Theme main style.
-	wp_register_style( 'theme-styles', get_template_directory_uri() . '/dist/css/main.css', array(), $theme_version );
-	// Add styles inline.
-	wp_add_inline_style( 'theme-styles', carina_get_font_face_styles() );
 	// Enqueue theme stylesheet.
-	wp_enqueue_style( 'theme-styles' );
+	wp_enqueue_style(
+		'theme-styles',
+		get_theme_file_uri( '/dist/css/main.css' ),
+		array(),
+		$theme_version
+	);
 
-	wp_enqueue_script( 'jquery', false, array(), $theme_version, true );
-	wp_enqueue_script( 'theme-scripts', get_stylesheet_directory_uri() . '/dist/js/main.js', array( 'jquery' ), $theme_version, true );
+	wp_enqueue_script(
+		'theme-scripts',
+		get_theme_file_uri( '/dist/js/main.js' ),
+		array( 'jquery' ),
+		$theme_version,
+		true
+	);
 
 	if ( is_page_template( 'page-templates/page-arrival-contacts.php' ) || is_admin() ) :
-		wp_enqueue_script( 'google-map-settings', get_stylesheet_directory_uri() . '/assets/js/google-maps.js', array( 'jquery' ), $theme_version, true );
-		wp_enqueue_script( 'google-map-api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBAZN5TfX1aWmjodZ4e_6sOcaJV4D59jfo&callback=initMap', array(), $theme_version, true );
+
+		wp_enqueue_script(
+			'google-map-settings',
+			get_theme_file_uri( '/assets/js/google-maps.js' ),
+			array( 'jquery' ),
+			$theme_version,
+			true
+		);
+
+		wp_enqueue_script(
+			'google-map-api',
+			'https://maps.googleapis.com/maps/api/js?key=AIzaSyBAZN5TfX1aWmjodZ4e_6sOcaJV4D59jfo&callback=initMap',
+			array(),
+			$theme_version,
+			true
+		);
+
 	endif;
 }
 
