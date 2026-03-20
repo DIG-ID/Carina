@@ -152,11 +152,12 @@ function theme_socials() {
 	foreach ( $socials as $platform => $social_data ) :
 		if ( $social_data['url'] ) :
 			$html .= sprintf(
-				'<a href="%s" target="_blank" rel="noopener noreferrer" class="social-link social-link--%s">%s</a>',
+				'<a href="%s" target="_blank" rel="noopener noreferrer" class="social-link social-link--%s" aria-label="%s">%s</a> ',
 				esc_url( $social_data['url'] ),
 				esc_attr( $platform ),
+				/* translators: %s: social media platform name, e.g. "Facebook" */
+				esc_attr( sprintf( __( 'Besuche uns auf %s', 'ambassador' ), ucfirst( $platform ) ) ),
 				$social_data['svg']
-				//ucfirst( $platform )
 			);
 		endif;
 	endforeach;
