@@ -1,0 +1,11 @@
+.skip-link
+  @apply font-funnelsans font-bold text-[1rem] leading-none tracking-[-0.02rem] text-lightGrey bg-darkBlue border border-coral rounded-[3.75rem] py-[0.6563rem] px-8 transition-all duration-300 ease-in-out
+  position: fixed
+  top: 1.5rem
+  left: 1.5rem
+  z-index: 100
+  transform: translateY(calc(-100% - 2rem))
+  &:focus
+    transform: translateY(0)
+    outline: 2px solid #EC685B
+    outline-offset: 3px
