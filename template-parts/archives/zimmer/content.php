@@ -3,11 +3,11 @@
 		<div class="theme-grid">
 			<!-- Breadcrumbs -->
 			<div class="mb-4 col-span-2 md:col-span-6 xl:col-span-12">
-				<h3 class="title-sm"><?php the_field( 'room_content_over_title', 'options' ); ?></h3>
+				<h2 class="title-sm"><?php the_field( 'room_content_over_title', 'options' ); ?></h2>
 			</div>
 			<!-- Section heading -->
 			<div class="mb-8 md:mb-16 xl:mb-7 col-span-2 md:col-span-5 xl:col-span-7">
-				<h2 class="title-md md:max-w-[530px] xl:max-w-[530px]"><?php the_field( 'room_content_title', 'options' ); ?></h2>
+				<p class="title-md md:max-w-[530px] xl:max-w-[530px]"><?php the_field( 'room_content_title', 'options' ); ?></p>
 			</div>
 		</div>
 		<!-- Content -->

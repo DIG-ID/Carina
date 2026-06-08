@@ -13,7 +13,7 @@
             'decoding' => 'async',
             ]
           ); ?>
-          <h3 class="title-30 text-lightGrey absolute bottom-4 left-5"><?php the_field( 'seasons_summer_title' ); ?></h3>
+          <h2 class="title-30 text-lightGrey absolute bottom-4 left-5"><?php the_field( 'seasons_summer_title' ); ?></h2>
         </div>
         <div class="text-wrapper relative block md:flex md:flex-col xl:block md:items-start md:justify-between w-full md:w-1/2 xl:w-full">
           <p class="block-text text-darkBlue py-8 md:pt-0 xl:pt-6 md:pb-0 xl:pb-12"><?php the_field( 'seasons_summer_text' ); ?></p>
@@ -40,7 +40,7 @@
             'decoding' => 'async',
             ]
           ); ?>
-          <h3 class="title-30 text-lightGrey absolute bottom-4 left-5"><?php the_field( 'seasons_winter_title' ); ?></h3>
+          <h2 class="title-30 text-lightGrey absolute bottom-4 left-5"><?php the_field( 'seasons_winter_title' ); ?></h2>
         </div>
         <div class="text-wrapper relative block md:flex md:flex-col xl:block md:items-start md:justify-between w-full md:w-1/2 xl:w-full">
           <p class="block-text text-darkBlue py-8 md:pt-0 xl:pt-6 md:pb-0 xl:pb-12"><?php the_field( 'seasons_winter_text' ); ?></p>
