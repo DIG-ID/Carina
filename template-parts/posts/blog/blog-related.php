@@ -1,5 +1,5 @@
 <div class="flex flex-col bg-darkBlue pt-7 pb-12 px-9 mt-16 xl:mt-0">
-	<h3 class="title-sm text-lightGrey mb-6 xl:mb-11"><?php esc_html_e( 'Letzte Beiträge :', 'carina' ); ?></h3>
+	<h2 class="title-sm text-lightGrey mb-6 xl:mb-11"><?php esc_html_e( 'Letzte Beiträge :', 'carina' ); ?></h2>
 	<?php
 	$args = array(
 		'post_type'           => 'post',
@@ -32,7 +32,7 @@
 									<?php echo esc_html( get_the_date( 'j M Y' ) ); ?>
 								</span>
 							</time>
-							<p class="block-text text-lightGrey pt-5 line-clamp-3"><?php the_title(); ?></p>
+							<h3 class="block-text text-lightGrey pt-5 line-clamp-3"><?php the_title(); ?></h3>
 						</div>
 					</article>
 				</a>
