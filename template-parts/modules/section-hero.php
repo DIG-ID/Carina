@@ -123,12 +123,10 @@
 				endif;
 				?>
 				<?php 
-				$page_under_title = get_field( 'hero_sub_title' );
+				$page_under_title = get_field( 'hero_under_title' );
 				if ( $page_under_title ) :
 					echo '<h1 class="block-30 mt-4">' . esc_html( $page_under_title ) . '</h1>';
 				endif;
-				?>
-
 				?>
 			</div>
 		</div>
