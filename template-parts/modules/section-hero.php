@@ -87,11 +87,16 @@
 		<div class="theme-container justify-center h-full flex items-end relative z-10 <?php echo esc_attr( ( is_front_page() ) ? 'pb-36 xl:pb-20' : 'pb-8 xl:pb-14' ); ?>">
 			<div class="theme-grid w-full">
 				<?php if ( get_field( 'hero_title' ) ) : ?>
+				<?php if ( get_field( 'hero_under_title' ) ) : ?>	
 					<div class="col-span-2 md:col-span-<?php echo esc_attr( get_field( 'hero_cols_md' ) ); ?> xl:col-span-<?php echo esc_attr( get_field( 'hero_cols_xl' ) ); ?> text-lightGrey">
-						<h1 class="title-xl">
+						<p class="title-xl">
 							<?php the_field( 'hero_title' ); ?>
+						</p>
+						<h1 class="block-30 mt-4">
+							<?php the_field( 'hero_under_title' ); ?>
 						</h1>
 					</div>
+				<?php endif; ?>
 				<?php endif; ?>
 			</div>
 			<?php if ( is_front_page() ) : ?>
