@@ -19,9 +19,12 @@
     <div class="theme-grid">
       <?php if( get_field('apartment_hero_title', 'options') ) : ?>
       <div class="col-span-2 md:col-span-<?php echo get_field( 'apartment_hero_cols_md', 'options' ); ?> xl:col-span-<?php echo get_field( 'apartment_hero_cols_xl', 'options'); ?> text-lightGrey">
-        <h1 class="title-xl">
+        <p class="title-xl">
           <?php the_field( 'apartment_hero_title', 'options'); ?>
-        </h1>
+        </p>
+        <h1 class="block-30 mt-4">
+							<?php the_field( 'apartment_hero_under_title', 'options' ); ?>
+						</h1>
       </div>
       <?php endif; ?>
     </div>
