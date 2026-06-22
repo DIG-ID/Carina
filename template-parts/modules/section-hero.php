@@ -117,10 +117,18 @@
 				<?php
 				$page_title = get_field( 'hero_title' );
 				if ( $page_title ) :
-					echo '<h1 class="title-md">' . esc_html( $page_title ) . '</h1>';
+					echo '<p class="title-md">' . esc_html( $page_title ) . '</p>';
 				else :
-					the_title( '<h1 class="title-md">', '</h1>' );
+					the_title( '<p class="title-md">', '</p>' );
 				endif;
+				?>
+				<?php 
+				$page_under_title = get_field( 'hero_sub_title' );
+				if ( $page_under_title ) :
+					echo '<h1 class="block-30 mt-4">' . esc_html( $page_under_title ) . '</h1>';
+				endif;
+				?>
+
 				?>
 			</div>
 		</div>
