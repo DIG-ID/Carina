@@ -11,6 +11,7 @@ $blog_title = $blog_page_id ? get_the_title($blog_page_id) : __('Blog', 'carina'
 
 $hero_bg_id = get_field('hero_background_image', $blog_page_id);
 $hero_title = get_field('hero_title', $blog_page_id);
+$hero_under_title = get_field('hero_under_title', $blog_page_id);
 $blog_intro = get_field('blog_intro', $blog_page_id);
 $cols_md    = (int) get_field('hero_cols_md', $blog_page_id) ?: 4;
 $cols_xl    = (int) get_field('hero_cols_xl', $blog_page_id) ?: 6;
@@ -34,9 +35,13 @@ $cols_xl    = (int) get_field('hero_cols_xl', $blog_page_id) ?: 6;
     <div class="theme-grid w-full">
       <?php if ($hero_title) : ?>
         <div class="col-span-2 md:col-span-<?php echo esc_attr($cols_md); ?> xl:col-span-<?php echo esc_attr($cols_xl); ?> text-lightGrey">
-          <h1 class="title-xl">
+          <pclass="title-xl">
             <?php echo $hero_title; ?>
-          </h1>
+          </p>
+          <?php if ($hero_under_title) : ?>
+            <h1 class="block-30 mt-4">
+              <?php echo $hero_under_title; ?>
+            </h1>
         </div>
       <?php endif; ?>
     </div>
