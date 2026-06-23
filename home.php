@@ -35,7 +35,7 @@ $cols_xl    = (int) get_field('hero_cols_xl', $blog_page_id) ?: 6;
     <div class="theme-grid w-full">
       <?php if ($hero_title) : ?>
         <div class="col-span-2 md:col-span-<?php echo esc_attr($cols_md); ?> xl:col-span-<?php echo esc_attr($cols_xl); ?> text-lightGrey">
-          <pclass="title-xl">
+          <p class="title-xl">
             <?php echo $hero_title; ?>
           </p>
           <?php if ($hero_under_title) : ?>
@@ -43,6 +43,7 @@ $cols_xl    = (int) get_field('hero_cols_xl', $blog_page_id) ?: 6;
               <?php echo $hero_under_title; ?>
             </h1>
         </div>
+      <?php endif; ?>
       <?php endif; ?>
     </div>
   </div>
