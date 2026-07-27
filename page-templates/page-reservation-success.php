@@ -15,7 +15,7 @@ do_action( 'before_main_content' );
 				
 				<div class="reservation-content bg-darkBlue text-lightGrey max-w-[520px] px-8 py-6 flex flex-col justify-center items-center gap-0">
           <p class="block-text !font-semibold"><?php esc_html_e( 'Deine Geschichte am Tisch beginnt bald.', 'carina' ); ?></p>
-					<h1 class="font-magnatText font-semibold text-xl xl:text-2xl tracking-[0.005px] text-lightGrey mb-5 xl:mb-7"><?php echo wp_kses_post( 'Danke für deine Reservierung<br>im La Table du Carina', 'carina' ); ?></h1>
+					<h1 class="font-magnatText font-semibold text-xl xl:text-2xl tracking-[0.005px] text-lightGrey mb-5 xl:mb-7"><?php echo wp_kses_post( __( 'Danke für deine Reservierung<br>im La Table du Carina', 'carina' ) ); ?></h1>
 					<p class="block-text"><?php esc_html_e( 'Wir freuen uns, dich bald bei uns zu empfangen.', 'carina' ); ?></p>
           <p class="block-text !font-semibold"><?php esc_html_e( 'Eine Bestätigung folgt per E-Mail.', 'carina' ); ?></p>
           <p class="block-text"><?php esc_html_e( 'Bitte wirf einen Blick in dein Postfach und bestätige deine Reservierung.', 'carina' ); ?></p>
