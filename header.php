@@ -17,7 +17,9 @@
 
 	<?php
 	$header_style = '';
-	if ( 'dark' === get_field( 'hero_header_style' ) ) :
+	if ( is_page_template( 'page-templates/page-reservation-success.php' ) ) :
+		$header_style = 'header-style-light';
+	elseif ( 'dark' === get_field( 'hero_header_style' ) ) :
 		$header_style = 'header-style-dark';
 	else :
 		$header_style = 'header-style-light';
